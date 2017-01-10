@@ -43,3 +43,6 @@ captures/
 .floo
 .flooignore
 FLOOBITS_README.md
+
+# Google and Firebase access
+google-services.json
