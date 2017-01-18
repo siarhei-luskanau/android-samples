@@ -44,7 +44,7 @@ public class CameraActivity extends Activity {
 
     public void requestPermissions() {
         Log.d(TAG, "requestPermissions");
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
                 PERMISSIONS_REQUEST);
     }
 
@@ -85,16 +85,16 @@ public class CameraActivity extends Activity {
                     CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraId);
                     StreamConfigurationMap configs = characteristics.get(
                             CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                    for (int format : configs.getOutputFormats()) {
+                    int[] outputFormats = configs.getOutputFormats();
+                    Log.i(TAG, "OutputFormats: " + gson.toJson(outputFormats));
+                    for (int format : outputFormats) {
                         Log.d(TAG, "Getting sizes for format: " + format);
                         for (Size s : configs.getOutputSizes(format)) {
                             Log.d(TAG, "\t" + s.toString());
                         }
                     }
                     int[] effects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
-                    for (int effect : effects) {
-                        Log.d(TAG, "Effect available: " + effect);
-                    }
+                    Log.i(TAG, "effects: " + gson.toJson(effects));
                 } catch (CameraAccessException e) {
                     Log.d(TAG, "Cam access exception getting characteristics.");
                 }
