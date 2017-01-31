@@ -7,7 +7,7 @@ import android.util.Log;
 import com.google.android.things.pio.PeripheralManagerService;
 import com.google.gson.Gson;
 
-public class IotActivity extends CameraActivity {
+public class IotActivity extends Dht11Activity {
 
     private static final String TAG = IotActivity.class.getSimpleName();
     private Gson gson = new Gson();
