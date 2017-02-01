@@ -14,10 +14,12 @@ public class Dht11Activity extends CameraActivity {
 
     private static final String TAG = Dht11Activity.class.getSimpleName();
     //private static final String DHT11_GPIO_PIN = "BCM4";
-    private static final String DHT11_GPIO_PIN = "BCM26";
+    private static final String DHT11_READ_GPIO_PIN = "BCM26";
+    private static final String DHT11_WRITE_GPIO_PIN = "BCM19";
     private static final String GPIO_BUTTON = "BCM22";
 
-    private Gpio dht11Gpio;
+    private Gpio dht11ReadGpio;
+    private Gpio dht11WriteGpio;
     private Button button;
 
     @Override
@@ -27,10 +29,9 @@ public class Dht11Activity extends CameraActivity {
 
         PeripheralManagerService service = new PeripheralManagerService();
         try {
-            dht11Gpio = service.openGpio(DHT11_GPIO_PIN);
-            dht11Gpio.setDirection(Gpio.DIRECTION_IN);
-
-            dht11Gpio.registerGpioCallback(new GpioCallback() {
+            dht11ReadGpio = service.openGpio(DHT11_READ_GPIO_PIN);
+            dht11ReadGpio.setEdgeTriggerType(Gpio.EDGE_BOTH);
+            dht11ReadGpio.registerGpioCallback(new GpioCallback() {
                 @Override
                 public boolean onGpioEdge(Gpio gpio) {
                     try {
@@ -44,6 +45,13 @@ public class Dht11Activity extends CameraActivity {
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
+        try {
+            dht11WriteGpio = service.openGpio(DHT11_WRITE_GPIO_PIN);
+            dht11WriteGpio.setDirection(Gpio.DIRECTION_IN);
+            dht11WriteGpio.setActiveType(Gpio.ACTIVE_HIGH);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
 
         try {
             button = new Button(GPIO_BUTTON, Button.LogicState.PRESSED_WHEN_LOW);
@@ -52,13 +60,19 @@ public class Dht11Activity extends CameraActivity {
                 public void onButtonEvent(Button button, boolean pressed) {
                     try {
                         if (pressed) {
-                            dht11Gpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
-                            dht11Gpio.setValue(true);
-                            Thread.sleep(25);
-                            dht11Gpio.setValue(false);
+                            Log.d(TAG, "Button: " + pressed);
+                            if (dht11WriteGpio != null) {
+                                dht11WriteGpio.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);
+                                dht11WriteGpio.setValue(true);
+                                Thread.sleep(25);
+                                dht11WriteGpio.setValue(false);
+                                Thread.sleep(2);
 
-                            dht11Gpio.setDirection(Gpio.DIRECTION_IN);
-                            dht11Gpio.setEdgeTriggerType(Gpio.EDGE_BOTH);
+                                dht11WriteGpio.setDirection(Gpio.DIRECTION_IN);
+                                dht11WriteGpio.setActiveType(Gpio.ACTIVE_HIGH);
+                            } else {
+                                Log.d(TAG, "dht11WriteGpio is null");
+                            }
                         }
                     } catch (Exception e) {
                         Log.e(TAG, e.getMessage(), e);
@@ -74,14 +88,19 @@ public class Dht11Activity extends CameraActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (dht11Gpio != null) {
-            Log.i(TAG, "Closing LED GPIO pin");
+        closeGpio(dht11ReadGpio);
+        dht11ReadGpio = null;
+
+        closeGpio(dht11WriteGpio);
+        dht11WriteGpio = null;
+    }
+
+    private void closeGpio(Gpio gpio) {
+        if (gpio != null) {
             try {
-                dht11Gpio.close();
+                gpio.close();
             } catch (IOException e) {
                 Log.e(TAG, "Error on PeripheralIO API", e);
-            } finally {
-                dht11Gpio = null;
             }
         }
     }

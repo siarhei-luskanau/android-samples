@@ -30,11 +30,11 @@ public class CameraActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (isPermissionsGranted()) {
-            cameraInfo();
-        } else {
-            requestPermissions();
-        }
+//        if (isPermissionsGranted()) {
+//            cameraInfo();
+//        } else {
+//            requestPermissions();
+//        }
     }
 
     public boolean isPermissionsGranted() {
