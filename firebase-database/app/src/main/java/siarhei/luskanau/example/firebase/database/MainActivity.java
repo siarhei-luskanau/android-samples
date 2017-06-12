@@ -16,6 +16,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private TextView messageTextView;
 
     private TextView messageTextView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        messageTextView = (TextView) findViewById(R.id.message);
 
         messageTextView = (TextView) findViewById(R.id.messageTextView);
 
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 final String value = dataSnapshot.getValue(String.class);
                 messageTextView.setText(value);
                 Log.d(TAG, "Value is: " + value);
+                messageTextView.setText(value);
             }
 
             @Override
