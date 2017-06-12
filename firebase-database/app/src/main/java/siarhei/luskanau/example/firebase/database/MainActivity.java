@@ -18,13 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private TextView messageTextView;
 
-    private TextView messageTextView;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        messageTextView = (TextView) findViewById(R.id.message);
 
         messageTextView = (TextView) findViewById(R.id.messageTextView);
 
