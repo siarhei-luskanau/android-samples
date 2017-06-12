@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "siarhei.luskanau.example.firebase.database"
         minSdkVersion 19
@@ -20,6 +19,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.google.firebase:firebase-database:10.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.google.firebase:firebase-database:11.0.0'
 }
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
