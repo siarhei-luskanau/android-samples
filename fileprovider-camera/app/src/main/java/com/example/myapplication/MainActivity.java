@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.fileprovider.FileProviderUtils;
 
 import java.util.Locale;
 
@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private TextView imageUriTextView;
-    private ImageView previewView;
     private ImageView imageView;
 
     @Override
@@ -31,14 +30,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         imageUriTextView = (TextView) findViewById(R.id.imageUriTextView);
-        previewView = (ImageView) findViewById(R.id.previewView);
         imageView = (ImageView) findViewById(R.id.imageView);
 
         findViewById(R.id.cameraButton).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View view) {
-                final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                final Intent takePictureIntent = FileProviderUtils.createCameraIntent(getApplicationContext());
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
@@ -62,18 +60,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            final Bundle extras = data.getExtras();
+            final Uri uri = data != null ? data.getData()
+                    : FileProviderUtils.getCameraTempFileProviderUri(getApplicationContext());
 
-            final Uri uri = data.getData();
-            imageUriTextView.setText(String.format(Locale.ENGLISH, "%s: %s", data.getAction(), String.valueOf(uri)));
-
-            final Bitmap imageBitmap = (Bitmap) extras.get("data");
-            if (imageBitmap != null) {
-                previewView.setImageBitmap(imageBitmap);
-            } else {
-                previewView.setImageResource(R.drawable.ic_android_24dp);
-            }
-
+            imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
             Glide.with(this)
                     .load(uri)
                     .fitCenter()
