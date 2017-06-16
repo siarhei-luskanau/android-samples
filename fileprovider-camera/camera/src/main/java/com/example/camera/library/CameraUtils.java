@@ -1,4 +1,4 @@
-package com.example.myapplication.fileprovider;
+package com.example.camera.library;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,20 +6,16 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 
-import java.io.File;
 import java.util.List;
 
-public final class FileProviderUtils {
+public final class CameraUtils {
 
-    private static final String AUTHORITIES_SUFFIX = ".provider";
-    private static final String FILE_PROVIDER_PATHS = "temp";
     private static final String CAMERA_TEMP_FILE_NAME = "camera_temp.jpg";
 
     public static Intent createCameraIntent(final Context context) {
-        deleteCameraTempFile(context);
-        final Uri uri = getCameraTempFileProviderUri(context.getApplicationContext());
+        FileProviderUtils.deleteFile(context.getApplicationContext(), CAMERA_TEMP_FILE_NAME);
+        final Uri uri = FileProviderUtils.getFileProviderUri(context.getApplicationContext(), CAMERA_TEMP_FILE_NAME);
 
         final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -37,23 +33,6 @@ public final class FileProviderUtils {
     }
 
     public static Uri getCameraTempFileProviderUri(final Context context) {
-        return FileProvider.getUriForFile(context,
-                context.getPackageName() + AUTHORITIES_SUFFIX,
-                createCameraTempFile(context));
-    }
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private static File createCameraTempFile(final Context context) {
-        final File fileProviderDir = new File(context.getFilesDir(), FILE_PROVIDER_PATHS);
-        if (!fileProviderDir.exists()) {
-            fileProviderDir.mkdirs();
-        }
-        return new File(fileProviderDir, CAMERA_TEMP_FILE_NAME);
-    }
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private static void deleteCameraTempFile(final Context context) {
-        final File file = createCameraTempFile(context);
-        file.delete();
+        return FileProviderUtils.getFileProviderUri(context.getApplicationContext(), CAMERA_TEMP_FILE_NAME);
     }
 }

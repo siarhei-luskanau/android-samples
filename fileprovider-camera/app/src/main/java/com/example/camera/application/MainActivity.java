@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.camera.application;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.fileprovider.FileProviderUtils;
+import com.example.camera.library.CameraUtils;
 
 import java.util.Locale;
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(final View view) {
-                final Intent takePictureIntent = FileProviderUtils.createCameraIntent(getApplicationContext());
+                final Intent takePictureIntent = CameraUtils.createCameraIntent(getApplicationContext());
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             final Uri uri = data != null ? data.getData()
-                    : FileProviderUtils.getCameraTempFileProviderUri(getApplicationContext());
+                    : CameraUtils.getCameraTempFileProviderUri(getApplicationContext());
 
             imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
             Glide.with(this)
