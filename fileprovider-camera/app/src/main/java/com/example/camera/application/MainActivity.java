@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        showImageUri(null);
     }
 
     @Override
@@ -63,15 +65,20 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             final Uri uri = data != null ? data.getData()
                     : CameraUtils.getCameraTempFileProviderUri(getApplicationContext());
-
-            imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
-            Glide.with(this)
-                    .load(uri)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_android_24dp)
-                    .into(imageView);
+            showImageUri(uri);
+        } else {
+            showImageUri(null);
         }
+    }
+
+    private void showImageUri(final Uri uri) {
+        imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
+        Glide.with(this)
+                .load(uri)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .fitCenter()
+                .placeholder(R.drawable.ic_android_24dp)
+                .into(imageView);
     }
 }
