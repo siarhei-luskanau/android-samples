@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.camera.library.CameraUtils;
 
 import java.util.Locale;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
             Glide.with(this)
                     .load(uri)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .fitCenter()
                     .placeholder(R.drawable.ic_android_24dp)
                     .into(imageView);
