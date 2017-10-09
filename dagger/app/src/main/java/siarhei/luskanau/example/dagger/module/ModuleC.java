@@ -12,7 +12,7 @@ public class ModuleC {
 
     @Provides
     @ScopeC
-    ModelC provideModelC(ModelA modelA, ModelB modelB) {
+    ModelC provideModelC(final ModelA modelA, final ModelB modelB) {
         return new ModelC();
     }
 }

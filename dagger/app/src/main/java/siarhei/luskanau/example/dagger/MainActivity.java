@@ -16,20 +16,20 @@ import siarhei.luskanau.example.dagger.target.TargetC;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ComponentA componentA = DaggerComponentA.builder()
+        final ComponentA componentA = DaggerComponentA.builder()
                 .build();
         componentA.inject(new TargetA());
 
-        ComponentB componentB = DaggerComponentB.builder()
+        final ComponentB componentB = DaggerComponentB.builder()
                 .componentA(componentA)
                 .build();
         componentB.inject(new TargetB());
 
-        ComponentC componentC = DaggerComponentC.builder()
+        final ComponentC componentC = DaggerComponentC.builder()
                 .componentB(componentB)
                 .build();
         componentC.inject(new TargetC());

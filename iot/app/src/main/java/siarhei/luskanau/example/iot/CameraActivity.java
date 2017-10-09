@@ -8,6 +8,7 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -19,10 +20,10 @@ public class CameraActivity extends Activity {
 
     private static final String TAG = CameraActivity.class.getSimpleName();
     private static final int PERMISSIONS_REQUEST = 200;
-    private Gson gson = new Gson();
+    private final Gson GSON = new Gson();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Starting CameraActivity");
     }
@@ -49,7 +50,7 @@ public class CameraActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_REQUEST:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -75,31 +76,33 @@ public class CameraActivity extends Activity {
 
     private void cameraInfo() {
         try {
-            CameraManager cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
-            String[] cameraIdList = cameraManager.getCameraIdList();
-            Log.i(TAG, "CameraIdList: " + gson.toJson(cameraIdList));
+            final CameraManager cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
+            final String[] cameraIdList = cameraManager.getCameraIdList();
+            Log.i(TAG, "CameraIdList: " + GSON.toJson(cameraIdList));
 
-            for (String cameraId : cameraIdList) {
+            for (final String cameraId : cameraIdList) {
                 Log.d(TAG, "Using camera id " + cameraId);
                 try {
-                    CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraId);
-                    StreamConfigurationMap configs = characteristics.get(
+                    final CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraId);
+                    final StreamConfigurationMap configs = characteristics.get(
                             CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                    int[] outputFormats = configs.getOutputFormats();
-                    Log.i(TAG, "OutputFormats: " + gson.toJson(outputFormats));
-                    for (int format : outputFormats) {
-                        Log.d(TAG, "Getting sizes for format: " + format);
-                        for (Size s : configs.getOutputSizes(format)) {
-                            Log.d(TAG, "\t" + s.toString());
+                    if (configs != null) {
+                        final int[] outputFormats = configs.getOutputFormats();
+                        Log.i(TAG, "OutputFormats: " + GSON.toJson(outputFormats));
+                        for (final int format : outputFormats) {
+                            Log.d(TAG, "Getting sizes for format: " + format);
+                            for (final Size s : configs.getOutputSizes(format)) {
+                                Log.d(TAG, "\t" + s);
+                            }
                         }
+                        final int[] effects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
+                        Log.i(TAG, "effects: " + GSON.toJson(effects));
                     }
-                    int[] effects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS);
-                    Log.i(TAG, "effects: " + gson.toJson(effects));
-                } catch (CameraAccessException e) {
+                } catch (final CameraAccessException e) {
                     Log.d(TAG, "Cam access exception getting characteristics.");
                 }
             }
-        } catch (CameraAccessException e) {
+        } catch (final CameraAccessException e) {
             Log.d(TAG, "Camera access exception getting IDs");
         }
     }

@@ -11,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.camera.library.CameraUtils;
 
 import java.util.Locale;
@@ -27,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        imageUriTextView = (TextView) findViewById(R.id.imageUriTextView);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        imageUriTextView = findViewById(R.id.imageUriTextView);
+        imageView = findViewById(R.id.imageView);
 
         findViewById(R.id.cameraButton).setOnClickListener(new View.OnClickListener() {
 
@@ -73,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showImageUri(final Uri uri) {
         imageUriTextView.setText(String.format(Locale.ENGLISH, "Uri: %s", String.valueOf(uri)));
+
+        final RequestOptions requestOptions = new RequestOptions()
+                .signature(new ObjectKey(System.currentTimeMillis()));
+
         Glide.with(this)
                 .load(uri)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .fitCenter()
-                .placeholder(R.drawable.ic_android_24dp)
+                .apply(requestOptions)
                 .into(imageView);
     }
 }

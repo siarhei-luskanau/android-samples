@@ -11,7 +11,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        messageTextView = (TextView) findViewById(R.id.messageTextView);
+        messageTextView = findViewById(R.id.messageTextView);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
@@ -33,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void writeToDatabase(final DatabaseReference myRef) {
+        final Date date = new Date();
+        final DateFormat dateFormat = android.text.format.DateFormat.getMediumDateFormat(this);
+        final DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(this);
+
         // Write a message to the database
-        myRef.setValue("Hello, World! " + new Date());
+        myRef.setValue(String.format(Locale.ENGLISH, "Hello, World! %s %s", dateFormat.format(date), timeFormat.format(date)));
     }
 
     private void readFromDatabase(final DatabaseReference myRef) {
