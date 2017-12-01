@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:icon="@android:drawable/sym_def_app_icon">
 
-        <!--<uses-library android:name="com.google.android.things"/>-->
+        <uses-library android:name="com.google.android.things"/>
 
         <activity android:name=".IotActivity">
             <intent-filter>
