@@ -2,7 +2,6 @@ package siarhei.luskanau.example.firebase.database;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,9 +14,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
     private TextView messageTextView;
 
     @Override
@@ -53,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 final String value = dataSnapshot.getValue(String.class);
                 messageTextView.setText(value);
-                Log.d(TAG, "Value is: " + value);
+                Timber.d("Value is: " + value);
                 messageTextView.setText(value);
             }
 
             @Override
             public void onCancelled(final DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Timber.w(error.toException(), "Failed to read value.");
             }
         });
     }

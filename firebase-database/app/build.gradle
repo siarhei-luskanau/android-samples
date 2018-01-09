@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "siarhei.luskanau.example.firebase.database"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -19,8 +19,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.google.firebase:firebase-database:11.0.4'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.jakewharton.timber:timber:4.6.0'
 }
 
 // ADD THIS AT THE BOTTOM
