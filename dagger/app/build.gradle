@@ -31,13 +31,9 @@ dependencies {
 
     implementation appDependencies.kotlinStdlib
 
-    //kapt appDependencies.daggerAndroidProcessor
-    //annotationProcessor appDependencies.daggerCompiler
     kapt appDependencies.daggerCompiler
     implementation appDependencies.dagger
-    //implementation appDependencies.daggerAndroidSupport
 
     implementation appDependencies.timber
     implementation appDependencies.supportDesign
-
 }

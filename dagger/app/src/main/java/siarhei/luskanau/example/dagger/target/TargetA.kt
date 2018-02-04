@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class TargetA {
 
-    @field:Inject
+    @Inject
     lateinit var modelA: ModelA
 }

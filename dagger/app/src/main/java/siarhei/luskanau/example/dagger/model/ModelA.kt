@@ -4,6 +4,6 @@ import timber.log.Timber
 
 class ModelA {
     init {
-        Timber.d("Constructor %s", this.hashCode())
+        Timber.d("Constructor A %s", this.hashCode())
     }
 }
