@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
@@ -10,10 +11,6 @@ android {
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
-    }
-
-    dataBinding {
-        enabled = true
     }
 
     compileOptions {
@@ -32,11 +29,15 @@ android {
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
 
-    //annotationProcessor appDependencies.daggerAndroidCompiler
-    annotationProcessor appDependencies.daggerCompiler
-    implementation appDependencies.dagger
-    implementation appDependencies.daggerAndroidSupport
+    implementation appDependencies.kotlinStdlib
 
+    //kapt appDependencies.daggerAndroidProcessor
+    //annotationProcessor appDependencies.daggerCompiler
+    kapt appDependencies.daggerCompiler
+    implementation appDependencies.dagger
+    //implementation appDependencies.daggerAndroidSupport
+
+    implementation appDependencies.timber
     implementation appDependencies.supportDesign
 
 }
