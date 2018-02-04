@@ -1,15 +1,26 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
     defaultConfig {
         applicationId "com.example.se.dagger"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -19,9 +30,13 @@ android {
 }
 
 dependencies {
+    def appDependencies = rootProject.ext.appDependencies
 
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-    compile 'com.google.dagger:dagger:2.11'
-    compile 'javax.inject:javax.inject:1'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    //annotationProcessor appDependencies.daggerAndroidCompiler
+    annotationProcessor appDependencies.daggerCompiler
+    implementation appDependencies.dagger
+    implementation appDependencies.daggerAndroidSupport
+
+    implementation appDependencies.supportDesign
+
 }
