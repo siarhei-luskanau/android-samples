@@ -2,6 +2,7 @@ package siarhei.luskanau.example.rxjava_bind_service
 
 import android.app.Application
 import io.reactivex.schedulers.Schedulers
+import siarhei.luskanau.example.rxjava_bind_service.api.BindApiRepository
 import timber.log.Timber
 
 class AppApplication : Application() {
@@ -11,8 +12,7 @@ class AppApplication : Application() {
 
         Timber.plant(Timber.DebugTree())
 
-        BackgroundService.bindToBackgroundRepository(this)
-                .flatMapObservable { backgroundRepository -> backgroundRepository.getStrings() }
+        BindApiRepository(this).getStrings()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(Schedulers.computation())
                 .subscribe(
@@ -21,4 +21,5 @@ class AppApplication : Application() {
                         { Timber.d("onComplete") }
                 )
     }
+
 }

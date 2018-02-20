@@ -5,9 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
+import siarhei.luskanau.example.rxjava_bind_service.api.BindApiRepository
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
+
+    private val apiRepository: ApiRepository = BindApiRepository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testCall() {
-        BackgroundService.bindToBackgroundRepository(this)
-                .flatMapObservable { backgroundRepository -> backgroundRepository.getStrings() }
+        apiRepository.getStrings()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

@@ -1,23 +1,23 @@
-package siarhei.luskanau.example.rxjava_bind_service
+package siarhei.luskanau.example.rxjava_bind_service.sevrice
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import io.reactivex.Single
+import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
+import siarhei.luskanau.example.rxjava_bind_service.api.BackgroundApiRepository
 import timber.log.Timber
 import kotlin.properties.Delegates
 
 class BackgroundService : Service() {
 
-    var repository: BackgroundRepository by Delegates.notNull()
+    var apiRepository: ApiRepository by Delegates.notNull()
 
     override fun onCreate() {
         super.onCreate()
         Timber.d("BackgroundService: onCreate()")
 
-        repository = BackgroundRepository()
+        apiRepository = BackgroundApiRepository()
     }
 
     override fun onDestroy() {
@@ -36,18 +36,7 @@ class BackgroundService : Service() {
     }
 
     inner class ServiceBinder : Binder() {
-        fun getRepository(): BackgroundRepository = repository
+        fun getApiRepository(): ApiRepository = apiRepository
     }
 
-    companion object {
-
-        fun bindToBackgroundRepository(context: Context): Single<BackgroundRepository> = RxServiceBindingFactory
-                .bind<BackgroundService.ServiceBinder>(
-                        context,
-                        Intent(context, BackgroundService::class.java),
-                        Context.BIND_AUTO_CREATE
-                )
-                .map { serviceBinder -> serviceBinder.getRepository() }
-
-    }
 }

@@ -20,7 +20,7 @@
         </activity>
 
         <service
-            android:name="siarhei.luskanau.example.rxjava_bind_service.BackgroundService"
+            android:name="siarhei.luskanau.example.rxjava_bind_service.sevrice.BackgroundService"
             android:enabled="true"
             android:exported="false"/>
 

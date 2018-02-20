@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service
+package siarhei.luskanau.example.rxjava_bind_service.sevrice
 
 import android.content.ComponentName
 import android.content.Context
@@ -14,40 +14,46 @@ import timber.log.Timber
 class RxServiceBindingFactory {
 
     companion object {
-        fun <B : Binder> bind(context: Context, launch: Intent, flags: Int): Single<B> {
+        fun <B : Binder> bind(context: Context, launch: Intent, flags: Int): Single<Pair<B, ServiceConnection>> {
             val con = Connection<B>()
             return Single.create(con)
                     .doOnSubscribe {
                         Timber.d("doOnSubscribe and bindService")
                         context.bindService(launch, con, flags)
                     }
-                    .doFinally {
-                        Timber.d("doFinally and unbindService")
-                        context.unbindService(con)
-                    }
-                    .doOnDispose { Timber.d("doOnDispose") }
-                    .doOnSuccess { Timber.d("doOnSuccess") }
-                    .doOnError { Timber.d("doOnError") }
-                    .doAfterTerminate { Timber.d("doAfterTerminate") }
-                    .doAfterSuccess { Timber.d("doAfterSuccess") }
         }
     }
 
-    private class Connection<B : Binder> : ServiceConnection, SingleOnSubscribe<B> {
+    private class Connection<B : Binder> : ServiceConnection, SingleOnSubscribe<Pair<B, ServiceConnection>> {
 
-        private var emitter: SingleEmitter<in B>? = null
+        private var emitter: SingleEmitter<Pair<B, ServiceConnection>>? = null
+        private var service: B? = null
 
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
             Timber.d("onServiceConnected")
-            emitter?.onSuccess(service as B)
+            @Suppress("UNCHECKED_CAST")
+            this.service = service as B
+            emmitIfNotNull()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
             Timber.d("onServiceDisconnected")
         }
 
-        override fun subscribe(emitter: SingleEmitter<B>) {
+        override fun subscribe(emitter: SingleEmitter<Pair<B, ServiceConnection>>) {
+            Timber.d("subscribe")
             this.emitter = emitter
+            emmitIfNotNull()
+        }
+
+        private fun emmitIfNotNull() {
+            emitter?.let { emitter ->
+                service?.let { service ->
+                    Timber.d("emmit")
+                    emitter.onSuccess(Pair(service, this))
+                }
+            }
         }
     }
+
 }

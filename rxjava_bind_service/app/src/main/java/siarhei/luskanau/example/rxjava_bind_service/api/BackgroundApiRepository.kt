@@ -1,11 +1,11 @@
-package siarhei.luskanau.example.rxjava_bind_service
+package siarhei.luskanau.example.rxjava_bind_service.api
 
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 
-class BackgroundRepository {
+class BackgroundApiRepository:ApiRepository{
 
-    fun getStrings(): Observable<String> = Observable
+    override fun getStrings(): Observable<String> = Observable
             .intervalRange(
                     1,
                     5,
