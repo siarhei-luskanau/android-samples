@@ -19,6 +19,8 @@ ext {
     kotlinVersion = '1.2.31'
     timberVersion = '4.6.1'
 
+    daggerVersion = '2.15'
+
     glideVersion = '4.6.1'
 
     //test instrumentation
@@ -32,19 +34,27 @@ ext {
     ]
 
     appDependencies = [
-            kotlinStdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            kotlinStdlib          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
 
-            timber           : "com.jakewharton.timber:timber:${timberVersion}",
-            supportV4        : "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}",
-            supportDesign    : "com.android.support:design:${SUPPORT_LIBRARY_VERSION}",
-            supportCoreUtils : "com.android.support:support-core-utils:${SUPPORT_LIBRARY_VERSION}",
+            databindingCompiler   : "com.android.databinding:compiler:${gradleBuildToolsVersion}",
 
-            glide            : "com.github.bumptech.glide:glide:${glideVersion}",
-            glideCompiler    : "com.github.bumptech.glide:compiler:${glideVersion}",
+            timber                : "com.jakewharton.timber:timber:${timberVersion}",
+            supportV4             : "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}",
+            supportDesign         : "com.android.support:design:${SUPPORT_LIBRARY_VERSION}",
+            supportCoreUtils      : "com.android.support:support-core-utils:${SUPPORT_LIBRARY_VERSION}",
 
-            junit4           : "junit:junit:${junit4Version}",
-            androidTestRunner: "com.android.support.test:runner:${androidTestRunnerVersion}",
-            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+
+            daggerCompiler        : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            dagger                : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroidSupport  : "com.google.dagger:dagger-android-support:${daggerVersion}",
+
+            glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiler         : "com.github.bumptech.glide:compiler:${glideVersion}",
+
+            junit4                : "junit:junit:${junit4Version}",
+            androidTestRunner     : "com.android.support.test:runner:${androidTestRunnerVersion}",
+            espresso              : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
     ]
 
 }
