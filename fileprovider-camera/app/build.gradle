@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
@@ -10,6 +12,7 @@ android {
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -20,6 +23,7 @@ android {
         }
     }
 
+    flavorDimensions "default"
     productFlavors {
         flavor1 {
             applicationIdSuffix ".flavor1"
@@ -34,10 +38,20 @@ android {
 }
 
 dependencies {
-    compile project(':camera')
+    def appDependencies = rootProject.ext.appDependencies
 
-    compile "com.github.bumptech.glide:glide:${project.glideVersion}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${project.glideVersion}"
+    implementation project(':camera')
 
-    compile "com.android.support:design:${project.SUPPORT_LIBRARY_VERSION}"
+    implementation appDependencies.glide
+    kapt appDependencies.glideCompiler
+
+    implementation appDependencies.kotlinStdlib
+    implementation appDependencies.timber
+    implementation appDependencies.supportV4
+    implementation appDependencies.supportDesign
+
+    //test instrumentation
+    testImplementation appDependencies.junit4
+    androidTestImplementation appDependencies.androidTestRunner
+    androidTestImplementation appDependencies.espresso
 }

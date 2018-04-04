@@ -1,22 +1,50 @@
 allprojects {
     repositories {
+        google()
         jcenter()
-        maven {
-            url "https://maven.google.com"
-        }
     }
 }
 
 ext {
     //Android
-    ANDROID_BUILD_SDK_VERSION = 26
+    ANDROID_BUILD_SDK_VERSION = 27
     ANDROID_BUILD_TARGET_SDK_VERSION = ANDROID_BUILD_SDK_VERSION
-    ANDROID_BUILD_TOOLS_VERSION = "26.0.2"
+    ANDROID_BUILD_TOOLS_VERSION = "27.0.3"
     ANDROID_BUILD_MIN_SDK_VERSION = 16
-    SUPPORT_LIBRARY_VERSION = "26.1.0"
-    PLAY_SERVICES_VERSION = "11.0.4"
+    SUPPORT_LIBRARY_VERSION = "27.1.0"
+    PLAY_SERVICES_VERSION = "12.0.1"
 
     //Libraries
-    glideVersion = '4.2.0'
+    gradleBuildToolsVersion = '3.1.0'
+    kotlinVersion = '1.2.31'
+    timberVersion = '4.6.1'
+
+    glideVersion = '4.6.1'
+
+    //test instrumentation
+    junit4Version = '4.12'
+    androidTestRunnerVersion = '1.0.1'
+    espressoVersion = '3.0.1'
+
+    buildscriptDependencies = [
+            gradle            : "com.android.tools.build:gradle:${gradleBuildToolsVersion}",
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}",
+    ]
+
+    appDependencies = [
+            kotlinStdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            timber           : "com.jakewharton.timber:timber:${timberVersion}",
+            supportV4        : "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}",
+            supportDesign    : "com.android.support:design:${SUPPORT_LIBRARY_VERSION}",
+            supportCoreUtils : "com.android.support:support-core-utils:${SUPPORT_LIBRARY_VERSION}",
+
+            glide            : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiler    : "com.github.bumptech.glide:compiler:${glideVersion}",
+
+            junit4           : "junit:junit:${junit4Version}",
+            androidTestRunner: "com.android.support.test:runner:${androidTestRunnerVersion}",
+            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+    ]
 
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
@@ -10,6 +11,7 @@ android {
     }
 
     dependencies {
-        compile "com.android.support:support-core-utils:${project.SUPPORT_LIBRARY_VERSION}"
+        implementation appDependencies.kotlinStdlib
+        implementation appDependencies.supportCoreUtils
     }
 }

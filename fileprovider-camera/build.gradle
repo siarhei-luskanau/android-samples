@@ -1,11 +1,15 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
+    apply from: 'dependencies.gradle'
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        def buildscriptDependencies = rootProject.ext.buildscriptDependencies
+        classpath buildscriptDependencies.gradle
+        classpath buildscriptDependencies.kotlinGradlePlugin
     }
 }
 
