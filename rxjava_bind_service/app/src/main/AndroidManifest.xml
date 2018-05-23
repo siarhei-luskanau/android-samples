@@ -9,7 +9,7 @@
         android:allowBackup="false"
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="rxjava_bind_service"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:theme="@style/Theme.MaterialComponents.Light"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".MainActivity">

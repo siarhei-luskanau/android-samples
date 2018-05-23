@@ -1,8 +1,8 @@
 package siarhei.luskanau.example.rxjava_bind_service
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
