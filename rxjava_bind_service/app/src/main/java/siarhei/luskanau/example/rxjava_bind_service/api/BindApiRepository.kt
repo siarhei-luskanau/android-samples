@@ -3,6 +3,7 @@ package siarhei.luskanau.example.rxjava_bind_service.api
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import siarhei.luskanau.example.rxjava_bind_service.sevrice.BackgroundService
@@ -11,10 +12,20 @@ import timber.log.Timber
 
 class BindApiRepository(private val context: Context) : ApiRepository {
 
-    override fun getStrings(): Observable<String> = bindService()
+    override fun startCountdown(): Completable = bindService()
+            .flatMapCompletable { pair: Pair<ApiRepository, ServiceConnection> ->
+                pair.first
+                        .startCountdown()
+                        .doFinally {
+                            Timber.d("doFinally and unbindService")
+                            context.unbindService(pair.second)
+                        }
+            }
+
+    override fun watchCountdown(): Observable<Int> = bindService()
             .flatMapObservable { pair: Pair<ApiRepository, ServiceConnection> ->
                 pair.first
-                        .getStrings()
+                        .watchCountdown()
                         .doFinally {
                             Timber.d("doFinally and unbindService")
                             context.unbindService(pair.second)
