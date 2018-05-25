@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service.sevrice
+package siarhei.luskanau.example.rxjava_bind_service.service
 
 import android.content.ComponentName
 import android.content.Context

@@ -6,8 +6,8 @@ import android.content.ServiceConnection
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import siarhei.luskanau.example.rxjava_bind_service.sevrice.BackgroundService
-import siarhei.luskanau.example.rxjava_bind_service.sevrice.RxServiceBindingFactory
+import siarhei.luskanau.example.rxjava_bind_service.service.BackgroundService
+import siarhei.luskanau.example.rxjava_bind_service.service.RxServiceBindingFactory
 import timber.log.Timber
 
 class BindApiRepository(private val context: Context) : ApiRepository {
