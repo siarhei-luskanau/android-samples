@@ -35,15 +35,6 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
 }
 
 dependencies {
@@ -51,20 +42,9 @@ dependencies {
 
     implementation project(':camera')
 
-    kapt appDependencies.databindingCompiler
-
-    kapt appDependencies.daggerCompiler
-    kapt appDependencies.daggerAndroidProcessor
-    implementation appDependencies.dagger
-    implementation appDependencies.daggerAndroidSupport
-
-    implementation appDependencies.glide
-    kapt appDependencies.glideCompiler
-
     implementation appDependencies.kotlinStdlib
     implementation appDependencies.timber
-    implementation appDependencies.supportV4
-    implementation appDependencies.supportDesign
+    implementation appDependencies.androidMaterial
 
     //test instrumentation
     testImplementation appDependencies.junit4
