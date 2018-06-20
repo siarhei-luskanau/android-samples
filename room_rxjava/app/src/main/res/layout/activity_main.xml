@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/add_model_button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Add model"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/update_model_button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Update model"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/delete_all_models_button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Delete all models"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/models_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

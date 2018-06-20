@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "siarhei.luskanau.example.room_rxjava"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+   }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.jakewharton.timber:timber:4.6.1'
+
+    implementation 'com.google.android.material:material:1.0.0-alpha3'
+
+    kapt 'androidx.room:room-compiler:2.0.0-alpha1'
+    implementation 'androidx.room:room-runtime:2.0.0-alpha1'
+    implementation 'androidx.room:room-rxjava2:2.0.0-alpha1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+}
