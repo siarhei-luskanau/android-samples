@@ -1,7 +1,7 @@
 package siarhei.luskanau.example.dagger
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import siarhei.luskanau.example.dagger.component.*
 import siarhei.luskanau.example.dagger.target.TargetA
 import siarhei.luskanau.example.dagger.target.TargetB

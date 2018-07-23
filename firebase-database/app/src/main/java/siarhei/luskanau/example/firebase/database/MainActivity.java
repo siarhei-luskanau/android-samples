@@ -1,7 +1,6 @@
 package siarhei.luskanau.example.firebase.database;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +13,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.appcompat.app.AppCompatActivity;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {

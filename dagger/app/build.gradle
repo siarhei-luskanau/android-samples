@@ -3,19 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion "28.0.1"
     defaultConfig {
         applicationId "com.example.se.dagger"
-        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
-        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
+        minSdkVersion 15
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -27,13 +22,10 @@ android {
 }
 
 dependencies {
-    def appDependencies = rootProject.ext.appDependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
 
-    implementation appDependencies.kotlinStdlib
-
-    kapt appDependencies.daggerCompiler
-    implementation appDependencies.dagger
-
-    implementation appDependencies.timber
-    implementation appDependencies.supportDesign
-}
+    kapt 'com.google.dagger:dagger-compiler:2.16'
+    implementation 'com.google.dagger:dagger:2.16'
+ }
