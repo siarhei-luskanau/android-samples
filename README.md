@@ -1,1 +1,1 @@
-# android-samples
+# android-samples [![Build Status](https://travis-ci.org/siarhei-luskanau/android-samples.svg?branch=master)](https://travis-ci.org/siarhei-luskanau/android-samples)

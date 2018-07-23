@@ -7,7 +7,7 @@ import siarhei.luskanau.example.dagger.module.ModuleB
 import siarhei.luskanau.example.dagger.scope.ScopeB
 import siarhei.luskanau.example.dagger.target.TargetB
 
-@Component(dependencies = arrayOf(ComponentA::class), modules = arrayOf(ModuleB::class))
+@Component(dependencies = [ComponentA::class], modules = [ModuleB::class])
 @ScopeB
 interface ComponentB {
 

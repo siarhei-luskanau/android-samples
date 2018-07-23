@@ -7,7 +7,7 @@
     <application
         android:name=".AppApplication"
         android:allowBackup="false"
-        android:icon="@android:drawable/sym_def_app_icon"
+        android:icon="@drawable/ic_android"
         android:label="rxjava_bind_service"
         android:theme="@style/Theme.MaterialComponents.Light"
         tools:ignore="GoogleAppIndexingWarning">

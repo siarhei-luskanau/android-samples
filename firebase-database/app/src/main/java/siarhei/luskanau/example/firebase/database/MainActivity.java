@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 final String value = dataSnapshot.getValue(String.class);
                 messageTextView.setText(value);
-                Timber.d("Value is: " + value);
+                Timber.d("Value is: %s", value);
                 messageTextView.setText(value);
             }
 
