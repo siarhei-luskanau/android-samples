@@ -4,7 +4,7 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-28.0.1
+    - build-tools-28.0.2
     - android-28
     - android-22
     - sys-img-armeabi-v7a-android-22
@@ -23,20 +23,19 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - cd ./dagger && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-  - cd .. && cd ./fileprovider-camera && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-#  - cd .. && cd ./firebase-database && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-  - cd .. && cd ./iot && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-  - cd .. && cd ./room_rxjava && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-  - cd .. && cd ./rxjava_bind_service && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
-  - cd .. && cd ./workmanager && ./gradlew clean testDebugUnitTest connectedDebugAndroidTest --stacktrace
+  - cd ./dagger && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./fileprovider-camera && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./firebase-database && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./iot && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./room_rxjava && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./rxjava_bind_service && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./workmanager && ./gradlew clean build test connectedAndroidTest --stacktrace
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
 cache:
   directories:
+    - $HOME/.m2
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache

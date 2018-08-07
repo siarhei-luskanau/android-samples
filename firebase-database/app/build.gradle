@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.1"
+    buildToolsVersion "28.0.2"
     defaultConfig {
         applicationId "siarhei.luskanau.example.firebase.database"
         minSdkVersion 19
@@ -20,10 +20,8 @@ android {
 
 dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'com.google.android.material:material:1.0.0-beta01'
-    implementation('com.google.firebase:firebase-database:16.0.1') {
-        exclude group: 'com.android.support'
-    }
+    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
 }
 
 // ADD THIS AT THE BOTTOM

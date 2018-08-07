@@ -1,7 +1,7 @@
 package siarhei.luskanau.example.workmanager
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
@@ -15,22 +15,20 @@ class AppViewModel : ViewModel() {
     }
 
     val workStatusListLiveData: LiveData<List<WorkStatus>>? by lazy {
-        WorkManager.getInstance()?.getStatusesForUniqueWork(TAG_OUTPUT)
+        WorkManager.getInstance().getStatusesForUniqueWork(TAG_OUTPUT)
     }
 
     fun beginUniqueWork() {
         WorkManager.getInstance()
-                ?.beginUniqueWork(
+                .beginUniqueWork(
                         TAG_OUTPUT,
                         ExistingWorkPolicy.KEEP,
                         OneTimeWorkRequest.from(AppWorker::class.java)
-                )
-                ?.enqueue()
+                ).enqueue()
 
-        WorkManager.getInstance()?.enqueue()
     }
 
     fun cancelUniqueWork() =
-            WorkManager.getInstance()?.cancelUniqueWork(TAG_OUTPUT);
+            WorkManager.getInstance().cancelUniqueWork(TAG_OUTPUT);
 
 }

@@ -3,6 +3,7 @@ package siarhei.luskanau.example.workmanager
 import androidx.work.Data
 import androidx.work.Worker
 import timber.log.Timber
+import java.lang.RuntimeException
 import java.util.*
 
 class AppWorker : Worker() {
@@ -16,9 +17,17 @@ class AppWorker : Worker() {
 
                 Thread.sleep(30 * 1000)
 
+                if (true) {
+                    throw RuntimeException("TestException")
+                }
+
                 Result.SUCCESS
-            } catch (t: Throwable) {
-                Timber.e(t)
+            } catch (throwable: Throwable) {
+                Timber.e(throwable)
+
+                outputData = Data.Builder()
+                        .putString("throwable", throwable.toString())
+                        .build()
 
                 Result.FAILURE
             }

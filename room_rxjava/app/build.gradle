@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "siarhei.luskanau.example.room_rxjava"
         minSdkVersion 15
@@ -26,13 +26,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0-rc01'
 
-    kapt 'androidx.room:room-compiler:2.0.0-beta01'
-    implementation 'androidx.room:room-runtime:2.0.0-beta01'
-    implementation 'androidx.room:room-rxjava2:2.0.0-beta01'
+    kapt 'androidx.room:room-compiler:2.0.0-rc01'
+    implementation 'androidx.room:room-runtime:2.0.0-rc01'
+    implementation 'androidx.room:room-rxjava2:2.0.0-rc01'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
 }

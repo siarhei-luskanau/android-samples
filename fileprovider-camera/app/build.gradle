@@ -12,8 +12,7 @@ android {
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+     }
 
     buildTypes {
         release {
@@ -45,9 +44,4 @@ dependencies {
     implementation appDependencies.kotlinStdlib
     implementation appDependencies.timber
     implementation appDependencies.androidMaterial
-
-    //test instrumentation
-    testImplementation appDependencies.junit4
-    androidTestImplementation appDependencies.androidTestRunner
-    androidTestImplementation appDependencies.espresso
 }

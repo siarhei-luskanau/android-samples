@@ -9,19 +9,14 @@ ext {
     //Android
     ANDROID_BUILD_SDK_VERSION = 28
     ANDROID_BUILD_TARGET_SDK_VERSION = 28
-    ANDROID_BUILD_TOOLS_VERSION = "28.0.1"
+    ANDROID_BUILD_TOOLS_VERSION = "28.0.2"
     ANDROID_BUILD_MIN_SDK_VERSION = 16
-    ANDROIDX_VERSION = "1.0.0-alpha3"
+    ANDROIDX_VERSION = "1.0.0-rc01"
 
     //Libraries
-    gradleBuildToolsVersion = '3.1.3'
-    kotlinVersion = '1.2.51'
+    gradleBuildToolsVersion = '3.3.0-alpha05'
+    kotlinVersion = '1.2.60'
     timberVersion = '4.6.1'
-
-    //test instrumentation
-    junit4Version = '4.12'
-    androidTestRunnerVersion = '1.0.1'
-    espressoVersion = '3.0.1'
 
     buildscriptDependencies = [
             gradle            : "com.android.tools.build:gradle:${gradleBuildToolsVersion}",
@@ -29,15 +24,11 @@ ext {
     ]
 
     appDependencies = [
-            kotlinStdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            kotlinStdlib     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
 
             timber           : "com.jakewharton.timber:timber:${timberVersion}",
             androidMaterial  : "com.google.android.material:material:${ANDROIDX_VERSION}",
             androidxCore     : "androidx.core:core:${ANDROIDX_VERSION}",
-
-            junit4           : "junit:junit:${junit4Version}",
-            androidTestRunner: "com.android.support.test:runner:${androidTestRunnerVersion}",
-            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
     ]
 
 }
