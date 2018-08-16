@@ -6,7 +6,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.2"
     defaultConfig {
-        applicationId "com.example.se.dagger"
+        applicationId "siarhei.luskanau.example.dagger"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -31,5 +31,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-rc01'
 
     kapt 'com.google.dagger:dagger-compiler:2.16'
+    kapt 'com.google.dagger:dagger-android-processor:2.16'
+
     implementation 'com.google.dagger:dagger:2.16'
+    implementation 'com.google.dagger:dagger-android:2.16'
  }

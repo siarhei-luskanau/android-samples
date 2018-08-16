@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="siarhei.luskanau.example.dagger"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="siarhei.luskanau.example.dagger">
 
     <application
-        android:allowBackup="true"
+        android:name=".AppApplication"
         android:icon="@drawable/ic_android"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:name=".AppApplication"
-        android:theme="@style/Theme.MaterialComponents">
+        android:theme="@style/Theme.MaterialComponents"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="siarhei.luskanau.example.dagger.feature1.Feature1Activity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
