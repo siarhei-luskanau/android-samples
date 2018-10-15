@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.work.WorkManager
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -15,7 +17,9 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
-    val appViewModel: AppViewModel by lazy { ViewModelProviders.of(this).get(AppViewModel::class.java) }
+    private val appViewModel: AppViewModel by lazy { ViewModelProviders.of(this).get(AppViewModel::class.java) }
+
+    private var disposable: Disposable? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,15 +49,15 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        Flowable
+        disposable = Flowable
                 .interval(0, 300, TimeUnit.MILLISECONDS)
                 .map {
-                    WorkManager.getInstance().synchronous().getStatusesForUniqueWorkSync(AppViewModel.TAG_OUTPUT)
+                    WorkManager.getInstance().getStatusesForUniqueWork(AppViewModel.TAG_OUTPUT).get()
                 }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { it ->
+                .subscribeBy(
+                        onNext = { it ->
                             outputDataTextView.text = "Sync: outputData:\n" + it
                                     .map {
                                         "\n${it.outputData.keyValueMap}\n"
@@ -65,8 +69,19 @@ class MainActivity : AppCompatActivity() {
                                     }
 
                         },
-                        { Timber.e(it) }
+                        onError = { Timber.e(it) }
                 )
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        disposable?.let {
+            if (!it.isDisposed) {
+                it.dispose()
+            }
+        }
+        disposable = null
     }
 
 }

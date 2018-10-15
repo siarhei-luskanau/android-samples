@@ -15,7 +15,7 @@ class AppViewModel : ViewModel() {
     }
 
     val workStatusListLiveData: LiveData<List<WorkStatus>>? by lazy {
-        WorkManager.getInstance().getStatusesForUniqueWork(TAG_OUTPUT)
+        WorkManager.getInstance().getStatusesForUniqueWorkLiveData(TAG_OUTPUT)
     }
 
     fun beginUniqueWork() {

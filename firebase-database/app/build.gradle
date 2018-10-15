@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.2"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "siarhei.luskanau.example.firebase.database"
         minSdkVersion 19
@@ -19,9 +20,10 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'com.google.android.material:material:1.0.0-rc01'
-    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.firebase:firebase-database:16.0.3'
 }
 
 // ADD THIS AT THE BOTTOM

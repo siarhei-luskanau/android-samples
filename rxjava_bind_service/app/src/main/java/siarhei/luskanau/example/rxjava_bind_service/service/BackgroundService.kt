@@ -8,6 +8,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
@@ -65,14 +66,14 @@ class BackgroundService : Service(), ApiRepository {
                 )
                 .observeOn(Schedulers.computation())
                 .observeOn(Schedulers.computation())
-                .subscribe(
-                        {
+                .subscribeBy(
+                        onNext = {
                             val countdownValue: Int = (COUNTDOWN_MAX_VALUE - it).toInt()
                             Timber.d("Runnable:countDown:$countdownValue")
                             countdownPublishSubject.onNext(countdownValue)
                         },
-                        { Timber.e(it) },
-                        { stopSelf() }
+                        onError = { Timber.e(it) },
+                        onComplete = { stopSelf() }
                 )
     }
 

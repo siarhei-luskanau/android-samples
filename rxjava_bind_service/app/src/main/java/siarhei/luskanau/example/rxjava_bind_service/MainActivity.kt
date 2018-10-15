@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
 import siarhei.luskanau.example.rxjava_bind_service.api.BindApiRepository
@@ -47,9 +48,9 @@ class MainActivity : AppCompatActivity() {
             apiRepository.startCountdown()
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { Timber.d("onComplete") },
-                            { t: Throwable? -> Timber.e(t) }
+                    .subscribeBy(
+                            onComplete = { Timber.d("onComplete") },
+                            onError = { t: Throwable? -> Timber.e(t) }
                     )
 
     private fun watchCountdown() {
@@ -57,14 +58,14 @@ class MainActivity : AppCompatActivity() {
         watchCountdownDisposable = apiRepository.watchCountdown()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { countdown: Int ->
+                .subscribeBy(
+                        onNext = { countdown: Int ->
                             val countdownValue = "Countdown: $countdown"
                             Timber.d(countdownValue)
                             countdownValueTextView.text = countdownValue
                         },
-                        { t: Throwable? -> Timber.e(t) },
-                        { Timber.d("onComplete") }
+                        onError = { t: Throwable? -> Timber.e(t) },
+                        onComplete = { Timber.d("onComplete") }
                 )
     }
 

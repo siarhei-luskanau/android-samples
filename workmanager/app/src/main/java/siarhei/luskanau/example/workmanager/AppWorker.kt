@@ -1,12 +1,19 @@
 package siarhei.luskanau.example.workmanager
 
+import android.content.Context
 import androidx.work.Data
 import androidx.work.Worker
+import androidx.work.WorkerParameters
 import timber.log.Timber
-import java.lang.RuntimeException
 import java.util.*
 
-class AppWorker : Worker() {
+class AppWorker(
+        context: Context,
+        workerParams: WorkerParameters
+) : Worker(
+        context,
+        workerParams
+) {
 
     override fun doWork(): Result =
             try {
