@@ -31,7 +31,7 @@ script:
   - cd .. && cd ./navigation && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./room_rxjava && ./gradlew clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./rxjava_bind_service && ./gradlew clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./workmanager && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./workmanager && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

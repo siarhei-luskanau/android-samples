@@ -5,11 +5,11 @@ import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import timber.log.Timber
-import java.util.*
+import java.util.Date
 
 class AppWorker(
-        context: Context,
-        workerParams: WorkerParameters
+    context: Context,
+    workerParams: WorkerParameters
 ) : Worker(
         context,
         workerParams
@@ -38,5 +38,4 @@ class AppWorker(
 
                 Result.FAILURE
             }
-
 }

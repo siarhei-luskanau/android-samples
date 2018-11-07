@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-        <Button
-            android:id="@+id/beginUniqueWorkButton"
-            style="@style/Widget.AppCompat.Button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="beginUniqueWork"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:ignore="HardcodedText" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/cancelUniqueWorkButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="cancelUniqueWork"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/beginUniqueWorkButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="beginUniqueWork"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/outputDataTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="outputData"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/cancelUniqueWorkButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="cancelUniqueWork"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/workStatusTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="WorkStatus"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            tools:ignore="HardcodedText" />
+            <fragment
+                android:id="@+id/workManagerMonitorFragment"
+                android:name="siarhei.luskanau.example.workmanager.monitor.WorkManagerMonitorFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

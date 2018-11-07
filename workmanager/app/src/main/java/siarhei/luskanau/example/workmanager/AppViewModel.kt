@@ -1,34 +1,24 @@
 package siarhei.luskanau.example.workmanager
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import androidx.work.WorkStatus
-
+import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 
 class AppViewModel : ViewModel() {
-
-    companion object {
-        const val TAG_OUTPUT = "TAG_OUTPUT"
-    }
-
-    val workStatusListLiveData: LiveData<List<WorkStatus>>? by lazy {
-        WorkManager.getInstance().getStatusesForUniqueWorkLiveData(TAG_OUTPUT)
-    }
 
     fun beginUniqueWork() {
         WorkManager.getInstance()
                 .beginUniqueWork(
-                        TAG_OUTPUT,
+                        WorkManagerConstants.TAG_OUTPUT,
                         ExistingWorkPolicy.KEEP,
-                        OneTimeWorkRequest.from(AppWorker::class.java)
+                        OneTimeWorkRequest.Builder(AppWorker::class.java)
+                                .addTag(WorkManagerConstants.TAG_ALL)
+                                .build()
                 ).enqueue()
-
     }
 
     fun cancelUniqueWork() =
-            WorkManager.getInstance().cancelUniqueWork(TAG_OUTPUT);
-
+            WorkManager.getInstance().cancelUniqueWork(WorkManagerConstants.TAG_OUTPUT)
 }

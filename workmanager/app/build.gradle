@@ -14,6 +14,10 @@ android {
         versionName "1.0"
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -27,8 +31,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
-    implementation "android.arch.work:work-runtime:1.0.0-alpha10"
-
-    implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation "android.arch.work:work-runtime:1.0.0-alpha11"
 }
