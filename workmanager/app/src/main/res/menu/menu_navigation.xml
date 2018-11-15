@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/WorkManagerActionsFragment"
+        android:title="WorkManagerActionsFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/OneTimeWorkFragment"
+        android:title="OneTimeWorkFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/OneTimeWorkWithErrorFragment"
+        android:title="OneTimeWorkWithErrorFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/OneTimeWorkWithRetryFragment"
+        android:title="OneTimeWorkWithRetryFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/UniqueWorkFragment"
+        android:title="UniqueWorkFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/UniqueWorkWithErrorFragment"
+        android:title="UniqueWorkWithErrorFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/ConstraintsFragment"
+        android:title="ConstraintsFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/ChainFragment"
+        android:title="ChainFragment"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/PeriodicWorkFragment"
+        android:title="PeriodicWorkFragment"
+        tools:ignore="HardcodedText" />
+
+</menu>
