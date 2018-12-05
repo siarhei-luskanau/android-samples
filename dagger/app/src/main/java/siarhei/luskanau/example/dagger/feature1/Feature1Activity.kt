@@ -27,5 +27,4 @@ class Feature1Activity : BindingActivity<ActivityFeature1Binding>() {
 
     override fun getViewLayout() =
             R.layout.activity_feature1
-
 }

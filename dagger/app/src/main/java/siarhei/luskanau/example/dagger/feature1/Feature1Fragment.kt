@@ -19,5 +19,4 @@ class Feature1Fragment : BindingFragment<FragmentFeature1Binding>() {
 
     override fun getViewLayout(): Int =
             R.layout.fragment_feature1
-
 }

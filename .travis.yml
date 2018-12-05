@@ -24,7 +24,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - cd ./dagger && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd ./dagger && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./fileprovider-camera && ./gradlew clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./firebase-database && ./gradlew clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./iot && ./gradlew clean build test connectedAndroidTest --stacktrace

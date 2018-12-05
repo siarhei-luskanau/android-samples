@@ -20,5 +20,4 @@ abstract class BindingActivity<B : ViewDataBinding> : AppCompatActivity() {
 
     @LayoutRes
     protected abstract fun getViewLayout(): Int
-
 }

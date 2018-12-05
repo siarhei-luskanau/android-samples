@@ -4,5 +4,4 @@ class CommonHelloService {
 
     fun sayHello() =
             "Hello from CommonHelloService"
-
 }

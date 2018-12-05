@@ -2,13 +2,13 @@ package siarhei.luskanau.example.dagger.di
 
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.support.AndroidSupportInjectionModule
 import siarhei.luskanau.example.dagger.AppApplication
-import dagger.android.support.AndroidxInjectionModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    AndroidxInjectionModule::class,
+    AndroidSupportInjectionModule::class,
     AppModule::class,
     BuildersModule::class
 ])
@@ -23,5 +23,4 @@ interface AppComponent {
     }
 
     fun inject(application: AppApplication)
-
 }

@@ -23,5 +23,4 @@ class AppModule {
     @Provides
     fun provideDateService(): DateService =
             DateService()
-
 }

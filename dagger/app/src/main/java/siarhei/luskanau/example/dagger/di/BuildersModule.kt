@@ -15,5 +15,4 @@ abstract class BuildersModule {
 
     @ContributesAndroidInjector(modules = [Feature1FragmentModule::class, Feature1ActivityModule::class])
     abstract fun bindFeature1Fragment(): Feature1Fragment
-
 }

@@ -5,20 +5,20 @@ import android.app.Application
 import androidx.fragment.app.Fragment
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.support.HasSupportFragmentInjector
 import siarhei.luskanau.example.dagger.di.DaggerAppComponent
-import dagger.android.support.HasAndroidxFragmentInjector
 import timber.log.Timber
 import javax.inject.Inject
 
-class AppApplication : Application(), HasActivityInjector, HasAndroidxFragmentInjector {
+class AppApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     @Inject
-    lateinit var androidxFragmentInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
-    override fun androidxFragmentInjector() = androidxFragmentInjector
+    override fun supportFragmentInjector() = supportFragmentInjector
 
     override fun activityInjector() = activityInjector
 
@@ -33,5 +33,4 @@ class AppApplication : Application(), HasActivityInjector, HasAndroidxFragmentIn
                 .build()
                 .inject(this)
     }
-
 }
