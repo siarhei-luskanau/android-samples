@@ -58,9 +58,9 @@ class ChainA1Worker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(5 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }
 
@@ -72,9 +72,9 @@ class ChainA2Worker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }
 
@@ -86,9 +86,9 @@ class ChainB1Worker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(5 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }
 
@@ -100,9 +100,9 @@ class ChainC1Worker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(5 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }
 
@@ -114,8 +114,8 @@ class ChainC2Worker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }

@@ -1,6 +1,7 @@
 package worker02
 
 import android.content.Context
+import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -32,7 +33,7 @@ class OneTimeWorkWithError(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(20 * 1000)
         throw RuntimeException("TestException")
     }

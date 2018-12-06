@@ -2,6 +2,7 @@ package worker06
 
 import android.content.Context
 import androidx.work.Constraints
+import androidx.work.Data
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -39,8 +40,8 @@ class ConstraintsWorker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(30 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }

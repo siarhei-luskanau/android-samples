@@ -2,7 +2,6 @@ package siarhei.luskanau.example.workmanager
 
 import android.content.Context
 import androidx.work.Data
-import androidx.work.ListenableWorker.Result.FAILURE
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import timber.log.Timber
@@ -18,39 +17,53 @@ abstract class BaseWorker(
         workerParams
 ) {
 
-    override fun doWork(): Result =
-            try {
-                outputData = Data.Builder()
-                        .putAll(workerParams.inputData)
-                        .build()
+    override fun doWork(): Result {
+        val outputDataBuilder = Data.Builder()
+        outputDataBuilder.putAll(workerParams.inputData)
+        outputDataBuilder.putString(
+                "start_${this.javaClass.simpleName}",
+                getTimestamp()
+        )
+        if (workerParams.runAttemptCount > 0) {
+            outputDataBuilder.putString(
+                    "runAttemptCount_${this.javaClass.simpleName}",
+                    workerParams.runAttemptCount.toString()
+            )
+        }
 
-                putStringToOutputData("runAttemptCount_${this.javaClass.simpleName}") { workerParams.runAttemptCount.toString() }
-                putStringToOutputData("start_${this.javaClass.simpleName}") { getTimestamp() }
-                val result = doWorkDelegate()
-                putStringToOutputData("finish_${this.javaClass.simpleName}") { getTimestamp() }
+        return try {
 
-                result
-            } catch (throwable: Throwable) {
-                Timber.e(throwable)
+            val result = doWorkDelegate(outputDataBuilder)
 
-                putStringToOutputData("finish_${this.javaClass.simpleName}") { getTimestamp() }
+            outputDataBuilder.putString(
+                    "finish_${this.javaClass.simpleName}",
+                    getTimestamp()
+            )
 
-                putStringToOutputData("throwable_${this.javaClass.simpleName}") {
-                    "${throwable.javaClass.simpleName}: ${throwable.message}"
-                }
-
-                FAILURE
+            when (result) {
+                is Result.Success -> Result.success(outputDataBuilder.build())
+                is Result.Failure -> Result.failure(outputDataBuilder.build())
+                is Result.Retry -> Result.retry()
+                else -> Result.failure(outputDataBuilder.build())
             }
+        } catch (throwable: Throwable) {
+            Timber.e(throwable)
 
-    abstract fun doWorkDelegate(): Result
+            outputDataBuilder.putString(
+                    "finish_${this.javaClass.simpleName}",
+                    getTimestamp()
+            )
+            outputDataBuilder.putString(
+                    "throwable_${this.javaClass.simpleName}",
+                    "${throwable.javaClass.simpleName}: ${throwable.message}"
+            )
+
+            Result.failure(outputDataBuilder.build())
+        }
+    }
+
+    abstract fun doWorkDelegate(outputDataBuilder: Data.Builder): Result
 
     private fun getTimestamp() =
             SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH).format(Date())
-
-    private fun putStringToOutputData(key: String, value: () -> String) {
-        outputData = Data.Builder()
-                .putAll(outputData)
-                .putString(key, value.invoke())
-                .build()
-    }
 }

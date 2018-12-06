@@ -1,6 +1,7 @@
 package worker03
 
 import android.content.Context
+import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -32,8 +33,8 @@ class OneTimeWorkWithRetry(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
-        return Result.RETRY
+        return Result.retry()
     }
 }

@@ -1,6 +1,7 @@
 package worker04
 
 import android.content.Context
+import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -35,8 +36,8 @@ class UniqueWorker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }

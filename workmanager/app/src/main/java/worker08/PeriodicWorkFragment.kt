@@ -1,6 +1,7 @@
 package worker08
 
 import android.content.Context
+import androidx.work.Data
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -33,8 +34,8 @@ class PeriodicWork(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
-        return Result.SUCCESS
+        return Result.success()
     }
 }

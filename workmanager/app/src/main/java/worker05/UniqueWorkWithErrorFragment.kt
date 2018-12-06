@@ -1,6 +1,7 @@
 package worker05
 
 import android.content.Context
+import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -35,7 +36,7 @@ class UniqueWithErrorWorker(
         workerParams
 ) {
 
-    override fun doWorkDelegate(): Result {
+    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(20 * 1000)
         throw RuntimeException("TestException")
     }
