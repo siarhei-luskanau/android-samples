@@ -25,8 +25,8 @@ before_script:
 
 script:
   - cd ./dagger && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./fileprovider-camera && ./gradlew clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./firebase-database && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./fileprovider-camera && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./firebase-database && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./iot && ./gradlew clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./navigation && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./room_rxjava && ./gradlew clean build test connectedAndroidTest --stacktrace

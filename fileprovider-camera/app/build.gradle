@@ -3,16 +3,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ANDROID_BUILD_SDK_VERSION
-    buildToolsVersion rootProject.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.example.camera.application"
-        minSdkVersion rootProject.ANDROID_BUILD_MIN_SDK_VERSION
-        targetSdkVersion rootProject.ANDROID_BUILD_TARGET_SDK_VERSION
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
-     }
+        vectorDrawables.useSupportLibrary = true
+    }
 
     buildTypes {
         release {
@@ -37,11 +38,9 @@ android {
 }
 
 dependencies {
-    def appDependencies = rootProject.ext.appDependencies
-
     implementation project(':camera')
 
     implementation appDependencies.kotlinStdlib
-    implementation appDependencies.timber
-    implementation appDependencies.androidMaterial
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "com.google.android.material:material:$androidxVersion"
 }

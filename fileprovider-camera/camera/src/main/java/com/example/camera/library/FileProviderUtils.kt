@@ -17,10 +17,8 @@ object FileProviderUtils {
                     createFile(context, fileName)
             )
 
-
     fun deleteFile(context: Context, fileName: String) =
             createFile(context, fileName).delete()
-
 
     private fun createFile(context: Context, fileName: String): File {
         val fileProviderDir = File(context.filesDir, FILE_PROVIDER_PATHS)

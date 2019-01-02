@@ -2,16 +2,16 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ANDROID_BUILD_SDK_VERSION
-    buildToolsVersion rootProject.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ANDROID_BUILD_MIN_SDK_VERSION
-        targetSdkVersion rootProject.ANDROID_BUILD_TARGET_SDK_VERSION
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
     }
 
     dependencies {
         implementation appDependencies.kotlinStdlib
-        implementation appDependencies.androidxCore
+        implementation "androidx.core:core:$androidxVersion"
     }
 }

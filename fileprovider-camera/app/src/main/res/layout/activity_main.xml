@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_photo_camera_24dp"
+        app:srcCompat="@drawable/ic_photo_camera_24dp"
         tools:ignore="ContentDescription" />
 
     <ImageButton
@@ -18,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_photo_24dp"
+        app:srcCompat="@drawable/ic_photo_24dp"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -33,7 +34,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_android_24dp"
+        app:srcCompat="@drawable/ic_android_24dp"
         tools:ignore="ContentDescription" />
 
 </LinearLayout>

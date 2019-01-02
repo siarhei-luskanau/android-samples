@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.camera.library.CameraUtils
-import java.util.*
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 

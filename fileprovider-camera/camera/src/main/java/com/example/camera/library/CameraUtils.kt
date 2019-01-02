@@ -31,5 +31,4 @@ object CameraUtils {
 
     fun getCameraTempFileProviderUri(context: Context): Uri =
             FileProviderUtils.getFileProviderUri(context.applicationContext, CAMERA_TEMP_FILE_NAME)
-
 }

@@ -3,9 +3,14 @@ package siarhei.luskanau.example.firebase.database
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import timber.log.Timber
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
             writeToDatabase(myRef)
             readFromDatabase(myRef)
-
         } catch (t: Throwable) {
             messageTextView.text = t.toString()
         }
@@ -56,5 +60,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 }
