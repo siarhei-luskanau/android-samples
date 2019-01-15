@@ -14,6 +14,8 @@
             android:layout_height="wrap_content"
             android:text="Begin Work"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
         <Button
@@ -23,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Cancel Work"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/beginWorkButton"
             tools:ignore="HardcodedText" />
 

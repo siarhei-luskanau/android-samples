@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service
+package siarhei.luskanau.example.rxjavabindservice
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,8 +8,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
-import siarhei.luskanau.example.rxjava_bind_service.api.BindApiRepository
+import siarhei.luskanau.example.rxjavabindservice.api.ApiRepository
+import siarhei.luskanau.example.rxjavabindservice.api.BindApiRepository
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -77,5 +77,4 @@ class MainActivity : AppCompatActivity() {
         }
         watchCountdownDisposable = null
     }
-
 }

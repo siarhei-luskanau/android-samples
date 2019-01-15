@@ -44,5 +44,4 @@ class IotActivity : CameraActivity() {
             } catch (e: Throwable) {
                 Timber.e(e)
             }
-
 }

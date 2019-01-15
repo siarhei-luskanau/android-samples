@@ -12,6 +12,6 @@ android {
 
     dependencies {
         implementation appDependencies.kotlinStdlib
-        implementation "androidx.core:core:$androidxVersion"
+        implementation "androidx.core:core:$androidxCoreVersion"
     }
 }

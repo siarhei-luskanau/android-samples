@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.room_rxjava
+package siarhei.luskanau.example.roomrxjava
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,10 +8,10 @@ import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import siarhei.luskanau.example.room_rxjava.persistence.ModelDao
-import siarhei.luskanau.example.room_rxjava.persistence.ModelEntity
+import siarhei.luskanau.example.roomrxjava.persistence.ModelDao
+import siarhei.luskanau.example.roomrxjava.persistence.ModelEntity
 import timber.log.Timber
-import java.util.*
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -112,5 +112,4 @@ class MainActivity : AppCompatActivity() {
 
     private fun getDao(): ModelDao =
             (application as AppApplication).appDatabase.modelDao()
-
 }

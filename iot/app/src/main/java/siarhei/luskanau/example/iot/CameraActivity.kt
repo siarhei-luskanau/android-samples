@@ -46,7 +46,6 @@ abstract class CameraActivity : AppCompatActivity() {
                 }
             }
 
-
     private fun onPermissionsGranted() {
         Timber.d("onPermissionsGranted")
         cameraInfo()
@@ -83,14 +82,11 @@ abstract class CameraActivity : AppCompatActivity() {
                     } catch (e: CameraAccessException) {
                         Timber.d("Cam access exception getting characteristics.")
                     }
-
                 }
-
             }
         } catch (e: Exception) {
             Timber.d("Camera access exception getting IDs")
         }
-
     }
 
     companion object {

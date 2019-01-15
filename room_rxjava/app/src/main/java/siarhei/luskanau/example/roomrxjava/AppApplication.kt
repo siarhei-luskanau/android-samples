@@ -1,8 +1,8 @@
-package siarhei.luskanau.example.room_rxjava
+package siarhei.luskanau.example.roomrxjava
 
 import android.app.Application
 import androidx.room.Room
-import siarhei.luskanau.example.room_rxjava.persistence.AppDatabase
+import siarhei.luskanau.example.roomrxjava.persistence.AppDatabase
 import timber.log.Timber
 
 class AppApplication : Application() {
@@ -20,5 +20,4 @@ class AppApplication : Application() {
                 "${this.packageName}.db"
         ).build()
     }
-
 }

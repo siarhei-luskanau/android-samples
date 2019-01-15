@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service.service
+package siarhei.luskanau.example.rxjavabindservice.service
 
 import android.content.ComponentName
 import android.content.Context
@@ -55,5 +55,4 @@ class RxServiceBindingFactory {
             }
         }
     }
-
 }

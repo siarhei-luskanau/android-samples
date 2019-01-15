@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="siarhei.luskanau.example.room_rxjava">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="siarhei.luskanau.example.roomrxjava">
 
     <application
         android:name=".AppApplication"
@@ -8,7 +9,8 @@
         android:icon="@drawable/ic_android"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents">
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service.api
+package siarhei.luskanau.example.rxjavabindservice.api
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,8 @@ import android.content.ServiceConnection
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import siarhei.luskanau.example.rxjava_bind_service.service.BackgroundService
-import siarhei.luskanau.example.rxjava_bind_service.service.RxServiceBindingFactory
+import siarhei.luskanau.example.rxjavabindservice.service.BackgroundService
+import siarhei.luskanau.example.rxjavabindservice.service.RxServiceBindingFactory
 import timber.log.Timber
 
 class BindApiRepository(private val context: Context) : ApiRepository {
@@ -41,5 +41,4 @@ class BindApiRepository(private val context: Context) : ApiRepository {
                     .map { pair: Pair<BackgroundService.ServiceBinder, ServiceConnection> ->
                         Pair(pair.first.getApiRepository(), pair.second)
                     }
-
 }

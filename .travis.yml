@@ -13,6 +13,7 @@ before_script:
   - chmod +x ./dagger/gradlew # ./gradlew: Permission denied
   - chmod +x ./fileprovider-camera/gradlew # ./gradlew: Permission denied
   - chmod +x ./firebase-database/gradlew # ./gradlew: Permission denied
+  - chmod +x ./fonts/gradlew # ./gradlew: Permission denied
   - chmod +x ./iot/gradlew # ./gradlew: Permission denied
   - chmod +x ./navigation/gradlew # ./gradlew: Permission denied
   - chmod +x ./room_rxjava/gradlew # ./gradlew: Permission denied
@@ -27,10 +28,11 @@ script:
   - cd ./dagger && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./fileprovider-camera && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./firebase-database && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./iot && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./fonts && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./iot && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./navigation && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./room_rxjava && ./gradlew clean build test connectedAndroidTest --stacktrace
-  - cd .. && cd ./rxjava_bind_service && ./gradlew clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./room_rxjava && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
+  - cd .. && cd ./rxjava_bind_service && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
   - cd .. && cd ./workmanager && ./gradlew ktlint clean build test connectedAndroidTest --stacktrace
 
 before_cache:

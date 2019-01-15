@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.room_rxjava.persistence
+package siarhei.luskanau.example.roomrxjava.persistence
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -20,5 +20,4 @@ interface ModelDao {
 
     @Query("DELETE FROM models")
     fun deleteAllModels()
-
 }

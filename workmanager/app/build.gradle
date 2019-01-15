@@ -28,11 +28,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
 
-    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha08"
-    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha08"
+    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha09"
+    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0-alpha09"
 
-    implementation "android.arch.work:work-runtime-ktx:1.0.0-alpha13"
+    implementation "android.arch.work:work-runtime-ktx:1.0.0-beta01"
 }

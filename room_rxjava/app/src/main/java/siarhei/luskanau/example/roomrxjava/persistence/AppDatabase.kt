@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.room_rxjava.persistence
+package siarhei.luskanau.example.roomrxjava.persistence
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

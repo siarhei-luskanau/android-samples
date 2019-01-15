@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service
+package siarhei.luskanau.example.rxjavabindservice
 
 import android.app.Application
 import timber.log.Timber
@@ -10,5 +10,4 @@ class AppApplication : Application() {
 
         Timber.plant(Timber.DebugTree())
     }
-
 }

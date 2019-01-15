@@ -1,4 +1,4 @@
-package siarhei.luskanau.example.rxjava_bind_service.service
+package siarhei.luskanau.example.rxjavabindservice.service
 
 import android.app.Service
 import android.content.Intent
@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import siarhei.luskanau.example.rxjava_bind_service.api.ApiRepository
+import siarhei.luskanau.example.rxjavabindservice.api.ApiRepository
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -86,5 +86,4 @@ class BackgroundService : Service(), ApiRepository {
 
     override fun watchCountdown(): Observable<Int> =
             countdownPublishSubject
-
 }
