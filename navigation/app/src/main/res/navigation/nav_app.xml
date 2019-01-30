@@ -2,35 +2,36 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/feature1_fragment">
+    app:startDestination="@+id/nav_feature1">
 
     <fragment
-        android:id="@+id/feature1_fragment"
+        android:id="@+id/nav_feature1"
         android:name="siarhei.luskanau.example.navigation.Feature1Fragment"
-        android:label="@string/feature1_title"
         tools:layout="@layout/fragment_feature1" />
 
     <fragment
-        android:id="@+id/feature2_list_fragment"
+        android:id="@+id/nav_feature2_list"
         android:name="siarhei.luskanau.example.navigation.Feature2ListFragment"
-        android:label="@string/feature2_list_title"
         tools:layout="@layout/fragment_feature2_list">
 
         <action
             android:id="@+id/action_feature2_list_fragment_to_feature2_detail_fragment"
-            app:destination="@id/feature2_detail_fragment" />
+            app:destination="@id/nav_feature2_detail" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/feature2_detail_fragment"
+        android:id="@+id/nav_feature2_detail"
         android:name="siarhei.luskanau.example.navigation.Feature2DetailFragment"
-        android:label="@string/feature2_details_title"
         tools:layout="@layout/fragment_feature2_detail">
 
         <argument
             android:name="feature2Id"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_feature2_list_to_feature2_detail"
+            app:destination="@id/nav_feature2_list" />
 
     </fragment>
 
