@@ -7,7 +7,7 @@ android {
     buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        applicationId "siarhei.luskanau.example.camera.app"
+        applicationId "siarhei.luskanau.example.camera.appcrop"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
@@ -43,4 +43,5 @@ dependencies {
     implementation appDependencies.kotlinStdlib
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.mikhaellopez:circularimageview:3.2.0"
 }

@@ -1,4 +1,4 @@
-package com.example.camera.application
+package siarhei.luskanau.example.camera.app
 
 import android.content.Intent
 import android.net.Uri
