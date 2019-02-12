@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import siarhei.luskanau.example.workmanager.databinding.FragmentBeginCancelWorkBinding
 
@@ -21,6 +22,12 @@ abstract class BaseBeginCancelWorkFragment : Fragment() {
         binding.cancelWorkButton.setOnClickListener { onCancelButtonPressed() }
 
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = javaClass.simpleName
     }
 
     abstract fun onBeginButtonPressed()

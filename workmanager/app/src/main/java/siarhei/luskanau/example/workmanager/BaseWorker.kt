@@ -58,7 +58,15 @@ abstract class BaseWorker(
                     "${throwable.javaClass.simpleName}: ${throwable.message}"
             )
 
-            Result.failure(outputDataBuilder.build())
+            Result.failure(try {
+                outputDataBuilder.build()
+            } catch (t: Throwable) {
+                Data.Builder()
+                        .putString(
+                                "throwable_${this.javaClass.simpleName}",
+                                "${throwable.javaClass.simpleName}: ${throwable.message}"
+                        ).build()
+            })
         }
     }
 
