@@ -1,20 +1,29 @@
 package siarhei.luskanau.example.camera.appcrop
 
-import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.camera.library.CameraUtils
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
+import com.mikhaellopez.circularimageview.CircularImageView
+import com.yalantis.ucrop.UCrop
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var imageUriTextView: TextView
     private lateinit var imageView: ImageView
+    private lateinit var circularImageView: CircularImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,52 +31,60 @@ class MainActivity : AppCompatActivity() {
 
         imageUriTextView = findViewById(R.id.imageUriTextView)
         imageView = findViewById(R.id.imageView)
+        circularImageView = findViewById(R.id.circularImageView)
 
         findViewById<View>(R.id.cameraButton).setOnClickListener {
-            val takePictureIntent = CameraUtils.createCameraIntent(applicationContext)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
+            RxPaparazzo.single(this)
+                    .useInternalStorage()
+                    .crop(getCropOptions())
+                    .usingCamera()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(
+                            onNext = { showImageUri(Uri.fromFile(it.data().file)) },
+                            onError = { Timber.e(it) }
+                    )
         }
 
         findViewById<View>(R.id.galleryButton).setOnClickListener {
-            val takePictureIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
+            RxPaparazzo.single(this)
+                    .useInternalStorage()
+                    .crop(getCropOptions())
+                    .usingGallery()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(
+                            onNext = { showImageUri(Uri.fromFile(it.data().file)) },
+                            onError = { Timber.e(it) }
+                    )
         }
 
         showImageUri(null)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val uri = if (data != null) {
-                data.data
-            } else {
-                CameraUtils.getCameraTempFileProviderUri(applicationContext)
-            }
-            showImageUri(uri)
-        } else {
-            showImageUri(null)
-        }
+    private fun getCropOptions() = UCrop.Options().apply {
+        setToolbarColor(ContextCompat.getColor(applicationContext, android.R.color.white))
+        setStatusBarColor(ContextCompat.getColor(applicationContext, android.R.color.white))
+        setToolbarWidgetColor(ContextCompat.getColor(applicationContext, android.R.color.black))
+        setToolbarTitle("")
+        withAspectRatio(1f, 1f)
+        setShowCropGrid(false)
+        setCompressionFormat(Bitmap.CompressFormat.PNG)
+        setMaxBitmapSize(1024)
+        setHideBottomControls(true)
     }
 
     private fun showImageUri(uri: Uri?) {
         imageUriTextView.text = String.format(Locale.ENGLISH, "Uri: %s", uri.toString())
-
         uri?.let {
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
-
-            imageView.setImageBitmap(bitmap)
-        }.also {
-            imageView.setImageURI(uri)
+            val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uri))
+            val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
+                    .apply { isCircular = true }
+            imageView.setImageDrawable(roundedBitmapDrawable)
+            circularImageView.setImageURI(uri)
+        } ?: run {
+            imageView.setImageResource(R.drawable.ic_android_24dp)
+            circularImageView.setImageURI(uri)
         }
-    }
-
-    companion object {
-        private const val REQUEST_IMAGE_CAPTURE = 1
     }
 }

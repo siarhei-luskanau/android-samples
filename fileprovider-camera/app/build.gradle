@@ -43,4 +43,5 @@ dependencies {
     implementation appDependencies.kotlinStdlib
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
 }
