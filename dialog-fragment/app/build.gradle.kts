@@ -23,5 +23,5 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib-jdk8", version = "1.3.21"))
-    implementation("com.google.android.material:material:1.1.0-alpha03")
+    implementation("com.google.android.material:material:1.1.0-alpha05")
 }
