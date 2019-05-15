@@ -13,16 +13,16 @@ import java.util.concurrent.TimeUnit
 class PeriodicWorkFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
-        WorkManager.getInstance()
-                .enqueue(
-                        PeriodicWorkRequestBuilder<PeriodicWork>(15, TimeUnit.MINUTES)
-                                .addTag(WorkManagerConstants.TAG_ALL)
-                                .build()
-                )
+        WorkManager.getInstance(requireContext())
+            .enqueue(
+                PeriodicWorkRequestBuilder<PeriodicWork>(15, TimeUnit.MINUTES)
+                    .addTag(WorkManagerConstants.TAG_ALL)
+                    .build()
+            )
     }
 
     override fun onCancelButtonPressed() {
-        WorkManager.getInstance().cancelAllWorkByTag(PeriodicWork::class.java.name)
+        WorkManager.getInstance(requireContext()).cancelAllWorkByTag(PeriodicWork::class.java.name)
     }
 }
 
@@ -30,11 +30,11 @@ class PeriodicWork(
     context: Context,
     workerParams: WorkerParameters
 ) : BaseWorker(
-        context,
-        workerParams
+    context,
+    workerParams
 ) {
 
-    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
+    override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
         return Result.success()
     }

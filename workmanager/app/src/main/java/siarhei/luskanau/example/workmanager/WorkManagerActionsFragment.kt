@@ -19,11 +19,11 @@ class WorkManagerActionsFragment : Fragment() {
         val binding = FragmentWorkManagerActionsBinding.inflate(inflater, container, false)
 
         binding.cancelAllButton.setOnClickListener {
-            WorkManager.getInstance().cancelAllWork()
+            WorkManager.getInstance(requireContext()).cancelAllWork()
         }
 
         binding.pruneButton.setOnClickListener {
-            WorkManager.getInstance().pruneWork()
+            WorkManager.getInstance(requireContext()).pruneWork()
         }
 
         return binding.root

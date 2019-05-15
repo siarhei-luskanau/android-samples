@@ -12,16 +12,16 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 class OneTimeWorkFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
-        WorkManager.getInstance()
-                .beginWith(
-                        OneTimeWorkRequestBuilder<OneTimeWork>()
-                                .addTag(WorkManagerConstants.TAG_ALL)
-                                .build()
-                ).enqueue()
+        WorkManager.getInstance(requireContext())
+            .beginWith(
+                OneTimeWorkRequestBuilder<OneTimeWork>()
+                    .addTag(WorkManagerConstants.TAG_ALL)
+                    .build()
+            ).enqueue()
     }
 
     override fun onCancelButtonPressed() {
-        WorkManager.getInstance().cancelAllWorkByTag(OneTimeWork::class.java.name)
+        WorkManager.getInstance(requireContext()).cancelAllWorkByTag(OneTimeWork::class.java.name)
     }
 }
 
@@ -29,11 +29,11 @@ class OneTimeWork(
     context: Context,
     workerParams: WorkerParameters
 ) : BaseWorker(
-        context,
-        workerParams
+    context,
+    workerParams
 ) {
 
-    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
+    override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
         return Result.success()
     }

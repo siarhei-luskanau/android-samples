@@ -22,7 +22,8 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityAppBinding = DataBindingUtil.setContentView(this, R.layout.activity_app)
+        val binding: ActivityAppBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_app)
 
         drawerLayout = binding.drawerLayout
 

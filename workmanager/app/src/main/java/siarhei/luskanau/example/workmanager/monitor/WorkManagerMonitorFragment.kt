@@ -23,12 +23,19 @@ class WorkManagerMonitorFragment : Fragment() {
         val adapter = WorkInfoAdapter()
         binding.recyclerView.adapter = adapter
 
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.recyclerView.context, VERTICAL))
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                binding.recyclerView.context,
+                VERTICAL
+            )
+        )
 
-        val workManagerMonitorViewModel = ViewModelProviders.of(this).get(WorkManagerMonitorViewModel::class.java)
-        workManagerMonitorViewModel.workStatusListLiveData.observe(viewLifecycleOwner, Observer { it ->
-            if (it != null) adapter.submitList(it)
-        })
+        val workManagerMonitorViewModel =
+            ViewModelProviders.of(this).get(WorkManagerMonitorViewModel::class.java)
+        workManagerMonitorViewModel.getWorkStatusListLiveData(requireContext())
+            .observe(viewLifecycleOwner, Observer { it ->
+                if (it != null) adapter.submitList(it)
+            })
 
         return binding.root
     }

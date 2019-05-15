@@ -10,6 +10,6 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityAppBinding = DataBindingUtil.setContentView(this, R.layout.activity_app)
+        DataBindingUtil.setContentView<ActivityAppBinding>(this, R.layout.activity_app)
     }
 }

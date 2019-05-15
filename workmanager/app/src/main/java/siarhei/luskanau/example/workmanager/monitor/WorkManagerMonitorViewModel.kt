@@ -1,13 +1,13 @@
 package siarhei.luskanau.example.workmanager.monitor
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.work.WorkManager
 import androidx.work.WorkInfo
+import androidx.work.WorkManager
 
 class WorkManagerMonitorViewModel : ViewModel() {
 
-    val workStatusListLiveData: LiveData<List<WorkInfo>> by lazy {
-        WorkManager.getInstance().getWorkInfosByTagLiveData(WorkManagerConstants.TAG_ALL)
-    }
+    fun getWorkStatusListLiveData(context: Context): LiveData<List<WorkInfo>> =
+        WorkManager.getInstance(context).getWorkInfosByTagLiveData(WorkManagerConstants.TAG_ALL)
 }

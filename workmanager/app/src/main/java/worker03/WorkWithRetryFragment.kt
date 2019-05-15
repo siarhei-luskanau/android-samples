@@ -12,16 +12,17 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 class OneTimeWorkWithRetryFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
-        WorkManager.getInstance()
-                .beginWith(
-                        OneTimeWorkRequestBuilder<OneTimeWorkWithRetry>()
-                                .addTag(WorkManagerConstants.TAG_ALL)
-                                .build()
-                ).enqueue()
+        WorkManager.getInstance(requireContext())
+            .beginWith(
+                OneTimeWorkRequestBuilder<OneTimeWorkWithRetry>()
+                    .addTag(WorkManagerConstants.TAG_ALL)
+                    .build()
+            ).enqueue()
     }
 
     override fun onCancelButtonPressed() {
-        WorkManager.getInstance().cancelAllWorkByTag(OneTimeWorkWithRetry::class.java.name)
+        WorkManager.getInstance(requireContext())
+            .cancelAllWorkByTag(OneTimeWorkWithRetry::class.java.name)
     }
 }
 
@@ -29,11 +30,11 @@ class OneTimeWorkWithRetry(
     context: Context,
     workerParams: WorkerParameters
 ) : BaseWorker(
-        context,
-        workerParams
+    context,
+    workerParams
 ) {
 
-    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
+    override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(10 * 1000)
         return Result.retry()
     }

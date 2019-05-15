@@ -14,13 +14,13 @@ class WorkInfoAdapter : ListAdapter<WorkInfo, WorkInfoAdapter.ViewHolder>(WorkIn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-            ViewHolder(
-                    ListItemWorkStatusBinding.inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                    )
+        ViewHolder(
+            ListItemWorkStatusBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
+        )
 
     class ViewHolder(
         private val binding: ListItemWorkStatusBinding

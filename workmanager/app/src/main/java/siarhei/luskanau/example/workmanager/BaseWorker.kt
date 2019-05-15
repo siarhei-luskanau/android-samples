@@ -1,8 +1,8 @@
 package siarhei.luskanau.example.workmanager
 
 import android.content.Context
+import androidx.work.CoroutineWorker
 import androidx.work.Data
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -12,22 +12,22 @@ import java.util.Locale
 abstract class BaseWorker(
     context: Context,
     private val workerParams: WorkerParameters
-) : Worker(
-        context,
-        workerParams
+) : CoroutineWorker(
+    context,
+    workerParams
 ) {
 
-    override fun doWork(): Result {
+    override suspend fun doWork(): Result {
         val outputDataBuilder = Data.Builder()
         outputDataBuilder.putAll(workerParams.inputData)
         outputDataBuilder.putString(
-                "start_${this.javaClass.simpleName}",
-                getTimestamp()
+            "start_${this.javaClass.simpleName}",
+            getTimestamp()
         )
         if (workerParams.runAttemptCount > 0) {
             outputDataBuilder.putString(
-                    "runAttemptCount_${this.javaClass.simpleName}",
-                    workerParams.runAttemptCount.toString()
+                "runAttemptCount_${this.javaClass.simpleName}",
+                workerParams.runAttemptCount.toString()
             )
         }
 
@@ -36,8 +36,8 @@ abstract class BaseWorker(
             val result = doWorkDelegate(outputDataBuilder)
 
             outputDataBuilder.putString(
-                    "finish_${this.javaClass.simpleName}",
-                    getTimestamp()
+                "finish_${this.javaClass.simpleName}",
+                getTimestamp()
             )
 
             when (result) {
@@ -50,28 +50,30 @@ abstract class BaseWorker(
             Timber.e(throwable)
 
             outputDataBuilder.putString(
-                    "finish_${this.javaClass.simpleName}",
-                    getTimestamp()
+                "finish_${this.javaClass.simpleName}",
+                getTimestamp()
             )
             outputDataBuilder.putString(
-                    "throwable_${this.javaClass.simpleName}",
-                    "${throwable.javaClass.simpleName}: ${throwable.message}"
+                "throwable_${this.javaClass.simpleName}",
+                "${throwable.javaClass.simpleName}: ${throwable.message}"
             )
 
-            Result.failure(try {
-                outputDataBuilder.build()
-            } catch (t: Throwable) {
-                Data.Builder()
+            Result.failure(
+                try {
+                    outputDataBuilder.build()
+                } catch (t: Throwable) {
+                    Data.Builder()
                         .putString(
-                                "throwable_${this.javaClass.simpleName}",
-                                "${throwable.javaClass.simpleName}: ${throwable.message}"
+                            "throwable_${this.javaClass.simpleName}",
+                            "${throwable.javaClass.simpleName}: ${throwable.message}"
                         ).build()
-            })
+                }
+            )
         }
     }
 
-    abstract fun doWorkDelegate(outputDataBuilder: Data.Builder): Result
+    abstract suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result
 
     private fun getTimestamp() =
-            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH).format(Date())
+        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH).format(Date())
 }

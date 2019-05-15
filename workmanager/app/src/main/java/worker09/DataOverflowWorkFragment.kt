@@ -12,16 +12,17 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 class DataOverflowWorkFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
-        WorkManager.getInstance()
-                .beginWith(
-                        OneTimeWorkRequestBuilder<DataOverflowWork>()
-                                .addTag(WorkManagerConstants.TAG_ALL)
-                                .build()
-                ).enqueue()
+        WorkManager.getInstance(requireContext())
+            .beginWith(
+                OneTimeWorkRequestBuilder<DataOverflowWork>()
+                    .addTag(WorkManagerConstants.TAG_ALL)
+                    .build()
+            ).enqueue()
     }
 
     override fun onCancelButtonPressed() {
-        WorkManager.getInstance().cancelAllWorkByTag(DataOverflowWork::class.java.name)
+        WorkManager.getInstance(requireContext())
+            .cancelAllWorkByTag(DataOverflowWork::class.java.name)
     }
 }
 
@@ -29,11 +30,11 @@ class DataOverflowWork(
     context: Context,
     workerParams: WorkerParameters
 ) : BaseWorker(
-        context,
-        workerParams
+    context,
+    workerParams
 ) {
 
-    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
+    override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         var i = 0
         while (true) {
             i++

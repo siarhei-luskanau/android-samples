@@ -15,20 +15,21 @@ class ConstraintsFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
         val constraints = Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.UNMETERED)
-                .build()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .build()
 
-        WorkManager.getInstance()
-                .beginWith(
-                        OneTimeWorkRequestBuilder<ConstraintsWorker>()
-                                .setConstraints(constraints)
-                                .addTag(WorkManagerConstants.TAG_ALL)
-                                .build()
-                ).enqueue()
+        WorkManager.getInstance(requireContext())
+            .beginWith(
+                OneTimeWorkRequestBuilder<ConstraintsWorker>()
+                    .setConstraints(constraints)
+                    .addTag(WorkManagerConstants.TAG_ALL)
+                    .build()
+            ).enqueue()
     }
 
     override fun onCancelButtonPressed() {
-        WorkManager.getInstance().cancelAllWorkByTag(ConstraintsWorker::class.java.name)
+        WorkManager.getInstance(requireContext())
+            .cancelAllWorkByTag(ConstraintsWorker::class.java.name)
     }
 }
 
@@ -36,11 +37,11 @@ class ConstraintsWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : BaseWorker(
-        context,
-        workerParams
+    context,
+    workerParams
 ) {
 
-    override fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
+    override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         Thread.sleep(30 * 1000)
         return Result.success()
     }
