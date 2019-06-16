@@ -18,6 +18,8 @@ class AppApplication : Application() {
                 this.applicationContext,
                 AppDatabase::class.java,
                 "${this.packageName}.db"
-        ).build()
+        )
+            .addMigrations(*AppDatabase.MIGRATIONS)
+            .build()
     }
 }

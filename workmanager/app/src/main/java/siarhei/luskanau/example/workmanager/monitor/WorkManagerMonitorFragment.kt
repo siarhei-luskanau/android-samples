@@ -33,9 +33,7 @@ class WorkManagerMonitorFragment : Fragment() {
         val workManagerMonitorViewModel =
             ViewModelProviders.of(this).get(WorkManagerMonitorViewModel::class.java)
         workManagerMonitorViewModel.getWorkStatusListLiveData(requireContext())
-            .observe(viewLifecycleOwner, Observer { it ->
-                if (it != null) adapter.submitList(it)
-            })
+            .observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 
         return binding.root
     }
