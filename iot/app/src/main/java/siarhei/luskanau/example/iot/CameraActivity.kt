@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import timber.log.Timber
 
+private const val PERMISSIONS_REQUEST = 200
+
 abstract class CameraActivity : AppCompatActivity() {
 
     private val gson = Gson()
@@ -23,7 +25,11 @@ abstract class CameraActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             cameraInfo()
         } else {
             requestPermissions()
@@ -32,19 +38,31 @@ abstract class CameraActivity : AppCompatActivity() {
 
     private fun requestPermissions() {
         Timber.d("requestPermissions")
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), PERMISSIONS_REQUEST)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.CAMERA),
+            PERMISSIONS_REQUEST
+        )
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) =
-            when (requestCode) {
-                PERMISSIONS_REQUEST -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) =
+        when (requestCode) {
+            PERMISSIONS_REQUEST -> {
+                if (
+                    grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
                     onPermissionsGranted()
                 } else {
                     onPermissionsNotGranted()
                 }
-                else -> {
-                }
             }
+            else -> {
+            }
+        }
 
     private fun onPermissionsGranted() {
         Timber.d("onPermissionsGranted")
@@ -76,7 +94,8 @@ abstract class CameraActivity : AppCompatActivity() {
                                     Timber.d("	%s", s)
                                 }
                             }
-                            val effects = characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS)
+                            val effects =
+                                characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS)
                             Timber.d("effects: %s", gson.toJson(effects))
                         }
                     } catch (e: CameraAccessException) {
@@ -87,9 +106,5 @@ abstract class CameraActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Timber.d("Camera access exception getting IDs")
         }
-    }
-
-    companion object {
-        private const val PERMISSIONS_REQUEST = 200
     }
 }

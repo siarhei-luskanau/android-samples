@@ -1,11 +1,11 @@
 package siarhei.luskanau.example.dagger.feature1
 
 import android.os.Bundle
+import javax.inject.Inject
 import siarhei.luskanau.example.dagger.R
 import siarhei.luskanau.example.dagger.base.BindingActivity
 import siarhei.luskanau.example.dagger.databinding.ActivityFeature1Binding
 import siarhei.luskanau.example.dagger.model.CommonHelloService
-import javax.inject.Inject
 
 class Feature1Activity : BindingActivity<ActivityFeature1Binding>() {
 

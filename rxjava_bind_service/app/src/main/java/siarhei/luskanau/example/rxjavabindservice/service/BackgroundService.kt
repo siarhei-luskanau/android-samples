@@ -11,9 +11,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import siarhei.luskanau.example.rxjavabindservice.api.ApiRepository
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 class BackgroundService : Service(), ApiRepository {
 

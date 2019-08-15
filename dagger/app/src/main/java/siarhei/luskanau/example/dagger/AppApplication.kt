@@ -1,26 +1,19 @@
 package siarhei.luskanau.example.dagger
 
-import android.app.Activity
 import android.app.Application
-import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 import siarhei.luskanau.example.dagger.di.DaggerAppComponent
 import timber.log.Timber
-import javax.inject.Inject
 
-class AppApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
-
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+class AppApplication : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    override fun supportFragmentInjector() = supportFragmentInjector
-
-    override fun activityInjector() = activityInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate() {
         super.onCreate()
@@ -28,9 +21,9 @@ class AppApplication : Application(), HasActivityInjector, HasSupportFragmentInj
         Timber.plant(Timber.DebugTree())
 
         DaggerAppComponent
-                .builder()
-                .application(this)
-                .build()
-                .inject(this)
+            .builder()
+            .application(this)
+            .build()
+            .inject(this)
     }
 }

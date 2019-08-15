@@ -9,6 +9,9 @@ import siarhei.luskanau.example.workmanager.BaseBeginCancelWorkFragment
 import siarhei.luskanau.example.workmanager.BaseWorker
 import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 
+private const val SLEEP_MILLIS_5 = 5 * 1000L
+private const val SLEEP_MILLIS_10 = 10 * 1000L
+
 class ChainFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
@@ -65,7 +68,7 @@ class ChainA1Worker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(5 * 1000)
+        Thread.sleep(SLEEP_MILLIS_5)
         return Result.success()
     }
 }
@@ -79,7 +82,7 @@ class ChainA2Worker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(10 * 1000)
+        Thread.sleep(SLEEP_MILLIS_10)
         return Result.success()
     }
 }
@@ -93,7 +96,7 @@ class ChainB1Worker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(5 * 1000)
+        Thread.sleep(SLEEP_MILLIS_5)
         return Result.success()
     }
 }
@@ -107,7 +110,7 @@ class ChainC1Worker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(5 * 1000)
+        Thread.sleep(SLEEP_MILLIS_5)
         return Result.success()
     }
 }
@@ -121,7 +124,7 @@ class ChainC2Worker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(10 * 1000)
+        Thread.sleep(SLEEP_MILLIS_10)
         return Result.success()
     }
 }

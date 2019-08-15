@@ -8,10 +8,10 @@ import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import java.util.Date
 import siarhei.luskanau.example.roomrxjava.persistence.ModelDao
 import siarhei.luskanau.example.roomrxjava.persistence.ModelEntity
 import timber.log.Timber
-import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 

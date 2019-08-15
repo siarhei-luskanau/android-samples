@@ -3,8 +3,8 @@ package siarhei.luskanau.example.dagger.di
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
-import siarhei.luskanau.example.dagger.AppApplication
 import javax.inject.Singleton
+import siarhei.luskanau.example.dagger.AppApplication
 
 @Singleton
 @Component(modules = [

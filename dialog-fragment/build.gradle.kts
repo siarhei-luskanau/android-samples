@@ -10,6 +10,10 @@ buildscript {
     }
 }
 
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.0.0")
+}
+
 allprojects {
     repositories {
         google()
@@ -17,6 +21,7 @@ allprojects {
     }
 
     apply("$rootDir/ktlint.gradle")
+    apply("$rootDir/detekt.gradle")
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
         kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()

@@ -3,10 +3,10 @@ package siarhei.luskanau.example.dagger.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 import siarhei.luskanau.example.dagger.AppApplication
 import siarhei.luskanau.example.dagger.model.CommonHelloService
 import siarhei.luskanau.example.dagger.model.DateService
-import javax.inject.Singleton
 
 @Module
 class AppModule {

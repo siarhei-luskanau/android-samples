@@ -11,6 +11,8 @@ import siarhei.luskanau.example.workmanager.BaseBeginCancelWorkFragment
 import siarhei.luskanau.example.workmanager.BaseWorker
 import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 
+private const val SLEEP_MILLIS = 30 * 1000L
+
 class ConstraintsFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
@@ -42,7 +44,7 @@ class ConstraintsWorker(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(30 * 1000)
+        Thread.sleep(SLEEP_MILLIS)
         return Result.success()
     }
 }

@@ -1,7 +1,6 @@
 package siarhei.luskanau.example.iot
 
 import android.app.Application
-
 import timber.log.Timber
 
 class AppApplication : Application() {

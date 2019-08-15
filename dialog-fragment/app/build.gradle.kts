@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion = "29.0.1"
+    buildToolsVersion = "29.0.2"
 
     defaultConfig {
         applicationId = "siarhei.luskanau.example.dialogfragment"
@@ -28,5 +28,5 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib-jdk8", version = "1.3.41"))
-    implementation("com.google.android.material:material:1.1.0-alpha08")
+    implementation("com.google.android.material:material:1.1.0-alpha09")
 }

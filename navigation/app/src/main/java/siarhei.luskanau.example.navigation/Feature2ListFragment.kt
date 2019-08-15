@@ -19,7 +19,8 @@ class Feature2ListFragment : Fragment() {
         val binding = FragmentFeature2ListBinding.inflate(inflater, container, false)
 
         binding.feature2DetailListItem.setOnClickListener {
-            val direction = Feature2ListFragmentDirections.actionFeature2ListFragmentToFeature2DetailFragment("feature2Id")
+            val direction = Feature2ListFragmentDirections
+                .actionFeature2ListFragmentToFeature2DetailFragment("feature2Id")
             it.findNavController().navigate(direction)
         }
 

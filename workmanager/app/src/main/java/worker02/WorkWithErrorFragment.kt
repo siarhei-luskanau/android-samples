@@ -9,6 +9,8 @@ import siarhei.luskanau.example.workmanager.BaseBeginCancelWorkFragment
 import siarhei.luskanau.example.workmanager.BaseWorker
 import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 
+private const val SLEEP_MILLIS = 20 * 1000L
+
 class OneTimeWorkWithErrorFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
@@ -35,7 +37,7 @@ class OneTimeWorkWithError(
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
-        Thread.sleep(20 * 1000)
-        throw RuntimeException("TestException")
+        Thread.sleep(SLEEP_MILLIS)
+        throw Exception("TestException")
     }
 }

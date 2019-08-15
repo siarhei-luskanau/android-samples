@@ -1,10 +1,10 @@
 package siarhei.luskanau.example.dagger.feature1
 
+import javax.inject.Inject
 import siarhei.luskanau.example.dagger.R
 import siarhei.luskanau.example.dagger.base.BindingFragment
 import siarhei.luskanau.example.dagger.databinding.FragmentFeature1Binding
 import siarhei.luskanau.example.dagger.model.DateService
-import javax.inject.Inject
 
 class Feature1Fragment : BindingFragment<FragmentFeature1Binding>() {
 

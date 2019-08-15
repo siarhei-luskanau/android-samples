@@ -16,8 +16,10 @@ import com.yalantis.ucrop.UCrop
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import java.util.Locale
+import timber.log.Timber
+
+private const val MAX_BITMAP_SIZE = 1024
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         withAspectRatio(1f, 1f)
         setShowCropGrid(false)
         setCompressionFormat(Bitmap.CompressFormat.PNG)
-        setMaxBitmapSize(1024)
+        setMaxBitmapSize(MAX_BITMAP_SIZE)
         setHideBottomControls(true)
     }
 

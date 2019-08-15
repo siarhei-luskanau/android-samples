@@ -8,9 +8,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import timber.log.Timber
 import java.util.Date
-import java.util.Locale
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(this)
 
         // Write a message to the database
-        myRef.setValue(String.format(Locale.ENGLISH, "Hello, World! %s %s", dateFormat.format(date), timeFormat.format(date)))
+        myRef.setValue("Hello, World! ${dateFormat.format(date)} ${timeFormat.format(date)}")
     }
 
     private fun readFromDatabase(myRef: DatabaseReference) {
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>(String::class.java)
+                val value = dataSnapshot.getValue(String::class.java)
                 messageTextView.text = value
                 Timber.d("Value is: %s", value)
             }

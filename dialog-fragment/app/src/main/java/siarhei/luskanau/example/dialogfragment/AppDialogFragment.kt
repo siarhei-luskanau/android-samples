@@ -37,7 +37,7 @@ class AppDialogFragment : DialogFragment() {
     }
 
     private fun getDialogId(): String =
-            arguments?.getString(ARG_DIALOG_ID).orEmpty()
+        arguments?.getString(ARG_DIALOG_ID).orEmpty()
 
     private fun setTitle(builder: AlertDialog.Builder, args: Bundle) {
         val title = args.getCharSequence(ARG_TITLE)
@@ -58,13 +58,15 @@ class AppDialogFragment : DialogFragment() {
         if (positiveButtonText.isNullOrEmpty().not()) {
             builder.setPositiveButton(positiveButtonText) { _, _ ->
                 val fragmentTag: String? = arguments?.getString(ARG_POSITIVE_LISTENER_FRAGMENT_TAG)
-                val fragmentId: Int = arguments?.getInt(ARG_POSITIVE_LISTENER_FRAGMENT_ID) ?: View.NO_ID
-                val activityName: String? = arguments?.getString(ARG_POSITIVE_LISTENER_ACTIVITY_NAME)
+                val fragmentId: Int =
+                    arguments?.getInt(ARG_POSITIVE_LISTENER_FRAGMENT_ID) ?: View.NO_ID
+                val activityName: String? =
+                    arguments?.getString(ARG_POSITIVE_LISTENER_ACTIVITY_NAME)
                 findListener(
-                        OnPositiveClickListener::class.java,
-                        fragmentTag,
-                        fragmentId,
-                        activityName
+                    OnPositiveClickListener::class.java,
+                    fragmentTag,
+                    fragmentId,
+                    activityName
                 )?.onClickPositive(getDialogId())
             }
         }
@@ -75,13 +77,15 @@ class AppDialogFragment : DialogFragment() {
         if (negativeButtonText.isNullOrEmpty().not()) {
             builder.setNegativeButton(negativeButtonText) { _, _ ->
                 val fragmentTag: String? = arguments?.getString(ARG_NEGATIVE_LISTENER_FRAGMENT_TAG)
-                val fragmentId: Int = arguments?.getInt(ARG_NEGATIVE_LISTENER_FRAGMENT_ID) ?: View.NO_ID
-                val activityName: String? = arguments?.getString(ARG_NEGATIVE_LISTENER_ACTIVITY_NAME)
+                val fragmentId: Int =
+                    arguments?.getInt(ARG_NEGATIVE_LISTENER_FRAGMENT_ID) ?: View.NO_ID
+                val activityName: String? =
+                    arguments?.getString(ARG_NEGATIVE_LISTENER_ACTIVITY_NAME)
                 findListener(
-                        OnNegativeClickListener::class.java,
-                        fragmentTag,
-                        fragmentId,
-                        activityName
+                    OnNegativeClickListener::class.java,
+                    fragmentTag,
+                    fragmentId,
+                    activityName
                 )?.onClickNegative(getDialogId())
             }
         }
@@ -103,7 +107,8 @@ class AppDialogFragment : DialogFragment() {
                 findListener(clazz, fragment)
             }
             else -> {
-                val activityByName = if (activity?.javaClass?.name == activityName) activity else null
+                val activityByName =
+                    if (activity?.javaClass?.name == activityName) activity else null
                 findListener(clazz, activityByName)
             }
         }
@@ -111,10 +116,10 @@ class AppDialogFragment : DialogFragment() {
 
     @Suppress("UNCHECKED_CAST")
     private fun <T> findListener(clazz: Class<T>, theObject: Any?): T? =
-            when {
-                theObject != null && clazz.isInstance(theObject) -> theObject as T?
-                else -> null
-            }
+        when {
+            theObject != null && clazz.isInstance(theObject) -> theObject as T?
+            else -> null
+        }
 
     data class Builder(
         val dialogId: String = "default_dialog_id",
@@ -137,12 +142,15 @@ class AppDialogFragment : DialogFragment() {
 
         fun show(fragmentActivity: FragmentActivity) {
             create(fragmentActivity.applicationContext)
-                    .show(fragmentActivity.supportFragmentManager, BASIC_DIALOG_FRAGMENT_TAG + dialogId)
+                .show(fragmentActivity.supportFragmentManager, BASIC_DIALOG_FRAGMENT_TAG + dialogId)
         }
 
         fun show(fragment: Fragment) {
             create(fragment.requireContext().applicationContext)
-                    .show(fragment.requireActivity().supportFragmentManager, BASIC_DIALOG_FRAGMENT_TAG + dialogId)
+                .show(
+                    fragment.requireActivity().supportFragmentManager,
+                    BASIC_DIALOG_FRAGMENT_TAG + dialogId
+                )
         }
 
         private fun create(
@@ -151,36 +159,36 @@ class AppDialogFragment : DialogFragment() {
             appDialogFragment.arguments = Bundle().apply {
                 putString(ARG_DIALOG_ID, dialogId)
                 putCharSequence(
-                        ARG_TITLE,
-                        if (titleResId != View.NO_ID) {
-                            context.getString(titleResId)
-                        } else {
-                            title
-                        }
+                    ARG_TITLE,
+                    if (titleResId != View.NO_ID) {
+                        context.getString(titleResId)
+                    } else {
+                        title
+                    }
                 )
                 putCharSequence(
-                        ARG_MESSAGE,
-                        if (messageResId != View.NO_ID) {
-                            context.getString(messageResId)
-                        } else {
-                            message
-                        }
+                    ARG_MESSAGE,
+                    if (messageResId != View.NO_ID) {
+                        context.getString(messageResId)
+                    } else {
+                        message
+                    }
                 )
                 putCharSequence(
-                        ARG_POSITIVE_BUTTON_TEXT,
-                        if (positiveButtonTextResId != View.NO_ID) {
-                            context.getString(positiveButtonTextResId)
-                        } else {
-                            positiveButtonText
-                        }
+                    ARG_POSITIVE_BUTTON_TEXT,
+                    if (positiveButtonTextResId != View.NO_ID) {
+                        context.getString(positiveButtonTextResId)
+                    } else {
+                        positiveButtonText
+                    }
                 )
                 putCharSequence(
-                        ARG_NEGATIVE_BUTTON_TEXT,
-                        if (negativeButtonTextResId != View.NO_ID) {
-                            context.getString(negativeButtonTextResId)
-                        } else {
-                            negativeButtonText
-                        }
+                    ARG_NEGATIVE_BUTTON_TEXT,
+                    if (negativeButtonTextResId != View.NO_ID) {
+                        context.getString(negativeButtonTextResId)
+                    } else {
+                        negativeButtonText
+                    }
                 )
                 putString(ARG_POSITIVE_LISTENER_FRAGMENT_TAG, positiveListenerFragmentTag)
                 putInt(ARG_POSITIVE_LISTENER_FRAGMENT_ID, positiveListenerFragmentId)
@@ -197,9 +205,9 @@ class AppDialogFragment : DialogFragment() {
             positiveButtonTextResId: Int,
             listener: T? = null
         ): Builder where T : OnPositiveClickListener, T : Fragment = copy(
-                positiveButtonTextResId = positiveButtonTextResId,
-                positiveListenerFragmentTag = listener?.tag,
-                positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
+            positiveButtonTextResId = positiveButtonTextResId,
+            positiveListenerFragmentTag = listener?.tag,
+            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
         )
 
         @Suppress("unused")
@@ -207,8 +215,8 @@ class AppDialogFragment : DialogFragment() {
             positiveButtonTextResId: Int,
             listener: T? = null
         ): Builder where T : OnPositiveClickListener, T : AppCompatActivity = copy(
-                positiveButtonTextResId = positiveButtonTextResId,
-                positiveListenerActivityName = listener?.javaClass?.name
+            positiveButtonTextResId = positiveButtonTextResId,
+            positiveListenerActivityName = listener?.javaClass?.name
         )
 
         @Suppress("unused")
@@ -216,9 +224,9 @@ class AppDialogFragment : DialogFragment() {
             positiveButtonText: String,
             listener: T? = null
         ): Builder where T : OnPositiveClickListener, T : Fragment = copy(
-                positiveButtonText = positiveButtonText,
-                positiveListenerFragmentTag = listener?.tag,
-                positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
+            positiveButtonText = positiveButtonText,
+            positiveListenerFragmentTag = listener?.tag,
+            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
         )
 
         @Suppress("unused")
@@ -226,8 +234,8 @@ class AppDialogFragment : DialogFragment() {
             positiveButtonText: String,
             listener: T? = null
         ): Builder where T : OnPositiveClickListener, T : AppCompatActivity = copy(
-                positiveButtonText = positiveButtonText,
-                positiveListenerActivityName = listener?.javaClass?.name
+            positiveButtonText = positiveButtonText,
+            positiveListenerActivityName = listener?.javaClass?.name
         )
 
         @Suppress("unused")
@@ -235,9 +243,9 @@ class AppDialogFragment : DialogFragment() {
             negativeButtonTextResId: Int,
             listener: T? = null
         ): Builder where T : OnNegativeClickListener, T : Fragment = copy(
-                negativeButtonTextResId = negativeButtonTextResId,
-                negativeListenerFragmentTag = listener?.tag,
-                negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
+            negativeButtonTextResId = negativeButtonTextResId,
+            negativeListenerFragmentTag = listener?.tag,
+            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
         )
 
         @Suppress("unused")
@@ -245,8 +253,8 @@ class AppDialogFragment : DialogFragment() {
             negativeButtonTextResId: Int,
             listener: T? = null
         ): Builder where T : OnNegativeClickListener, T : AppCompatActivity = copy(
-                negativeButtonTextResId = negativeButtonTextResId,
-                negativeListenerActivityName = listener?.javaClass?.name
+            negativeButtonTextResId = negativeButtonTextResId,
+            negativeListenerActivityName = listener?.javaClass?.name
         )
 
         @Suppress("unused")
@@ -254,9 +262,9 @@ class AppDialogFragment : DialogFragment() {
             negativeButtonText: String,
             listener: T? = null
         ): Builder where T : OnNegativeClickListener, T : Fragment = copy(
-                negativeButtonText = negativeButtonText,
-                negativeListenerFragmentTag = listener?.tag,
-                negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
+            negativeButtonText = negativeButtonText,
+            negativeListenerFragmentTag = listener?.tag,
+            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
         )
 
         @Suppress("unused")
@@ -264,8 +272,8 @@ class AppDialogFragment : DialogFragment() {
             negativeButtonText: String,
             listener: T? = null
         ): Builder where T : OnNegativeClickListener, T : AppCompatActivity = copy(
-                negativeButtonText = negativeButtonText,
-                negativeListenerActivityName = listener?.javaClass?.name
+            negativeButtonText = negativeButtonText,
+            negativeListenerActivityName = listener?.javaClass?.name
         )
     }
 }
