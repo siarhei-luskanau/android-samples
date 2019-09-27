@@ -5,13 +5,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.2")
-        classpath(kotlin("gradle-plugin", version = "1.3.41"))
+        classpath("com.android.tools.build:gradle:3.5.0")
+        classpath(kotlin("gradle-plugin", version = "1.3.50"))
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.0.0")
+    id("io.gitlab.arturbosch.detekt").version("1.0.1")
 }
 
 allprojects {

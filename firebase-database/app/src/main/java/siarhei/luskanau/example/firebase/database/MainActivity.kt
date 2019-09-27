@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
+                messageTextView.text = error.message
                 Timber.w(error.toException(), "Failed to read value.")
             }
         })

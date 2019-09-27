@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout.VERTICAL
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerMonitorBinding
 
@@ -31,7 +31,7 @@ class WorkManagerMonitorFragment : Fragment() {
         )
 
         val workManagerMonitorViewModel =
-            ViewModelProviders.of(this).get(WorkManagerMonitorViewModel::class.java)
+            ViewModelProvider(this).get(WorkManagerMonitorViewModel::class.java)
         workManagerMonitorViewModel.getWorkStatusListLiveData(requireContext())
             .observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 

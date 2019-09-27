@@ -8,9 +8,9 @@ buildscript {
         buildToolsVersion = "29.0.2"
 
         //Libraries
-        kotlinVersion = '1.3.41'
-        materialVersion = "1.1.0-alpha09"
-        androidxCoreVersion = "1.2.0-alpha03"
+        kotlinVersion = '1.3.50'
+        materialVersion = "1.1.0-alpha10"
+        androidxCoreVersion = "1.2.0-alpha04"
         constraintlayoutVersion = "2.0.0-beta2"
         timberVersion = '4.7.1'
 
@@ -25,13 +25,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.0.0")
+    id("io.gitlab.arturbosch.detekt").version("1.0.1")
 }
 
 allprojects {
@@ -44,10 +44,6 @@ allprojects {
     apply from: "$rootDir/ktlint.gradle"
     apply from: "$rootDir/detekt.gradle"
 
-    tasks.withType(JavaCompile).all {
-        android.compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
-        android.compileOptions.targetCompatibility = JavaVersion.VERSION_1_8
-    }
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
     }
