@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <Button
-        android:id="@+id/fragmentWithIdDialogButton"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="FragmentWithId Dialog"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:ignore="HardcodedText" />
-
-</layout>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentWithIdDialogButton"
+    style="@style/Widget.AppCompat.Button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="FragmentWithId Dialog"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    tools:ignore="HardcodedText" />

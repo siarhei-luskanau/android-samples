@@ -1,5 +1,6 @@
 package siarhei.luskanau.example.workmanager.monitor
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -26,11 +27,10 @@ class WorkInfoAdapter : ListAdapter<WorkInfo, WorkInfoAdapter.ViewHolder>(WorkIn
         private val binding: ListItemWorkStatusBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: WorkInfo) {
-            binding.apply {
-                workInfo = item
-                executePendingBindings()
-            }
+            binding.workInfoTextView.text =
+                "${item.id}\n ${item.state} ${item.tags}\n${item.outputData.keyValueMap}"
             itemView.tag = item
         }
     }

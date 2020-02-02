@@ -1,21 +1,22 @@
 plugins {
     id("com.android.application")
-    kotlin("android")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion = "29.0.2"
+    compileSdkVersion(BuildVersions.compileSdkVersion)
+    buildToolsVersion = BuildVersions.buildToolsVersion
 
     defaultConfig {
         applicationId = "siarhei.luskanau.example.dialogfragment"
-        minSdkVersion(16)
-        targetSdkVersion(29)
+        minSdkVersion(BuildVersions.minSdkVersion)
+        targetSdkVersion(BuildVersions.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
     }
 
-    dataBinding{
+    viewBinding {
         isEnabled = true
     }
 
@@ -26,7 +27,6 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(kotlin("stdlib-jdk8", version = "1.3.50"))
-    implementation("com.google.android.material:material:1.1.0-alpha10")
+    implementation(Libraries.kotlinStdlibJdk8)
+    implementation(Libraries.material)
 }

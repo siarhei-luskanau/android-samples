@@ -1,6 +1,8 @@
 package siarhei.luskanau.example.roomrxjava.persistence
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -17,22 +19,29 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun modelDao(): ModelDao
 
     companion object {
-        @JvmField
-        val MIGRATIONS = arrayOf<Migration>(
-            object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    dropOtherColumns(
-                        database,
-                        "models",
-                        mapOf(
-                            "`row_id`" to "INTEGER NOT NULL",
-                            "`name`" to "TEXT",
-                            "PRIMARY KEY(`row_id`)" to null
-                        )
-                    )
-                }
-            }
-        )
+
+        fun buildAppDatabase(context: Context): AppDatabase =
+            Room.databaseBuilder(
+                context,
+                AppDatabase::class.java,
+                "${context.packageName}.db"
+            )
+                .addMigrations(
+                    object : Migration(1, 2) {
+                        override fun migrate(database: SupportSQLiteDatabase) {
+                            dropOtherColumns(
+                                database,
+                                "models",
+                                mapOf(
+                                    "`row_id`" to "INTEGER NOT NULL",
+                                    "`name`" to "TEXT",
+                                    "PRIMARY KEY(`row_id`)" to null
+                                )
+                            )
+                        }
+                    }
+                )
+                .build()
 
         private fun dropOtherColumns(
             database: SupportSQLiteDatabase,
@@ -51,7 +60,9 @@ abstract class AppDatabase : RoomDatabase() {
                 .joinToString(separator = ", ")
 
             database.execSQL("CREATE TABLE ${tableName}_backup($createTableColumns)")
-            database.execSQL("INSERT INTO ${tableName}_backup SELECT $selectColumns FROM $tableName")
+            database.execSQL(
+                "INSERT INTO ${tableName}_backup SELECT $selectColumns FROM $tableName"
+            )
             database.execSQL("DROP TABLE $tableName")
             database.execSQL("ALTER TABLE ${tableName}_backup RENAME TO $tableName")
         }

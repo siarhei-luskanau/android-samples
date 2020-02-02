@@ -1,7 +1,7 @@
 package siarhei.luskanau.example.firebase.database
 
 import android.os.Bundle
-import android.widget.TextView
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -9,26 +9,29 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.util.Date
+import siarhei.luskanau.example.firebase.database.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var messageTextView: TextView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        ActivityMainBinding.inflate(LayoutInflater.from(this))
+            .also {
+                binding = it
+                setContentView(binding.root)
+            }
 
-        messageTextView = findViewById(R.id.messageTextView)
-
-        try {
+        runCatching {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("message")
 
             writeToDatabase(myRef)
             readFromDatabase(myRef)
-        } catch (t: Throwable) {
-            messageTextView.text = t.toString()
+        }.onFailure { t: Throwable ->
+            binding.messageTextView.text = t.toString()
         }
     }
 
@@ -49,13 +52,13 @@ class MainActivity : AppCompatActivity() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue(String::class.java)
-                messageTextView.text = value
+                binding.messageTextView.text = value
                 Timber.d("Value is: %s", value)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
-                messageTextView.text = error.message
+                binding.messageTextView.text = error.message
                 Timber.w(error.toException(), "Failed to read value.")
             }
         })

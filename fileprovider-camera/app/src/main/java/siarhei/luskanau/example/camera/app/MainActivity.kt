@@ -5,38 +5,38 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.example.camera.library.CameraUtils
 import java.util.Locale
+import siarhei.luskanau.example.camera.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var imageUriTextView: TextView
-    private lateinit var imageView: ImageView
-    private lateinit var roundedImageView: ImageView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        imageUriTextView = findViewById(R.id.imageUriTextView)
-        imageView = findViewById(R.id.imageView)
-        roundedImageView = findViewById(R.id.roundedImageView)
+        ActivityMainBinding.inflate(LayoutInflater.from(this))
+            .also {
+                binding = it
+                setContentView(binding.root)
+            }
 
         findViewById<View>(R.id.cameraButton).setOnClickListener {
             val takePictureIntent = CameraUtils.createCameraIntent(applicationContext)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
+            takePictureIntent.resolveActivity(packageManager)?.let {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
 
         findViewById<View>(R.id.galleryButton).setOnClickListener {
-            val takePictureIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            if (takePictureIntent.resolveActivity(packageManager) != null) {
+            val takePictureIntent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            takePictureIntent.resolveActivity(packageManager)?.let {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
@@ -48,11 +48,8 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val uri = if (data != null) {
-                data.data
-            } else {
-                CameraUtils.getCameraTempFileProviderUri(applicationContext)
-            }
+            val uri = data?.data ?: CameraUtils.getCameraTempFileProviderUri(applicationContext)
+
             showImageUri(uri)
         } else {
             showImageUri(null)
@@ -60,17 +57,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showImageUri(uri: Uri?) {
-        imageUriTextView.text = String.format(Locale.ENGLISH, "Uri: %s", uri.toString())
+        binding.imageUriTextView.text = String.format(Locale.ENGLISH, "Uri: %s", uri.toString())
         uri?.let {
-            imageView.setImageURI(uri)
+            binding.imageView.setImageURI(uri)
             val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uri))
             val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
-                    .apply { isCircular = true }
-            roundedImageView.setImageDrawable(roundedBitmapDrawable)
-            roundedImageView.setImageDrawable(roundedBitmapDrawable)
+                .apply { isCircular = true }
+            binding.roundedImageView.setImageDrawable(roundedBitmapDrawable)
         } ?: run {
-            imageView.setImageResource(R.drawable.ic_android_24dp)
-            roundedImageView.setImageResource(R.drawable.ic_android_24dp)
+            binding.imageView.setImageResource(R.drawable.ic_android_24dp)
+            binding.roundedImageView.setImageResource(R.drawable.ic_android_24dp)
         }
     }
 

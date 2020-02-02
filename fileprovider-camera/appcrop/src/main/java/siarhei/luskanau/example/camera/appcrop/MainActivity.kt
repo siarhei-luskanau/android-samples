@@ -4,61 +4,59 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
-import com.mikhaellopez.circularimageview.CircularImageView
 import com.yalantis.ucrop.UCrop
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.Locale
+import siarhei.luskanau.example.camera.appcrop.databinding.ActivityMainBinding
 import timber.log.Timber
 
 private const val MAX_BITMAP_SIZE = 1024
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var imageUriTextView: TextView
-    private lateinit var imageView: ImageView
-    private lateinit var circularImageView: CircularImageView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        imageUriTextView = findViewById(R.id.imageUriTextView)
-        imageView = findViewById(R.id.imageView)
-        circularImageView = findViewById(R.id.circularImageView)
+        ActivityMainBinding.inflate(LayoutInflater.from(this))
+            .also {
+                binding = it
+                setContentView(binding.root)
+            }
 
         findViewById<View>(R.id.cameraButton).setOnClickListener {
             RxPaparazzo.single(this)
-                    .useInternalStorage()
-                    .crop(getCropOptions())
-                    .usingCamera()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(
-                            onNext = { showImageUri(Uri.fromFile(it.data().file)) },
-                            onError = { Timber.e(it) }
-                    )
+                .useInternalStorage()
+                .crop(getCropOptions())
+                .usingCamera()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                    onNext = { showImageUri(Uri.fromFile(it.data().file)) },
+                    onError = { Timber.e(it) }
+                )
         }
 
         findViewById<View>(R.id.galleryButton).setOnClickListener {
             RxPaparazzo.single(this)
-                    .useInternalStorage()
-                    .crop(getCropOptions())
-                    .usingGallery()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(
-                            onNext = { showImageUri(Uri.fromFile(it.data().file)) },
-                            onError = { Timber.e(it) }
-                    )
+                .useInternalStorage()
+                .crop(getCropOptions())
+                .usingGallery()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                    onNext = { showImageUri(Uri.fromFile(it.data().file)) },
+                    onError = { Timber.e(it) }
+                )
         }
 
         showImageUri(null)
@@ -77,16 +75,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showImageUri(uri: Uri?) {
-        imageUriTextView.text = String.format(Locale.ENGLISH, "Uri: %s", uri.toString())
+        binding.imageUriTextView.text = String.format(Locale.ENGLISH, "Uri: %s", uri.toString())
         uri?.let {
             val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uri))
             val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
-                    .apply { isCircular = true }
-            imageView.setImageDrawable(roundedBitmapDrawable)
-            circularImageView.setImageURI(uri)
+                .apply { isCircular = true }
+            binding.imageView.setImageDrawable(roundedBitmapDrawable)
+            binding.circularImageView.setImageURI(uri)
         } ?: run {
-            imageView.setImageResource(R.drawable.ic_android_24dp)
-            circularImageView.setImageURI(uri)
+            binding.imageView.setImageResource(R.drawable.ic_android_24dp)
+            binding.circularImageView.setImageURI(uri)
         }
     }
 }

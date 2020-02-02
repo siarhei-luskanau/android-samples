@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AppActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".feature1.Feature1Activity">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Hello World!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Hello World!"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-        <FrameLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-</layout>
+</LinearLayout>

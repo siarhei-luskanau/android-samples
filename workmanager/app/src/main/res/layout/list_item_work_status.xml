@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-
-        <variable
-            name="workInfo"
-            type="androidx.work.WorkInfo" />
-    </data>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text='@{workInfo.id + "\n" + workInfo.state + " " + workInfo.tags + "\n" + workInfo.outputData.keyValueMap}'
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-</layout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/workInfoTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAppearance="@style/TextAppearance.AppCompat.Small" />

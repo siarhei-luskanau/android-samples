@@ -1,42 +1,42 @@
 package siarhei.luskanau.example.roomrxjava
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.Date
+import siarhei.luskanau.example.roomrxjava.databinding.ActivityMainBinding
 import siarhei.luskanau.example.roomrxjava.persistence.ModelDao
 import siarhei.luskanau.example.roomrxjava.persistence.ModelEntity
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var modelsTextView: TextView
+    private lateinit var binding: ActivityMainBinding
     private var models: List<ModelEntity> = emptyList()
     private var modelsDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this)).also { binding ->
+            setContentView(binding.root)
+        }
 
-        modelsTextView = findViewById(R.id.models_text_view)
-
-        findViewById<Button?>(R.id.add_model_button)?.setOnClickListener {
+        binding.addModelButton.setOnClickListener {
             Timber.d("add_model_button clicked")
             addModel()
         }
 
-        findViewById<Button?>(R.id.update_model_button)?.setOnClickListener {
+        binding.updateModelButton.setOnClickListener {
             Timber.d("update_model_button clicked")
             updateModel()
         }
 
-        findViewById<Button?>(R.id.delete_all_models_button)?.setOnClickListener {
+        binding.deleteAllModelsButton.setOnClickListener {
             Timber.d("delete_all_models_button clicked")
             deleteAllModels()
         }
@@ -46,19 +46,19 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         modelsDisposable = getDao().getModels()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { models: List<ModelEntity> ->
-                            this.models = models
-                            val modelsValue = models.toString()
-                            Timber.d(modelsValue)
-                            modelsTextView.text = modelsValue
-                        },
-                        { t: Throwable? -> Timber.e(t) },
-                        { Timber.d("getDao().getModels().onComplete") }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { models: List<ModelEntity> ->
+                    this.models = models
+                    val modelsValue = models.toString()
+                    Timber.d(modelsValue)
+                    binding.modelsTextView.text = modelsValue
+                },
+                { t: Throwable? -> Timber.e(t) },
+                { Timber.d("getDao().getModels().onComplete") }
 
-                )
+            )
     }
 
     override fun onStop() {
@@ -76,12 +76,12 @@ class MainActivity : AppCompatActivity() {
         Completable.fromAction {
             getDao().insertModel(ModelEntity(name = Date().toString()))
         }
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { Timber.d("addModel.onComplete") },
-                        { t: Throwable? -> Timber.e(t) }
-                )
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Timber.d("addModel.onComplete") },
+                { t: Throwable? -> Timber.e(t) }
+            )
     }
 
     private fun updateModel() {
@@ -90,26 +90,26 @@ class MainActivity : AppCompatActivity() {
                 getDao().updateModel(it.copy(name = Date().toString()))
             }
         }
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { Timber.d("updateModel.onComplete") },
-                        { t: Throwable? -> Timber.e(t) }
-                )
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Timber.d("updateModel.onComplete") },
+                { t: Throwable? -> Timber.e(t) }
+            )
     }
 
     private fun deleteAllModels() {
         Completable.fromAction {
             getDao().deleteAllModels()
         }
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { Timber.d("deleteAllModels.onComplete") },
-                        { t: Throwable? -> Timber.e(t) }
-                )
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Timber.d("deleteAllModels.onComplete") },
+                { t: Throwable? -> Timber.e(t) }
+            )
     }
 
     private fun getDao(): ModelDao =
-            (application as AppApplication).appDatabase.modelDao()
+        (application as AppApplication).appDatabase.modelDao()
 }

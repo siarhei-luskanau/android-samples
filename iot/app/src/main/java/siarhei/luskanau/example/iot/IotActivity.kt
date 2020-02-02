@@ -31,15 +31,16 @@ class IotActivity : CameraActivity() {
         Timber.d("Build.ID: %s", gson.toJson(Build.ID))
     }
 
-    private fun pioInfo() =
-            try {
-                val peripheralManager = PeripheralManager.getInstance()
-                Timber.d("GpioList: %s", gson.toJson(peripheralManager.gpioList))
-                Timber.d("I2cBusList: %s", gson.toJson(peripheralManager.i2cBusList))
-                Timber.d("PwmList: %s", gson.toJson(peripheralManager.pwmList))
-                Timber.d("SpiBusList: %s", gson.toJson(peripheralManager.spiBusList))
-                Timber.d("UartDeviceList: %s", gson.toJson(peripheralManager.uartDeviceList))
-            } catch (e: Throwable) {
-                Timber.e(e)
-            }
+    private fun pioInfo() {
+        runCatching {
+            val peripheralManager = PeripheralManager.getInstance()
+            Timber.d("GpioList: %s", gson.toJson(peripheralManager.gpioList))
+            Timber.d("I2cBusList: %s", gson.toJson(peripheralManager.i2cBusList))
+            Timber.d("PwmList: %s", gson.toJson(peripheralManager.pwmList))
+            Timber.d("SpiBusList: %s", gson.toJson(peripheralManager.spiBusList))
+            Timber.d("UartDeviceList: %s", gson.toJson(peripheralManager.uartDeviceList))
+        }.onFailure {
+            Timber.e(it)
+        }
+    }
 }

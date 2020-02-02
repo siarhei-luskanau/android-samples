@@ -2,17 +2,21 @@ package siarhei.luskanau.example.dagger.di
 
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Provider
 import javax.inject.Singleton
 import siarhei.luskanau.example.dagger.AppApplication
+import siarhei.luskanau.example.dagger.model.CommonHelloService
+import siarhei.luskanau.example.dagger.model.DateService
 
 @Singleton
 @Component(modules = [
-    AndroidSupportInjectionModule::class,
-    AppModule::class,
-    BuildersModule::class
+    AppModule::class
 ])
 interface AppComponent {
+
+    fun provideCommonHelloService(): Provider<CommonHelloService>
+
+    fun provideDateService(): Provider<DateService>
 
     @Component.Builder
     interface Builder {
@@ -21,6 +25,4 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
-
-    fun inject(application: AppApplication)
 }

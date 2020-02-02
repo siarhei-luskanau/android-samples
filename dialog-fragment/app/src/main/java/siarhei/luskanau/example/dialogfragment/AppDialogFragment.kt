@@ -24,6 +24,7 @@ private const val ARG_NEGATIVE_LISTENER_FRAGMENT_TAG = "negative_listener_fragme
 private const val ARG_NEGATIVE_LISTENER_FRAGMENT_ID = "negative_listener_fragment_id"
 private const val ARG_NEGATIVE_LISTENER_ACTIVITY_NAME = "negative_listener_activity_name"
 
+@Suppress("TooManyFunctions")
 class AppDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

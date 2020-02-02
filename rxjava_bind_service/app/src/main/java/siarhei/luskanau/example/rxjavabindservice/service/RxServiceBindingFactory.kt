@@ -14,17 +14,22 @@ import timber.log.Timber
 class RxServiceBindingFactory {
 
     companion object {
-        fun <B : Binder> bind(context: Context, launch: Intent, flags: Int): Single<Pair<B, ServiceConnection>> {
+        fun <B : Binder> bind(
+            context: Context,
+            launch: Intent,
+            flags: Int
+        ): Single<Pair<B, ServiceConnection>> {
             val con = Connection<B>()
             return Single.create(con)
-                    .doOnSubscribe {
-                        Timber.d("doOnSubscribe and bindService")
-                        context.bindService(launch, con, flags)
-                    }
+                .doOnSubscribe {
+                    Timber.d("doOnSubscribe and bindService")
+                    context.bindService(launch, con, flags)
+                }
         }
     }
 
-    private class Connection<B : Binder> : ServiceConnection, SingleOnSubscribe<Pair<B, ServiceConnection>> {
+    private class Connection<B : Binder> : ServiceConnection,
+        SingleOnSubscribe<Pair<B, ServiceConnection>> {
 
         private var emitter: SingleEmitter<Pair<B, ServiceConnection>>? = null
         private var service: B? = null

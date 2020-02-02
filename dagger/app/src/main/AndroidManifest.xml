@@ -10,7 +10,7 @@
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name="siarhei.luskanau.example.dagger.feature1.Feature1Activity">
+        <activity android:name="siarhei.luskanau.example.dagger.AppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

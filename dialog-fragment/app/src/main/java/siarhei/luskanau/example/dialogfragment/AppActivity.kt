@@ -1,9 +1,10 @@
 package siarhei.luskanau.example.dialogfragment
 
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import siarhei.luskanau.example.dialogfragment.databinding.ActivityAppBinding
 
 private const val TAG = "FragmentWithTag"
 
@@ -11,24 +12,28 @@ class AppActivity : AppCompatActivity(), OnPositiveClickListener, OnNegativeClic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_app)
 
-        findViewById<View>(R.id.activityDialogButton).setOnClickListener {
-            AppDialogFragment.Builder(
-                    dialogId = "AppActivity_dialogId",
-                    title = "AppActivity",
-                    message = "Dialog from AppActivity"
-            )
-                    .setPositiveButton(android.R.string.ok, this)
-                    .setNegativeButton(android.R.string.no, this)
-                    .show(this)
-        }
+        ActivityAppBinding.inflate(LayoutInflater.from(this))
+            .also { binding ->
+                setContentView(binding.root)
+
+                binding.activityDialogButton.setOnClickListener {
+                    AppDialogFragment.Builder(
+                        dialogId = "AppActivity_dialogId",
+                        title = "AppActivity",
+                        message = "Dialog from AppActivity"
+                    )
+                        .setPositiveButton(android.R.string.ok, this)
+                        .setNegativeButton(android.R.string.no, this)
+                        .show(this)
+                }
+            }
 
         if (supportFragmentManager.findFragmentByTag(TAG) == null) {
             supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.container, FragmentWithTag(), TAG)
-                    .commit()
+                .beginTransaction()
+                .add(R.id.container, FragmentWithTag(), TAG)
+                .commit()
         }
     }
 

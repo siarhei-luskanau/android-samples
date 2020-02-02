@@ -52,8 +52,8 @@ abstract class CameraActivity : AppCompatActivity() {
     ) =
         when (requestCode) {
             PERMISSIONS_REQUEST -> {
-                if (
-                    grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
                     onPermissionsGranted()
                 } else {
@@ -75,7 +75,7 @@ abstract class CameraActivity : AppCompatActivity() {
     }
 
     private fun cameraInfo() {
-        try {
+        runCatching {
             (getSystemService(CAMERA_SERVICE) as CameraManager?)?.let { cameraManager ->
                 val cameraIdList = cameraManager.cameraIdList
                 Timber.i("CameraIdList: %s", gson.toJson(cameraIdList))
@@ -85,7 +85,9 @@ abstract class CameraActivity : AppCompatActivity() {
                     try {
                         val characteristics = cameraManager.getCameraCharacteristics(cameraId)
 
-                        (characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP))?.let { configs ->
+                        (characteristics.get(
+                            CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
+                        ))?.let { configs ->
                             val outputFormats = configs.outputFormats
                             Timber.d("OutputFormats: %s", gson.toJson(outputFormats))
                             for (format in outputFormats) {
@@ -94,8 +96,9 @@ abstract class CameraActivity : AppCompatActivity() {
                                     Timber.d("	%s", s)
                                 }
                             }
-                            val effects =
-                                characteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS)
+                            val effects = characteristics.get(
+                                CameraCharacteristics.CONTROL_AVAILABLE_EFFECTS
+                            )
                             Timber.d("effects: %s", gson.toJson(effects))
                         }
                     } catch (e: CameraAccessException) {
@@ -103,7 +106,7 @@ abstract class CameraActivity : AppCompatActivity() {
                     }
                 }
             }
-        } catch (e: Exception) {
+        }.onFailure {
             Timber.d("Camera access exception getting IDs")
         }
     }
