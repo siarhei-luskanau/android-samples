@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.5.0")
+    id("io.gitlab.arturbosch.detekt").version("1.9.0")
 }
 
 allprojects {

@@ -1,16 +1,17 @@
 private object Versions {
-    const val androidToolsBuildGradle = "3.6.0-rc02"
-    const val kotlin = "1.3.61"
+    const val androidToolsBuildGradle = "4.0.0"
+    const val kotlin = "1.3.72"
     const val timber = "4.7.1"
-    const val material = "1.2.0-alpha04"
-    const val androidxCoreVersion = "1.2.0-alpha04"
-    const val constraintlayoutVersion = "2.0.0-beta4"
+    const val material = "1.3.0-alpha01"
+    const val androidxCoreVersion = "1.4.0-alpha01"
+    const val constraintlayoutVersion = "2.0.0-beta6"
 }
 
 object BuildVersions {
-    const val compileSdkVersion = 29
-    const val targetSdkVersion = 29
-    const val buildToolsVersion = "29.0.2"
+    const val platformVersion = "R"
+    const val compileSdkVersion = "android-$platformVersion"
+    const val targetSdkVersion = 30
+    const val buildToolsVersion = "30.0.0-rc4"
     const val minSdkVersion = 21
 }
 

@@ -11,13 +11,14 @@ object FileProviderUtils {
     private const val FILE_PROVIDER_PATHS = "temp"
 
     fun getFileProviderUri(context: Context, fileName: String): Uri =
-            FileProvider.getUriForFile(context,
-                    context.packageName + AUTHORITIES_SUFFIX,
-                    createFile(context, fileName)
-            )
+        FileProvider.getUriForFile(
+            context,
+            context.packageName + AUTHORITIES_SUFFIX,
+            createFile(context, fileName)
+        )
 
     fun deleteFile(context: Context, fileName: String) =
-            createFile(context, fileName).delete()
+        createFile(context, fileName).delete()
 
     private fun createFile(context: Context, fileName: String): File {
         val fileProviderDir = File(context.filesDir, FILE_PROVIDER_PATHS)
