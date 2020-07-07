@@ -1,17 +1,16 @@
+import de.mannodermaus.gradle.plugins.junit5.junitPlatform
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
+    id("de.mannodermaus.android-junit5")
 }
 
-android {
-    compileSdkVersion(BuildVersions.compileSdkVersion)
-    buildToolsVersion = BuildVersions.buildToolsVersion
+android.testOptions.junitPlatform.jacocoOptions.taskGenerationEnabled = false
 
+android {
     defaultConfig {
         applicationId = "siarhei.luskanau.example.camera.app"
-        minSdkVersion(BuildVersions.minSdkVersion)
-        targetSdkVersion(BuildVersions.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -27,32 +26,27 @@ android {
     flavorDimensions("default")
     productFlavors {
         create("flavor1") {
-            setDimension("default")
+            dimension("default")
             applicationIdSuffix = ".flavor1"
             versionNameSuffix = "-flavor1"
         }
         create("flavor2") {
-            setDimension("default")
+            dimension("default")
             applicationIdSuffix = ".flavor2"
             versionNameSuffix = "-flavor2"
         }
     }
-
-    viewBinding {
-        isEnabled = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    implementation(project(":camera"))
+    coreLibraryDesugaring(Libraries.desugarJdkLibs)
+
+    implementation(project(":fileprovider-camera:camera"))
 
     implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.timber)
     implementation(Libraries.material)
+    implementation(Libraries.activityKtx)
+    implementation(Libraries.fragmentKtx)
     implementation(Libraries.constraintLayout)
 }

@@ -1,34 +1,27 @@
-buildscript {
-
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath(GradlePlugin.androidToolsBuildGradle)
-        classpath(GradlePlugin.kotlinGradlePlugin)
-    }
-}
+import de.mannodermaus.gradle.plugins.junit5.junitPlatform
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.5.0")
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("de.mannodermaus.android-junit5")
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+android.testOptions.junitPlatform.jacocoOptions.taskGenerationEnabled = false
 
-    apply(from = "$rootDir/ktlint.gradle.kts")
-    apply(from = "$rootDir/detekt.gradle")
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+android {
+    defaultConfig {
+        applicationId = "siarhei.luskanau.example.dialogfragment"
+        versionCode = 1
+        versionName = "1.0"
     }
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+dependencies {
+    coreLibraryDesugaring(Libraries.desugarJdkLibs)
+
+    implementation(Libraries.kotlinStdlibJdk8)
+    implementation(Libraries.material)
+    implementation(Libraries.activityKtx)
+    implementation(Libraries.fragmentKtx)
 }

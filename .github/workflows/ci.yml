@@ -15,42 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: dagger
-      working-directory: ./dagger
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: dialog-fragment
-      working-directory: ./dialog-fragment
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: fileprovider-camera
-      working-directory: ./fileprovider-camera
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: firebase-database
-      working-directory: ./firebase-database
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: fonts
-      working-directory: ./fonts
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: iot
-      working-directory: ./iot
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: navigation
-      working-directory: ./navigation
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: room_rxjava
-      working-directory: ./room_rxjava
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: rxjava_bind_service
-      working-directory: ./rxjava_bind_service
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
-
-    - name: workmanager
-      working-directory: ./workmanager
+    - name: ci
       run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace

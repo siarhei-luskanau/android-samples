@@ -1,24 +1,16 @@
+import de.mannodermaus.gradle.plugins.junit5.junitPlatform
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("de.mannodermaus.android-junit5")
 }
 
-android {
-    compileSdkVersion(BuildVersions.compileSdkVersion)
-    buildToolsVersion = BuildVersions.buildToolsVersion
-
-    defaultConfig {
-        minSdkVersion(BuildVersions.minSdkVersion)
-        targetSdkVersion(BuildVersions.targetSdkVersion)
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
+android.testOptions.junitPlatform.jacocoOptions.taskGenerationEnabled = false
 
 dependencies {
+    coreLibraryDesugaring(Libraries.desugarJdkLibs)
+
     implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.androidxCore)
 }
