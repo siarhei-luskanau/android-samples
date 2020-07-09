@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/WorkManagerActionsFragment">
+
+    <fragment
+        android:id="@+id/WorkManagerActionsFragment"
+        android:name="siarhei.luskanau.example.workmanager.WorkManagerActionsFragment"
+        tools:layout="@layout/fragment_work_manager_actions" />
+
+    <fragment
+        android:id="@+id/OneTimeWorkFragment"
+        android:name="worker.s01.OneTimeWorkFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/OneTimeWorkWithErrorFragment"
+        android:name="worker.s02.OneTimeWorkWithErrorFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/OneTimeWorkWithRetryFragment"
+        android:name="worker.s03.OneTimeWorkWithRetryFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/UniqueWorkFragment"
+        android:name="worker.s04.UniqueWorkFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/UniqueWorkWithErrorFragment"
+        android:name="worker.s05.UniqueWorkWithErrorFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/ConstraintsFragment"
+        android:name="worker.s06.ConstraintsFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/ChainFragment"
+        android:name="worker.s07.ChainFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/PeriodicWorkFragment"
+        android:name="worker.s08.PeriodicWorkFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+    <fragment
+        android:id="@+id/DataOverflowWorkFragment"
+        android:name="worker.s09.DataOverflowWorkFragment"
+        tools:layout="@layout/fragment_begin_cancel_work" />
+
+</navigation>

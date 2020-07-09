@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath(GradlePlugin.androidToolsBuildGradle)
         classpath(GradlePlugin.kotlinGradlePlugin)
+        classpath(GradlePlugin.navigationSafeArgsGradlePlugin)
         classpath(GradlePlugin.androidJunit5Plugin)
     }
 }
