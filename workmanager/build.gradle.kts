@@ -21,7 +21,6 @@ dependencies {
     implementation(Libraries.material)
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
-    implementation(Libraries.constraintLayout)
 
-    implementation("androidx.work:work-runtime-ktx:2.4.0-rc01")
+    implementation("androidx.work:work-runtime-ktx:2.5.0-rc01")
 }

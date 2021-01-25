@@ -1,34 +1,20 @@
-buildscript {
-
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath(GradlePlugin.androidToolsBuildGradle)
-        classpath(GradlePlugin.kotlinGradlePlugin)
-    }
-}
-
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.5.0")
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-
-    apply(from = "$rootDir/ktlint.gradle.kts")
-    apply(from = "$rootDir/detekt.gradle")
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+android {
+    defaultConfig {
+        applicationId = "siarhei.luskanau.example.fonts"
+        versionCode = 1
+        versionName = "1.0"
     }
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+dependencies {
+    coreLibraryDesugaring(Libraries.desugarJdkLibs)
+
+    implementation(Libraries.kotlinStdlibJdk8)
+    implementation(Libraries.material)
 }

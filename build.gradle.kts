@@ -15,7 +15,7 @@ buildscript {
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.9.0")
+    id("io.gitlab.arturbosch.detekt").version(PublicVersions.detekt)
 }
 
 allprojects {
@@ -26,7 +26,7 @@ allprojects {
     }
 
     apply(from = "$rootDir/ktlint.gradle.kts")
-    apply(from = "$rootDir/detekt.gradle")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 
     plugins.configureEach {
         (this as? com.android.build.gradle.internal.plugins.BasePlugin<*, *>)?.extension?.apply {
@@ -60,6 +60,10 @@ allprojects {
             }
 
             buildFeatures.viewBinding = true
+
+            dependencies {
+                "coreLibraryDesugaring"(Libraries.desugarJdkLibs)
+            }
         }
     }
 

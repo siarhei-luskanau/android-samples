@@ -1,25 +1,30 @@
 private object Versions {
-    const val androidToolsBuildGradle = "4.1.0-beta03"
-    const val desugar = "1.0.9"
-    const val kotlin = "1.3.72"
-    const val kotlinxCoroutines = "1.3.7"
-    const val navigation = "2.3.0"
+    const val androidToolsBuildGradle = "4.1.2"
+    const val desugar = "1.1.1"
+    const val kotlin = "1.4.21"
+    const val kotlinxCoroutines = "1.4.2"
+    const val navigation = "2.3.2"
     const val timber = "4.7.1"
-    const val material = "1.3.0-alpha01"
-    const val activity = "1.2.0-alpha06"
-    const val fragment = "1.3.0-alpha06"
-    const val androidxCore = "1.5.0-alpha01"
-    const val constraintlayout = "2.0.0-beta7"
+    const val material = "1.3.0-rc01"
+    const val activity = "1.2.0-rc01"
+    const val fragment = "1.3.0-rc01"
+    const val androidxCore = "1.5.0-beta01"
 
     const val androidJunit5Gradle = "1.6.2.0"
-    const val googleServicesGradle = "4.3.3"
+    const val googleServicesGradle = "4.3.4"
+}
+
+object PublicVersions {
+    const val kotlin = Versions.kotlin
+    const val ktlint = "0.40.0"
+    const val detekt = "1.15.0"
 }
 
 object BuildVersions {
     const val platformVersion = 30
     const val compileSdkVersion = platformVersion
     const val targetSdkVersion = 30
-    const val buildToolsVersion = "30.0.0"
+    const val buildToolsVersion = "30.0.3"
     const val minSdkVersion = 21
 }
 
@@ -36,7 +41,6 @@ object Libraries {
     const val activityKtx = "androidx.activity:activity-ktx:${Versions.activity}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragment}"
     const val androidxCore = "androidx.core:core:${Versions.androidxCore}"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
 }
 
 object GradlePlugin {
