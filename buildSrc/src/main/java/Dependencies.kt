@@ -1,17 +1,17 @@
 private object Versions {
     const val androidToolsBuildGradle = "4.1.2"
     const val desugar = "1.1.1"
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.30"
     const val kotlinxCoroutines = "1.4.2"
-    const val navigation = "2.3.2"
+    const val navigation = "2.3.3"
     const val timber = "4.7.1"
-    const val material = "1.3.0-rc01"
-    const val activity = "1.2.0-rc01"
-    const val fragment = "1.3.0-rc01"
+    const val material = "1.3.0"
+    const val activity = "1.2.0"
+    const val fragment = "1.3.0"
     const val androidxCore = "1.5.0-beta01"
 
-    const val androidJunit5Gradle = "1.6.2.0"
-    const val googleServicesGradle = "4.3.4"
+    const val androidJunit5Gradle = "1.7.0.0"
+    const val googleServicesGradle = "4.3.5"
 }
 
 object PublicVersions {

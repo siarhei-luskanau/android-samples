@@ -46,7 +46,7 @@ dependencies {
     implementation(Libraries.material)
     implementation(Libraries.activityKtx)
     implementation(Libraries.fragmentKtx)
-    implementation("com.mikhaellopez:circularimageview:4.1.1")
+    implementation("com.mikhaellopez:circularimageview:4.2.0")
     implementation("com.github.miguelbcr:RxPaparazzo:0.6.1-2.x")
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
     implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")

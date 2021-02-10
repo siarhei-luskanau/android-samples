@@ -3,7 +3,7 @@ println("gradle.startParameter.taskNames: ${gradle.startParameter.taskNames}")
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {

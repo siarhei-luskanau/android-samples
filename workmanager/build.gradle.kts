@@ -22,5 +22,5 @@ dependencies {
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
 
-    implementation("androidx.work:work-runtime-ktx:2.5.0-rc01")
+    implementation("androidx.work:work-runtime-ktx:2.5.0")
 }
