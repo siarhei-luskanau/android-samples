@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import timber.log.Timber
 
 abstract class BaseWorker(
     context: Context,
@@ -33,7 +33,6 @@ abstract class BaseWorker(
         }
 
         return try {
-
             val result = doWorkDelegate(outputDataBuilder)
 
             outputDataBuilder.putString(
@@ -63,6 +62,7 @@ abstract class BaseWorker(
                 try {
                     outputDataBuilder.build()
                 } catch (t: Throwable) {
+                    t.printStackTrace()
                     Data.Builder()
                         .putString(
                             "throwable_${this.javaClass.simpleName}",

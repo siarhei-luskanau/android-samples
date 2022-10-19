@@ -1,7 +1,9 @@
-include(":dialog-fragment")
-include(":fileprovider-camera:app")
-include(":fileprovider-camera:appcrop")
-include(":fileprovider-camera:camera")
-include(":fonts")
-include(":navigation")
-include(":workmanager")
+include(
+    ":dialog-fragment",
+    ":fileprovider-camera:app",
+    // ":fileprovider-camera:appcrop",
+    ":fileprovider-camera:camera",
+    ":fonts",
+    ":navigation",
+    ":workmanager"
+)

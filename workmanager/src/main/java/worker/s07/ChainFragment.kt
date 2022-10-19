@@ -16,7 +16,6 @@ private const val SLEEP_MILLIS_10 = 10 * 1000L
 class ChainFragment : BaseBeginCancelWorkFragment() {
 
     override fun onBeginButtonPressed() {
-
         WorkManager.getInstance(requireContext())
             .beginWith(
                 listOf(

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="siarhei.luskanau.example.fonts">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:icon="@drawable/ic_android"
@@ -9,7 +8,9 @@
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,MissingApplicationIcon">
 
-        <activity android:name="siarhei.luskanau.example.fonts.AppActivity">
+        <activity
+            android:name="siarhei.luskanau.example.fonts.AppActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

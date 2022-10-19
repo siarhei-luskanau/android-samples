@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="siarhei.luskanau.example.workmanager">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".AppApplication"
+        android:name="siarhei.luskanau.example.workmanager.AppApplication"
         android:allowBackup="false"
         android:icon="@drawable/ic_android"
         android:label="WorkManager"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".AppActivity">
+        <activity
+            android:name="siarhei.luskanau.example.workmanager.AppActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

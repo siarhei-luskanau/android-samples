@@ -1,10 +1,10 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
 }
 
 android {
+    namespace = "siarhei.luskanau.example.fonts"
     defaultConfig {
         applicationId = "siarhei.luskanau.example.fonts"
         versionCode = 1
@@ -13,8 +13,8 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring(Libraries.desugarJdkLibs)
-
     implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.material)
+    implementation(Libraries.activityKtx)
+    implementation(Libraries.fragmentKtx)
 }

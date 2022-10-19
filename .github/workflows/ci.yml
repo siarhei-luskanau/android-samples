@@ -1,19 +1,23 @@
 name: CI
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [ push ]
 
 jobs:
-  # This workflow contains a single job called "build"
+
   build:
-    # The type of runner that the job will run on
-    runs-on: macos-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
     steps:
-    - uses: actions/checkout@v2
 
-    - name: ci
-      run: bash ./gradlew clean ktlint detekt build test connectedAndroidTest --stacktrace
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        if: ${{ matrix.os != 'self-hosted' }}
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - run: bash ./gradlew ktlintCheck detekt lint test build connectedAndroidTest --stacktrace

@@ -1,4 +1,6 @@
 println("gradle.startParameter.taskNames: ${gradle.startParameter.taskNames}")
+System.getProperties().forEach { key, value -> println("System.getProperties(): $key=$value") }
+System.getenv().forEach { (key, value) -> println("System.getenv(): $key=$value") }
 
 buildscript {
     repositories {
@@ -10,7 +12,6 @@ buildscript {
         classpath(GradlePlugin.androidToolsBuildGradle)
         classpath(GradlePlugin.kotlinGradlePlugin)
         classpath(GradlePlugin.navigationSafeArgsGradlePlugin)
-        classpath(GradlePlugin.androidJunit5Plugin)
     }
 }
 
@@ -21,7 +22,7 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven(url = "https://jitpack.io")
     }
 
@@ -29,46 +30,36 @@ allprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 
     plugins.configureEach {
-        (this as? com.android.build.gradle.internal.plugins.BasePlugin<*, *>)?.extension?.apply {
+        (this as? com.android.build.gradle.internal.plugins.BasePlugin<*, *, *, *, *, *, *, *>)?.extension?.apply {
             compileSdkVersion(BuildVersions.compileSdkVersion)
             buildToolsVersion = BuildVersions.buildToolsVersion
 
             defaultConfig {
-                minSdkVersion(BuildVersions.minSdkVersion)
-                targetSdkVersion(BuildVersions.targetSdkVersion)
+                minSdk = BuildVersions.minSdkVersion
+                targetSdk = BuildVersions.targetSdkVersion
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
 
-            compileOptions {
-                isCoreLibraryDesugaringEnabled = true
-                sourceCompatibility = JavaVersion.VERSION_1_8
-                targetCompatibility = JavaVersion.VERSION_1_8
-            }
+            compileOptions.isCoreLibraryDesugaringEnabled = true
+            buildFeatures.viewBinding = true
 
             testOptions {
                 animationsDisabled = true
                 unitTests(delegateClosureOf<com.android.build.gradle.internal.dsl.TestOptions.UnitTestOptions> {
-                    //isReturnDefaultValues = true
                     all { test: Test ->
                         test.testLogging.events = setOf(
-                                org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
-                                org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
-                                org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+                            org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
+                            org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
+                            org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
                         )
                     }
                 })
             }
 
-            buildFeatures.viewBinding = true
-
             dependencies {
                 "coreLibraryDesugaring"(Libraries.desugarJdkLibs)
             }
         }
-    }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
     }
 }
 

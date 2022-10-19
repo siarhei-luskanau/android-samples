@@ -14,9 +14,9 @@ import com.yalantis.ucrop.UCrop
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.util.Locale
 import siarhei.luskanau.example.camera.appcrop.databinding.ActivityMainBinding
 import timber.log.Timber
+import java.util.Locale
 
 private const val MAX_BITMAP_SIZE = 1024
 

@@ -1,14 +1,10 @@
-import de.mannodermaus.gradle.plugins.junit5.junitPlatform
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("de.mannodermaus.android-junit5")
 }
 
-android.testOptions.junitPlatform.jacocoOptions.taskGenerationEnabled = false
-
 android {
+    namespace = "siarhei.luskanau.example.camera.app"
     defaultConfig {
         applicationId = "siarhei.luskanau.example.camera.app"
         versionCode = 1
@@ -23,15 +19,15 @@ android {
         }
     }
 
-    flavorDimensions("default")
+    flavorDimensions.add("default")
     productFlavors {
         create("flavor1") {
-            dimension("default")
+            dimension = "default"
             applicationIdSuffix = ".flavor1"
             versionNameSuffix = "-flavor1"
         }
         create("flavor2") {
-            dimension("default")
+            dimension = "default"
             applicationIdSuffix = ".flavor2"
             versionNameSuffix = "-flavor2"
         }
@@ -39,8 +35,6 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring(Libraries.desugarJdkLibs)
-
     implementation(project(":fileprovider-camera:camera"))
 
     implementation(Libraries.kotlinStdlibJdk8)

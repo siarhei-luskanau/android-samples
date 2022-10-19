@@ -6,7 +6,6 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import java.lang.IllegalStateException
 import kotlinx.coroutines.delay
 import siarhei.luskanau.example.workmanager.BaseBeginCancelWorkFragment
 import siarhei.luskanau.example.workmanager.BaseWorker
@@ -43,6 +42,6 @@ class UniqueWithErrorWorker(
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)
-        throw IllegalStateException("TestException")
+        error("TestException")
     }
 }

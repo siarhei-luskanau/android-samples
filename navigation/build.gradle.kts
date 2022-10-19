@@ -1,11 +1,11 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
+    namespace = "siarhei.luskanau.example.navigation"
     defaultConfig {
         applicationId = "siarhei.luskanau.example.navigation"
         versionCode = 1
@@ -16,6 +16,8 @@ android {
 dependencies {
     implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.material)
+    implementation(Libraries.activityKtx)
+    implementation(Libraries.fragmentKtx)
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
 }
