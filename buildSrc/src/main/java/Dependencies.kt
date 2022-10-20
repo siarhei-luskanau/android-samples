@@ -5,7 +5,7 @@ private object Versions {
     const val kotlinxCoroutines = "1.6.4"
     const val navigation = "2.5.2"
     const val timber = "4.7.1"
-    const val material = "1.6.1"
+    const val material = "1.7.0"
     const val activity = "1.6.0"
     const val fragment = "1.5.3"
     const val androidxCore = "1.9.0"

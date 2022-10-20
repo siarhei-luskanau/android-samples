@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
@@ -24,18 +25,23 @@ class MainActivity : AppCompatActivity() {
                 setContentView(binding.root)
             }
 
+        val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+            val uri = FileProviderUtils.getFileProviderUri(this, CAMERA_TEMP_FILE_NAME)
+            showImageUri(uri)
+        }
         binding.cameraButton.setOnClickListener {
             FileProviderUtils.deleteFile(this, CAMERA_TEMP_FILE_NAME)
             val uri = FileProviderUtils.getFileProviderUri(this, CAMERA_TEMP_FILE_NAME)
-            registerForActivityResult(ActivityResultContracts.TakePicture()) {
-                showImageUri(uri)
-            }.launch(uri)
+            takePictureLauncher.launch(uri)
         }
 
+        val getContentLauncher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
+            showImageUri(it)
+        }
         binding.galleryButton.setOnClickListener {
-            registerForActivityResult(ActivityResultContracts.GetContent()) {
-                showImageUri(it)
-            }.launch("image/*")
+            getContentLauncher.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            )
         }
 
         showImageUri(null)
