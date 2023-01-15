@@ -1,33 +1,41 @@
+import java.util.Properties
+
 private object Versions {
-    const val androidToolsBuildGradle = "7.3.1"
-    const val desugar = "1.2.2"
-    const val kotlin = "1.7.20"
+    private val versionsProperties = Properties().apply {
+        Versions::class.java.classLoader.getResourceAsStream("build_src_versions.properties")
+            .use { load(it) }
+    }
+
+    val androidToolsBuildGradle: String =
+        versionsProperties["version.androidToolsBuildGradle"].toString()
+    val kotlin: String = versionsProperties["version.kotlin"].toString()
+    const val desugar = "2.0.0"
     const val kotlinxCoroutines = "1.6.4"
-    const val navigation = "2.5.2"
-    const val timber = "4.7.1"
+    const val navigation = "2.5.3"
+    const val timber = "5.0.1"
     const val material = "1.7.0"
-    const val activity = "1.6.0"
-    const val fragment = "1.5.3"
+    const val activity = "1.6.1"
+    const val fragment = "1.5.5"
     const val androidxCore = "1.9.0"
 }
 
 object PublicVersions {
-    const val kotlin = Versions.kotlin
-    const val ktlint = "0.47.1"
-    const val detekt = "1.21.0"
+    val kotlin = Versions.kotlin
+    const val ktlint = "0.48.1"
+    const val detekt = "1.22.0"
 }
 
 object BuildVersions {
     const val platformVersion = 33
     const val compileSdkVersion = platformVersion
     const val targetSdkVersion = 33
-    const val buildToolsVersion = "33.0.0"
+    const val buildToolsVersion = "33.0.1"
     const val minSdkVersion = 21
 }
 
 object Libraries {
     const val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:${Versions.desugar}"
-    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val kotlinxCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}"
     const val navigationFragmentKtx =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -40,7 +48,7 @@ object Libraries {
 }
 
 object GradlePlugin {
-    const val androidToolsBuildGradle = "com.android.tools.build:gradle:${Versions.androidToolsBuildGradle}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    val androidToolsBuildGradle = "com.android.tools.build:gradle:${Versions.androidToolsBuildGradle}"
+    val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
 }
