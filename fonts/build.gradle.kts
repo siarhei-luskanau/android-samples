@@ -12,7 +12,6 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.material)
     implementation(Libraries.activityKtx)
     implementation(Libraries.fragmentKtx)

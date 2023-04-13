@@ -1,9 +1,5 @@
-import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.delegateClosureOf
-import org.gradle.kotlin.dsl.dependencies
-import com.android.build.gradle.internal.dsl.TestOptions
-import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     id("com.android.application")
@@ -20,11 +16,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions.isCoreLibraryDesugaringEnabled = true
     buildFeatures.viewBinding = true
 
-    dependencies {
-        "coreLibraryDesugaring"(Libraries.desugarJdkLibs)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     testOptions {

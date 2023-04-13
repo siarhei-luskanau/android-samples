@@ -9,7 +9,13 @@ dependencies {
 }
 
 val outputDir = "${project.buildDir}/reports/ktlint/"
-val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
+val inputFiles = project.fileTree(
+    mapOf(
+        "dir" to "src",
+        "include" to "**/*.kt",
+        "include" to "**/*.kts"
+    )
+)
 
 val ktlintCheck by tasks.creating(JavaExec::class) {
     inputs.files(inputFiles)
@@ -17,8 +23,8 @@ val ktlintCheck by tasks.creating(JavaExec::class) {
     group = "ktlint"
     description = "Check Kotlin code style."
     classpath = ktlint
-    main = "com.pinterest.ktlint.Main"
-    args = listOf("--android", "src/**/*.kt")
+    mainClass.set("com.pinterest.ktlint.Main")
+    args = listOf("--android", "**/src/**/*.kt", "**/src/**/*.kts", "*.kts")
 }
 
 val ktlintFormat by tasks.creating(JavaExec::class) {
@@ -27,8 +33,8 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
     group = "ktlint"
     description = "Fix Kotlin code style deviations."
     classpath = ktlint
-    main = "com.pinterest.ktlint.Main"
-    args = listOf("--android", "-F", "src/**/*.kt")
+    mainClass.set("com.pinterest.ktlint.Main")
+    args = listOf("--android", "-F", "**/src/**/*.kt", "**/src/**/*.kts", "*.kts")
 }
 
 val applyToIDEAProject by tasks.creating(JavaExec::class) {
@@ -38,6 +44,6 @@ val applyToIDEAProject by tasks.creating(JavaExec::class) {
     description =
         "Change the code style config files to be compliant with Android Kotlin Style Guide."
     classpath = ktlint
-    main = "com.pinterest.ktlint.Main"
+    mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("applyToIDEAProject", "-y")
 }

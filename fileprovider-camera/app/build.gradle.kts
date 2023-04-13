@@ -36,7 +36,6 @@ android {
 dependencies {
     implementation(project(":fileprovider-camera:camera"))
 
-    implementation(Libraries.kotlinStdlibJdk8)
     implementation(Libraries.timber)
     implementation(Libraries.material)
     implementation(Libraries.activityKtx)
