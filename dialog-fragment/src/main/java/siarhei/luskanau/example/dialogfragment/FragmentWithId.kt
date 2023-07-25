@@ -13,7 +13,7 @@ class FragmentWithId : Fragment(), OnPositiveClickListener, OnNegativeClickListe
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? =
         FragmentWithIdBinding.inflate(inflater, container, false)
             .also { binding ->
@@ -21,7 +21,7 @@ class FragmentWithId : Fragment(), OnPositiveClickListener, OnNegativeClickListe
                     AppDialogFragment.Builder(
                         dialogId = "FragmentWithId_dialogId",
                         title = "FragmentWithId",
-                        message = "Dialog from FragmentWithId"
+                        message = "Dialog from FragmentWithId",
                     )
                         .setPositiveButton(android.R.string.ok, this)
                         .setNegativeButton(android.R.string.cancel, this)
@@ -34,7 +34,7 @@ class FragmentWithId : Fragment(), OnPositiveClickListener, OnNegativeClickListe
         Toast.makeText(
             requireContext(),
             "FragmentWithId.onClickPositive $dialogId",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_SHORT,
         ).show()
     }
 
@@ -42,7 +42,7 @@ class FragmentWithId : Fragment(), OnPositiveClickListener, OnNegativeClickListe
         Toast.makeText(
             requireContext(),
             "FragmentWithId.onClickNegative $dialogId",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_SHORT,
         ).show()
     }
 }

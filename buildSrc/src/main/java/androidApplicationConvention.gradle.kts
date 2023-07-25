@@ -1,5 +1,4 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 plugins {
     id("com.android.application")
@@ -7,20 +6,19 @@ plugins {
 }
 
 android {
-    compileSdk = BuildVersions.compileSdkVersion
-    buildToolsVersion = BuildVersions.buildToolsVersion
+    compileSdk = libs.findVersion("android-build-compileSdk").get().requiredVersion.toInt()
 
     defaultConfig {
-        minSdk = BuildVersions.minSdkVersion
-        targetSdk = BuildVersions.targetSdkVersion
+        minSdk = libs.findVersion("android-build-minSdk").get().requiredVersion.toInt()
+        targetSdk = libs.findVersion("android-build-targetSdk").get().requiredVersion.toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures.viewBinding = true
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.valueOf(libs.findVersion("build-javaVersion").get().requiredVersion)
+        targetCompatibility = JavaVersion.valueOf(libs.findVersion("build-javaVersion").get().requiredVersion)
     }
 
     testOptions {
@@ -30,13 +28,13 @@ android {
             all { test ->
                 test.testLogging {
                     events = setOf(
-                        TestLogEvent.PASSED,
-                        TestLogEvent.SKIPPED,
-                        TestLogEvent.FAILED,
-                        TestLogEvent.STANDARD_OUT,
-                        TestLogEvent.STANDARD_ERROR
+                        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
+                        org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
+                        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+                        org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT,
+                        org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR,
                     )
-                    exceptionFormat = TestExceptionFormat.FULL
+                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                 }
             }
         }

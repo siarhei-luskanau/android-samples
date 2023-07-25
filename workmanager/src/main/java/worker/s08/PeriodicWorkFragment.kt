@@ -5,11 +5,11 @@ import androidx.work.Data
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.delay
 import siarhei.luskanau.example.workmanager.BaseBeginCancelWorkFragment
 import siarhei.luskanau.example.workmanager.BaseWorker
 import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
+import java.util.concurrent.TimeUnit
 
 private const val SLEEP_MILLIS = 10 * 1000L
 
@@ -20,10 +20,10 @@ class PeriodicWorkFragment : BaseBeginCancelWorkFragment() {
             .enqueue(
                 PeriodicWorkRequestBuilder<PeriodicWork>(
                     repeatInterval = 15,
-                    repeatIntervalTimeUnit = TimeUnit.MINUTES
+                    repeatIntervalTimeUnit = TimeUnit.MINUTES,
                 )
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build()
+                    .build(),
             )
     }
 
@@ -34,10 +34,10 @@ class PeriodicWorkFragment : BaseBeginCancelWorkFragment() {
 
 class PeriodicWork(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {

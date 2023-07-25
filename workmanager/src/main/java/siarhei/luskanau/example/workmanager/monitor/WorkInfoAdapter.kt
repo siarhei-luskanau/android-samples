@@ -19,12 +19,12 @@ class WorkInfoAdapter : ListAdapter<WorkInfo, WorkInfoAdapter.ViewHolder>(WorkIn
             ListItemWorkStatusBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false
-            )
+                false,
+            ),
         )
 
     class ViewHolder(
-        private val binding: ListItemWorkStatusBinding
+        private val binding: ListItemWorkStatusBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")

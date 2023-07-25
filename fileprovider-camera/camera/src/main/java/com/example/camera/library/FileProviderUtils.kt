@@ -14,7 +14,7 @@ object FileProviderUtils {
         FileProvider.getUriForFile(
             context,
             context.packageName + AUTHORITIES_SUFFIX,
-            createFile(context, fileName)
+            createFile(context, fileName),
         )
 
     fun deleteFile(context: Context, fileName: String) =

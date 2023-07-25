@@ -19,7 +19,7 @@ class OneTimeWorkWithRetryFragment : BaseBeginCancelWorkFragment() {
             .beginWith(
                 OneTimeWorkRequestBuilder<OneTimeWorkWithRetry>()
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build()
+                    .build(),
             ).enqueue()
     }
 
@@ -31,10 +31,10 @@ class OneTimeWorkWithRetryFragment : BaseBeginCancelWorkFragment() {
 
 class OneTimeWorkWithRetry(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {

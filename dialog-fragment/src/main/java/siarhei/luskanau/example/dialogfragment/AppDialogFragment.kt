@@ -67,7 +67,7 @@ class AppDialogFragment : DialogFragment() {
                     OnPositiveClickListener::class.java,
                     fragmentTag,
                     fragmentId,
-                    activityName
+                    activityName,
                 )?.onClickPositive(getDialogId())
             }
         }
@@ -86,7 +86,7 @@ class AppDialogFragment : DialogFragment() {
                     OnNegativeClickListener::class.java,
                     fragmentTag,
                     fragmentId,
-                    activityName
+                    activityName,
                 )?.onClickNegative(getDialogId())
             }
         }
@@ -96,7 +96,7 @@ class AppDialogFragment : DialogFragment() {
         clazz: Class<T>,
         fragmentTag: String?,
         fragmentId: Int,
-        activityName: String?
+        activityName: String?,
     ): T? {
         return when {
             fragmentTag.isNullOrEmpty().not() -> {
@@ -139,7 +139,7 @@ class AppDialogFragment : DialogFragment() {
         private val negativeListenerFragmentTag: String? = null,
         private val negativeListenerFragmentId: Int = View.NO_ID,
         private val negativeListenerActivityName: String? = null,
-        val isCancelable: Boolean = false
+        val isCancelable: Boolean = false,
     ) {
 
         fun show(fragmentActivity: FragmentActivity) {
@@ -151,12 +151,12 @@ class AppDialogFragment : DialogFragment() {
             create(fragment.requireContext().applicationContext)
                 .show(
                     fragment.requireActivity().supportFragmentManager,
-                    BASIC_DIALOG_FRAGMENT_TAG + dialogId
+                    BASIC_DIALOG_FRAGMENT_TAG + dialogId,
                 )
         }
 
         private fun create(
-            context: Context
+            context: Context,
         ) = AppDialogFragment().also { appDialogFragment ->
             appDialogFragment.arguments = Bundle().apply {
                 putString(ARG_DIALOG_ID, dialogId)
@@ -166,7 +166,7 @@ class AppDialogFragment : DialogFragment() {
                         context.getString(titleResId)
                     } else {
                         title
-                    }
+                    },
                 )
                 putCharSequence(
                     ARG_MESSAGE,
@@ -174,7 +174,7 @@ class AppDialogFragment : DialogFragment() {
                         context.getString(messageResId)
                     } else {
                         message
-                    }
+                    },
                 )
                 putCharSequence(
                     ARG_POSITIVE_BUTTON_TEXT,
@@ -182,7 +182,7 @@ class AppDialogFragment : DialogFragment() {
                         context.getString(positiveButtonTextResId)
                     } else {
                         positiveButtonText
-                    }
+                    },
                 )
                 putCharSequence(
                     ARG_NEGATIVE_BUTTON_TEXT,
@@ -190,7 +190,7 @@ class AppDialogFragment : DialogFragment() {
                         context.getString(negativeButtonTextResId)
                     } else {
                         negativeButtonText
-                    }
+                    },
                 )
                 putString(ARG_POSITIVE_LISTENER_FRAGMENT_TAG, positiveListenerFragmentTag)
                 putInt(ARG_POSITIVE_LISTENER_FRAGMENT_ID, positiveListenerFragmentId)
@@ -205,77 +205,77 @@ class AppDialogFragment : DialogFragment() {
         @Suppress("unused")
         fun <T> setPositiveButton(
             positiveButtonTextResId: Int,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnPositiveClickListener, T : Fragment = copy(
             positiveButtonTextResId = positiveButtonTextResId,
             positiveListenerFragmentTag = listener?.tag,
-            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
+            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId,
         )
 
         @Suppress("unused")
         fun <T> setPositiveButton(
             positiveButtonTextResId: Int,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnPositiveClickListener, T : AppCompatActivity = copy(
             positiveButtonTextResId = positiveButtonTextResId,
-            positiveListenerActivityName = listener?.javaClass?.name
+            positiveListenerActivityName = listener?.javaClass?.name,
         )
 
         @Suppress("unused")
         fun <T> setPositiveButton(
             positiveButtonText: String,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnPositiveClickListener, T : Fragment = copy(
             positiveButtonText = positiveButtonText,
             positiveListenerFragmentTag = listener?.tag,
-            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId
+            positiveListenerFragmentId = listener?.id ?: positiveListenerFragmentId,
         )
 
         @Suppress("unused")
         fun <T> setPositiveButton(
             positiveButtonText: String,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnPositiveClickListener, T : AppCompatActivity = copy(
             positiveButtonText = positiveButtonText,
-            positiveListenerActivityName = listener?.javaClass?.name
+            positiveListenerActivityName = listener?.javaClass?.name,
         )
 
         @Suppress("unused")
         fun <T> setNegativeButton(
             negativeButtonTextResId: Int,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnNegativeClickListener, T : Fragment = copy(
             negativeButtonTextResId = negativeButtonTextResId,
             negativeListenerFragmentTag = listener?.tag,
-            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
+            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId,
         )
 
         @Suppress("unused")
         fun <T> setNegativeButton(
             negativeButtonTextResId: Int,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnNegativeClickListener, T : AppCompatActivity = copy(
             negativeButtonTextResId = negativeButtonTextResId,
-            negativeListenerActivityName = listener?.javaClass?.name
+            negativeListenerActivityName = listener?.javaClass?.name,
         )
 
         @Suppress("unused")
         fun <T> setNegativeButton(
             negativeButtonText: String,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnNegativeClickListener, T : Fragment = copy(
             negativeButtonText = negativeButtonText,
             negativeListenerFragmentTag = listener?.tag,
-            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId
+            negativeListenerFragmentId = listener?.id ?: negativeListenerFragmentId,
         )
 
         @Suppress("unused")
         fun <T> setNegativeButton(
             negativeButtonText: String,
-            listener: T? = null
+            listener: T? = null,
         ): Builder where T : OnNegativeClickListener, T : AppCompatActivity = copy(
             negativeButtonText = negativeButtonText,
-            negativeListenerActivityName = listener?.javaClass?.name
+            negativeListenerActivityName = listener?.javaClass?.name,
         )
     }
 }

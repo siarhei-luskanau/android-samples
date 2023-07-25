@@ -13,7 +13,7 @@ class Feature1Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val binding = FragmentFeature1Binding.inflate(inflater, container, false)
 

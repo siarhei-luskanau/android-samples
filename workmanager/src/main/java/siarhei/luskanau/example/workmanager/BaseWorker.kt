@@ -4,17 +4,17 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import timber.log.Timber
 
 abstract class BaseWorker(
     context: Context,
-    private val workerParams: WorkerParameters
+    private val workerParams: WorkerParameters,
 ) : CoroutineWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     @Suppress("TooGenericExceptionCaught")
@@ -23,12 +23,12 @@ abstract class BaseWorker(
         outputDataBuilder.putAll(workerParams.inputData)
         outputDataBuilder.putString(
             "start_${this.javaClass.simpleName}",
-            getTimestamp()
+            getTimestamp(),
         )
         if (workerParams.runAttemptCount > 0) {
             outputDataBuilder.putString(
                 "runAttemptCount_${this.javaClass.simpleName}",
-                workerParams.runAttemptCount.toString()
+                workerParams.runAttemptCount.toString(),
             )
         }
 
@@ -37,7 +37,7 @@ abstract class BaseWorker(
 
             outputDataBuilder.putString(
                 "finish_${this.javaClass.simpleName}",
-                getTimestamp()
+                getTimestamp(),
             )
 
             when (result) {
@@ -51,11 +51,11 @@ abstract class BaseWorker(
 
             outputDataBuilder.putString(
                 "finish_${this.javaClass.simpleName}",
-                getTimestamp()
+                getTimestamp(),
             )
             outputDataBuilder.putString(
                 "throwable_${this.javaClass.simpleName}",
-                "${throwable.javaClass.simpleName}: ${throwable.message}"
+                "${throwable.javaClass.simpleName}: ${throwable.message}",
             )
 
             Result.failure(
@@ -66,9 +66,9 @@ abstract class BaseWorker(
                     Data.Builder()
                         .putString(
                             "throwable_${this.javaClass.simpleName}",
-                            "${throwable.javaClass.simpleName}: ${throwable.message}"
+                            "${throwable.javaClass.simpleName}: ${throwable.message}",
                         ).build()
-                }
+                },
             )
         }
     }

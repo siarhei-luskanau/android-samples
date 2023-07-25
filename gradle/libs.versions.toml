@@ -1,0 +1,32 @@
+[versions]
+agp = "8.1.0"
+android-build-compileSdk = "34"
+android-build-minSdk = "21"
+android-build-targetSdk = "34"
+android-material = "1.9.0"
+androidx-activity = "1.7.2"
+androidx-core = "1.10.1"
+androidx-fragment = "1.6.0"
+androidx-navigation = "2.6.0"
+androidx-work = "2.8.1"
+build-javaVersion = "VERSION_17"
+build-jvmTarget = "17"
+detekt = "1.23.0"
+kotlin = "1.9.0"
+timber = "5.0.1"
+
+[libraries]
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
+androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
+androidx-navigation-safeArgsGradlePlugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidx-navigation" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
+[plugins]
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

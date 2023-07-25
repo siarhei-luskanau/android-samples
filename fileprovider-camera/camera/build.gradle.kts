@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.androidxCore)
+    implementation(libs.androidx.core)
 }

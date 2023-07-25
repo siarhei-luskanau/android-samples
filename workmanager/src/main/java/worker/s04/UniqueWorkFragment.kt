@@ -22,7 +22,7 @@ class UniqueWorkFragment : BaseBeginCancelWorkFragment() {
                 ExistingWorkPolicy.KEEP,
                 OneTimeWorkRequestBuilder<UniqueWorker>()
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build()
+                    .build(),
             ).enqueue()
     }
 
@@ -33,10 +33,10 @@ class UniqueWorkFragment : BaseBeginCancelWorkFragment() {
 
 class UniqueWorker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {

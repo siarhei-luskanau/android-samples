@@ -28,14 +28,14 @@ class ChainFragment : BaseBeginCancelWorkFragment() {
                         .setInputData(Data.Builder().putString("input_a2", "a2").build())
                         .addTag(WorkManagerConstants.TAG_ALL)
                         .addTag(TAG_CHAIN)
-                        .build()
-                )
+                        .build(),
+                ),
             )
             .then(
                 OneTimeWorkRequestBuilder<ChainB1Worker>()
                     .addTag(WorkManagerConstants.TAG_ALL)
                     .addTag(TAG_CHAIN)
-                    .build()
+                    .build(),
             )
             .then(
                 listOf(
@@ -46,8 +46,8 @@ class ChainFragment : BaseBeginCancelWorkFragment() {
                     OneTimeWorkRequestBuilder<ChainC2Worker>()
                         .addTag(WorkManagerConstants.TAG_ALL)
                         .addTag(TAG_CHAIN)
-                        .build()
-                )
+                        .build(),
+                ),
             )
             .enqueue()
     }
@@ -61,10 +61,10 @@ private const val TAG_CHAIN = "TAG_CHAIN"
 
 class ChainA1Worker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
@@ -75,10 +75,10 @@ class ChainA1Worker(
 
 class ChainA2Worker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
@@ -89,10 +89,10 @@ class ChainA2Worker(
 
 class ChainB1Worker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
@@ -103,10 +103,10 @@ class ChainB1Worker(
 
 class ChainC1Worker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
@@ -117,10 +117,10 @@ class ChainC1Worker(
 
 class ChainC2Worker(
     context: Context,
-    workerParams: WorkerParameters
+    workerParams: WorkerParameters,
 ) : BaseWorker(
     context,
-    workerParams
+    workerParams,
 ) {
 
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {

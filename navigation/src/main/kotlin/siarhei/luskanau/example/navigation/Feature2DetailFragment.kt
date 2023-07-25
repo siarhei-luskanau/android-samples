@@ -14,7 +14,7 @@ class Feature2DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val binding = FragmentFeature2DetailBinding.inflate(inflater, container, false)
 

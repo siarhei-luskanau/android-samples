@@ -36,8 +36,8 @@ android {
 dependencies {
     implementation(project(":fileprovider-camera:camera"))
 
-    implementation(Libraries.timber)
-    implementation(Libraries.material)
-    implementation(Libraries.activityKtx)
-    implementation(Libraries.fragmentKtx)
+    implementation(libs.android.material)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.timber)
 }

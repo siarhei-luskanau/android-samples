@@ -13,7 +13,7 @@ abstract class BaseBeginCancelWorkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val binding = FragmentBeginCancelWorkBinding.inflate(inflater, container, false)
 

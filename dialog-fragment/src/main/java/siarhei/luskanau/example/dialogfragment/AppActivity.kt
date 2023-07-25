@@ -21,7 +21,7 @@ class AppActivity : AppCompatActivity(), OnPositiveClickListener, OnNegativeClic
                     AppDialogFragment.Builder(
                         dialogId = "AppActivity_dialogId",
                         title = "AppActivity",
-                        message = "Dialog from AppActivity"
+                        message = "Dialog from AppActivity",
                     )
                         .setPositiveButton(android.R.string.ok, this)
                         .setNegativeButton(android.R.string.cancel, this)

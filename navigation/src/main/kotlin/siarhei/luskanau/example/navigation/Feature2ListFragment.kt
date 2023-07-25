@@ -14,7 +14,7 @@ class Feature2ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val binding = FragmentFeature2ListBinding.inflate(inflater, container, false)
 
