@@ -1,5 +1,6 @@
 package siarhei.luskanau.example.workmanager
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
@@ -17,6 +18,7 @@ abstract class BaseWorker(
     workerParams,
 ) {
 
+    @SuppressLint("RestrictedApi")
     @Suppress("TooGenericExceptionCaught")
     override suspend fun doWork(): Result {
         val outputDataBuilder = Data.Builder()
