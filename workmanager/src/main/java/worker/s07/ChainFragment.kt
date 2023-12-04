@@ -14,7 +14,6 @@ private const val SLEEP_MILLIS_5 = 5 * 1000L
 private const val SLEEP_MILLIS_10 = 10 * 1000L
 
 class ChainFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
         WorkManager.getInstance(requireContext())
             .beginWith(
@@ -63,10 +62,9 @@ class ChainA1Worker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
         return Result.success()
@@ -77,10 +75,9 @@ class ChainA2Worker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_10)
         return Result.success()
@@ -91,10 +88,9 @@ class ChainB1Worker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
         return Result.success()
@@ -105,10 +101,9 @@ class ChainC1Worker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
         return Result.success()
@@ -119,10 +114,9 @@ class ChainC2Worker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_10)
         return Result.success()

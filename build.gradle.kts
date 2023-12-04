@@ -15,7 +15,7 @@ plugins {
 }
 
 allprojects {
-    apply(from = "$rootDir/ktlint.gradle.kts")
+    apply(from = "$rootDir/ktlint.gradle")
     apply(plugin = "io.gitlab.arturbosch.detekt")
 }
 

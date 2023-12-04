@@ -13,7 +13,6 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 private const val SLEEP_MILLIS = 10 * 1000L
 
 class OneTimeWorkFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
         WorkManager.getInstance(requireContext())
             .beginWith(
@@ -32,10 +31,9 @@ class OneTimeWork(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)
         return Result.success()

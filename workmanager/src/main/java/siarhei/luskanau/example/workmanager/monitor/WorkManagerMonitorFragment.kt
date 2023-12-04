@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerMonitorBinding
 
 class WorkManagerMonitorFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -7,7 +7,6 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 
 class WorkManagerMonitorViewModel : ViewModel() {
-
     fun getWorkStatusListLiveData(context: Context): LiveData<List<WorkInfo>> =
         WorkManager.getInstance(context).getWorkInfosByTagLiveData(WorkManagerConstants.TAG_ALL)
 }

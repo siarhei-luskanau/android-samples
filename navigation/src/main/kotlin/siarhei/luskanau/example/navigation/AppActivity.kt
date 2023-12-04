@@ -13,7 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import siarhei.luskanau.example.navigation.databinding.ActivityAppBinding
 
 class AppActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityAppBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -21,10 +20,11 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityAppBinding.inflate(LayoutInflater.from(this))
-            .also { binding ->
-                setContentView(binding.root)
-            }
+        val binding =
+            ActivityAppBinding.inflate(LayoutInflater.from(this))
+                .also { binding ->
+                    setContentView(binding.root)
+                }
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)

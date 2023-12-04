@@ -10,7 +10,6 @@ import androidx.work.WorkManager
 import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerActionsBinding
 
 class WorkManagerActionsFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +28,10 @@ class WorkManagerActionsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = javaClass.simpleName

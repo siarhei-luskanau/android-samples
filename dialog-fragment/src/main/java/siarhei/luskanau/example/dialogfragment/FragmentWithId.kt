@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import siarhei.luskanau.example.dialogfragment.databinding.FragmentWithIdBinding
 
 class FragmentWithId : Fragment(), OnPositiveClickListener, OnNegativeClickListener {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

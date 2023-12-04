@@ -14,10 +14,9 @@ abstract class BaseWorker(
     context: Context,
     private val workerParams: WorkerParameters,
 ) : CoroutineWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     @SuppressLint("RestrictedApi")
     @Suppress("TooGenericExceptionCaught")
     override suspend fun doWork(): Result {
@@ -77,6 +76,5 @@ abstract class BaseWorker(
 
     abstract suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result
 
-    private fun getTimestamp() =
-        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH).format(Date())
+    private fun getTimestamp() = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH).format(Date())
 }

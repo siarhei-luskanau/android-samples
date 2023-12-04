@@ -15,11 +15,11 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 private const val SLEEP_MILLIS = 30 * 1000L
 
 class ConstraintsFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.UNMETERED)
-            .build()
+        val constraints =
+            Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.UNMETERED)
+                .build()
 
         WorkManager.getInstance(requireContext())
             .beginWith(
@@ -40,10 +40,9 @@ class ConstraintsWorker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)
         return Result.success()

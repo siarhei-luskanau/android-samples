@@ -10,7 +10,6 @@ import siarhei.luskanau.example.workmanager.BaseWorker
 import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 
 class DataOverflowWorkFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
         WorkManager.getInstance(requireContext())
             .beginWith(
@@ -30,10 +29,9 @@ class DataOverflowWork(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         var i = 0
         while (true) {

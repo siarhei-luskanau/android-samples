@@ -14,7 +14,6 @@ import siarhei.luskanau.example.workmanager.monitor.WorkManagerConstants
 private const val SLEEP_MILLIS = 20 * 1000L
 
 class UniqueWorkWithErrorFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
         WorkManager.getInstance(requireContext())
             .beginUniqueWork(
@@ -36,10 +35,9 @@ class UniqueWithErrorWorker(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)
         error("TestException")

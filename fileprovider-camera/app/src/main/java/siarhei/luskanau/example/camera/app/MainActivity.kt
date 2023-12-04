@@ -13,7 +13,6 @@ import siarhei.luskanau.example.camera.app.databinding.ActivityMainBinding
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,21 +24,23 @@ class MainActivity : AppCompatActivity() {
                 setContentView(binding.root)
             }
 
-        val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) {
-            val uri = FileProviderUtils.getFileProviderUri(this, CAMERA_TEMP_FILE_NAME)
-            showImageUri(uri)
-        }
+        val takePictureLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) {
+                val uri = FileProviderUtils.getFileProviderUri(this, CAMERA_TEMP_FILE_NAME)
+                showImageUri(uri)
+            }
         binding.cameraButton.setOnClickListener {
             FileProviderUtils.deleteFile(this, CAMERA_TEMP_FILE_NAME)
             val uri = FileProviderUtils.getFileProviderUri(this, CAMERA_TEMP_FILE_NAME)
             takePictureLauncher.launch(uri)
         }
 
-        val getContentLauncher = registerForActivityResult(
-            ActivityResultContracts.PickVisualMedia(),
-        ) {
-            showImageUri(it)
-        }
+        val getContentLauncher =
+            registerForActivityResult(
+                ActivityResultContracts.PickVisualMedia(),
+            ) {
+                showImageUri(it)
+            }
         binding.galleryButton.setOnClickListener {
             getContentLauncher.launch(
                 PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
@@ -55,8 +56,9 @@ class MainActivity : AppCompatActivity() {
         try {
             uri?.let {
                 val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(uri))
-                val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
-                    .apply { isCircular = true }
+                val roundedBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(resources, bitmap)
+                        .apply { isCircular = true }
                 binding.roundedImageView.setImageDrawable(roundedBitmapDrawable)
                 binding.imageView.setImageURI(null)
                 binding.imageView.setImageURI(uri)

@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit
 private const val SLEEP_MILLIS = 10 * 1000L
 
 class PeriodicWorkFragment : BaseBeginCancelWorkFragment() {
-
     override fun onBeginButtonPressed() {
         WorkManager.getInstance(requireContext())
             .enqueue(
@@ -36,10 +35,9 @@ class PeriodicWork(
     context: Context,
     workerParams: WorkerParameters,
 ) : BaseWorker(
-    context,
-    workerParams,
-) {
-
+        context,
+        workerParams,
+    ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)
         return Result.success()

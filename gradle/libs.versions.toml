@@ -1,18 +1,19 @@
 [versions]
-agp = "8.2.0-alpha15"
+agp = "8.2.0"
 android-build-compileSdk = "34"
 android-build-minSdk = "21"
 android-build-targetSdk = "34"
-android-material = "1.9.0"
-androidx-activity = "1.7.2"
-androidx-core = "1.10.1"
-androidx-fragment = "1.6.1"
-androidx-navigation = "2.6.0"
-androidx-work = "2.8.1"
+android-material = "1.10.0"
+androidx-activity = "1.8.1"
+androidx-core = "1.12.0"
+androidx-fragment = "1.6.2"
+androidx-navigation = "2.7.5"
+androidx-work = "2.9.0"
 build-javaVersion = "VERSION_17"
 build-jvmTarget = "17"
-detekt = "1.23.1"
-kotlin = "1.9.0"
+detekt = "1.23.4"
+kotlin = "1.9.21"
+ktlint = "1.0.1"
 timber = "5.0.1"
 
 [libraries]
@@ -26,6 +27,7 @@ androidx-navigation-safeArgsGradlePlugin = { module = "androidx.navigation:navig
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]

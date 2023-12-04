@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import siarhei.luskanau.example.fonts.databinding.ActivityAppBinding
 
 class AppActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

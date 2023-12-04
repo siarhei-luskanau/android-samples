@@ -9,7 +9,6 @@ import siarhei.luskanau.example.dialogfragment.databinding.ActivityAppBinding
 private const val TAG = "FragmentWithTag"
 
 class AppActivity : AppCompatActivity(), OnPositiveClickListener, OnNegativeClickListener {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

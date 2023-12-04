@@ -10,7 +10,6 @@ import androidx.navigation.findNavController
 import siarhei.luskanau.example.navigation.databinding.FragmentFeature2DetailBinding
 
 class Feature2DetailFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +29,10 @@ class Feature2DetailFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as AppCompatActivity).supportActionBar?.title = javaClass.simpleName
     }
