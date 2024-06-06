@@ -8,32 +8,34 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import siarhei.luskanau.example.dialogfragment.databinding.FragmentWithTagBinding
 
-class FragmentWithTag : Fragment(), OnPositiveClickListener, OnNegativeClickListener {
+class FragmentWithTag :
+    Fragment(),
+    OnPositiveClickListener,
+    OnNegativeClickListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? =
-        FragmentWithTagBinding.inflate(inflater, container, false)
-            .also { binding ->
-                binding.fragmentWithTagDialogButton.setOnClickListener {
-                    AppDialogFragment.Builder(
-                        dialogId = "FragmentWithTag_dialogId",
-                        title = "FragmentWithTag",
-                        message = "Dialog from FragmentWithTag",
-                    )
-                        .setPositiveButton(android.R.string.ok, this)
-                        .setNegativeButton(android.R.string.cancel, this)
-                        .show(this)
-                }
+        savedInstanceState: Bundle?
+    ): View? = FragmentWithTagBinding.inflate(inflater, container, false)
+        .also { binding ->
+            binding.fragmentWithTagDialogButton.setOnClickListener {
+                AppDialogFragment.Builder(
+                    dialogId = "FragmentWithTag_dialogId",
+                    title = "FragmentWithTag",
+                    message = "Dialog from FragmentWithTag"
+                )
+                    .setPositiveButton(android.R.string.ok, this)
+                    .setNegativeButton(android.R.string.cancel, this)
+                    .show(this)
             }
-            .root
+        }
+        .root
 
     override fun onClickPositive(dialogId: String) {
         Toast.makeText(
             requireContext(),
             "FragmentWithTag.onClickPositive $dialogId",
-            Toast.LENGTH_SHORT,
+            Toast.LENGTH_SHORT
         ).show()
     }
 
@@ -41,7 +43,7 @@ class FragmentWithTag : Fragment(), OnPositiveClickListener, OnNegativeClickList
         Toast.makeText(
             requireContext(),
             "FragmentWithTag.onClickNegative $dialogId",
-            Toast.LENGTH_SHORT,
+            Toast.LENGTH_SHORT
         ).show()
     }
 }

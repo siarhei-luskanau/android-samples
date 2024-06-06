@@ -15,7 +15,7 @@ class WorkManagerMonitorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentWorkManagerMonitorBinding.inflate(inflater, container, false)
 
@@ -25,8 +25,8 @@ class WorkManagerMonitorFragment : Fragment() {
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 binding.recyclerView.context,
-                VERTICAL,
-            ),
+                VERTICAL
+            )
         )
 
         val workManagerMonitorViewModel =

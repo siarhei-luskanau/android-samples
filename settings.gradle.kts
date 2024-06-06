@@ -20,5 +20,5 @@ include(
     ":fileprovider-camera:camera",
     ":fonts",
     ":navigation",
-    ":workmanager",
+    ":workmanager"
 )
