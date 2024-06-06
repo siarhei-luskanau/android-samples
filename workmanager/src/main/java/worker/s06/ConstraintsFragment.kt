@@ -26,7 +26,7 @@ class ConstraintsFragment : BaseBeginCancelWorkFragment() {
                 OneTimeWorkRequestBuilder<ConstraintsWorker>()
                     .setConstraints(constraints)
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build(),
+                    .build()
             ).enqueue()
     }
 
@@ -36,12 +36,10 @@ class ConstraintsFragment : BaseBeginCancelWorkFragment() {
     }
 }
 
-class ConstraintsWorker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ConstraintsWorker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)

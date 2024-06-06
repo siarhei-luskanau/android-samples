@@ -21,7 +21,7 @@ class UniqueWorkWithErrorFragment : BaseBeginCancelWorkFragment() {
                 ExistingWorkPolicy.APPEND,
                 OneTimeWorkRequestBuilder<UniqueWithErrorWorker>()
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build(),
+                    .build()
             ).enqueue()
     }
 
@@ -31,12 +31,10 @@ class UniqueWorkWithErrorFragment : BaseBeginCancelWorkFragment() {
     }
 }
 
-class UniqueWithErrorWorker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class UniqueWithErrorWorker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS)

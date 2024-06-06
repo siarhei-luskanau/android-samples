@@ -9,25 +9,15 @@ object FileProviderUtils {
     private const val AUTHORITIES_SUFFIX = ".provider"
     private const val FILE_PROVIDER_PATHS = "temp"
 
-    fun getFileProviderUri(
-        context: Context,
-        fileName: String,
-    ): Uri =
-        FileProvider.getUriForFile(
-            context,
-            context.packageName + AUTHORITIES_SUFFIX,
-            createFile(context, fileName),
-        )
+    fun getFileProviderUri(context: Context, fileName: String): Uri = FileProvider.getUriForFile(
+        context,
+        context.packageName + AUTHORITIES_SUFFIX,
+        createFile(context, fileName)
+    )
 
-    fun deleteFile(
-        context: Context,
-        fileName: String,
-    ) = createFile(context, fileName).delete()
+    fun deleteFile(context: Context, fileName: String) = createFile(context, fileName).delete()
 
-    private fun createFile(
-        context: Context,
-        fileName: String,
-    ): File {
+    private fun createFile(context: Context, fileName: String): File {
         val fileProviderDir = File(context.filesDir, FILE_PROVIDER_PATHS)
         if (!fileProviderDir.exists()) {
             fileProviderDir.mkdirs()

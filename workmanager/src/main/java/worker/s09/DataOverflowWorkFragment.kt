@@ -15,7 +15,7 @@ class DataOverflowWorkFragment : BaseBeginCancelWorkFragment() {
             .beginWith(
                 OneTimeWorkRequestBuilder<DataOverflowWork>()
                     .addTag(WorkManagerConstants.TAG_ALL)
-                    .build(),
+                    .build()
             ).enqueue()
     }
 
@@ -25,12 +25,10 @@ class DataOverflowWorkFragment : BaseBeginCancelWorkFragment() {
     }
 }
 
-class DataOverflowWork(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class DataOverflowWork(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         var i = 0

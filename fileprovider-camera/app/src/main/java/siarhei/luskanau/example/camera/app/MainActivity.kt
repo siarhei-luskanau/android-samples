@@ -9,8 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.example.camera.library.FileProviderUtils
-import siarhei.luskanau.example.camera.app.databinding.ActivityMainBinding
 import java.util.Locale
+import siarhei.luskanau.example.camera.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -37,13 +37,13 @@ class MainActivity : AppCompatActivity() {
 
         val getContentLauncher =
             registerForActivityResult(
-                ActivityResultContracts.PickVisualMedia(),
+                ActivityResultContracts.PickVisualMedia()
             ) {
                 showImageUri(it)
             }
         binding.galleryButton.setOnClickListener {
             getContentLauncher.launch(
-                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly),
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
             )
         }
 

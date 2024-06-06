@@ -27,14 +27,14 @@ class ChainFragment : BaseBeginCancelWorkFragment() {
                         .setInputData(Data.Builder().putString("input_a2", "a2").build())
                         .addTag(WorkManagerConstants.TAG_ALL)
                         .addTag(TAG_CHAIN)
-                        .build(),
-                ),
+                        .build()
+                )
             )
             .then(
                 OneTimeWorkRequestBuilder<ChainB1Worker>()
                     .addTag(WorkManagerConstants.TAG_ALL)
                     .addTag(TAG_CHAIN)
-                    .build(),
+                    .build()
             )
             .then(
                 listOf(
@@ -45,8 +45,8 @@ class ChainFragment : BaseBeginCancelWorkFragment() {
                     OneTimeWorkRequestBuilder<ChainC2Worker>()
                         .addTag(WorkManagerConstants.TAG_ALL)
                         .addTag(TAG_CHAIN)
-                        .build(),
-                ),
+                        .build()
+                )
             )
             .enqueue()
     }
@@ -58,12 +58,10 @@ class ChainFragment : BaseBeginCancelWorkFragment() {
 
 private const val TAG_CHAIN = "TAG_CHAIN"
 
-class ChainA1Worker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ChainA1Worker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
@@ -71,12 +69,10 @@ class ChainA1Worker(
     }
 }
 
-class ChainA2Worker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ChainA2Worker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_10)
@@ -84,12 +80,10 @@ class ChainA2Worker(
     }
 }
 
-class ChainB1Worker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ChainB1Worker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
@@ -97,12 +91,10 @@ class ChainB1Worker(
     }
 }
 
-class ChainC1Worker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ChainC1Worker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_5)
@@ -110,12 +102,10 @@ class ChainC1Worker(
     }
 }
 
-class ChainC2Worker(
-    context: Context,
-    workerParams: WorkerParameters,
-) : BaseWorker(
+class ChainC2Worker(context: Context, workerParams: WorkerParameters) :
+    BaseWorker(
         context,
-        workerParams,
+        workerParams
     ) {
     override suspend fun doWorkDelegate(outputDataBuilder: Data.Builder): Result {
         delay(SLEEP_MILLIS_10)

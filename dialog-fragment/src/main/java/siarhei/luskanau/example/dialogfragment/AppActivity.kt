@@ -8,7 +8,10 @@ import siarhei.luskanau.example.dialogfragment.databinding.ActivityAppBinding
 
 private const val TAG = "FragmentWithTag"
 
-class AppActivity : AppCompatActivity(), OnPositiveClickListener, OnNegativeClickListener {
+class AppActivity :
+    AppCompatActivity(),
+    OnPositiveClickListener,
+    OnNegativeClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +23,7 @@ class AppActivity : AppCompatActivity(), OnPositiveClickListener, OnNegativeClic
                     AppDialogFragment.Builder(
                         dialogId = "AppActivity_dialogId",
                         title = "AppActivity",
-                        message = "Dialog from AppActivity",
+                        message = "Dialog from AppActivity"
                     )
                         .setPositiveButton(android.R.string.ok, this)
                         .setNegativeButton(android.R.string.cancel, this)

@@ -12,7 +12,7 @@ abstract class BaseBeginCancelWorkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentBeginCancelWorkBinding.inflate(inflater, container, false)
 
@@ -23,10 +23,7 @@ abstract class BaseBeginCancelWorkFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = javaClass.simpleName
