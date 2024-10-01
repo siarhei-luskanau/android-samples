@@ -14,7 +14,7 @@ class Feature2DetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentFeature2DetailBinding.inflate(inflater, container, false)
 
         val args = Feature2DetailFragmentArgs.fromBundle(arguments ?: Bundle())

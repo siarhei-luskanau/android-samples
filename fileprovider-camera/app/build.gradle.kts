@@ -1,5 +1,5 @@
 plugins {
-    androidApplicationConvention
+    id("androidApplicationConvention")
 }
 
 android {
@@ -8,7 +8,6 @@ android {
         applicationId = "siarhei.luskanau.example.camera.app"
         versionCode = 1
         versionName = "1.0"
-        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -35,7 +34,6 @@ android {
 
 dependencies {
     implementation(project(":fileprovider-camera:camera"))
-
     implementation(libs.android.material)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)

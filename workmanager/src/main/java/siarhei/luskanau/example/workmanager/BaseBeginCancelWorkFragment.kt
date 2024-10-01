@@ -13,7 +13,7 @@ abstract class BaseBeginCancelWorkFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentBeginCancelWorkBinding.inflate(inflater, container, false)
 
         binding.beginWorkButton.setOnClickListener { onBeginButtonPressed() }

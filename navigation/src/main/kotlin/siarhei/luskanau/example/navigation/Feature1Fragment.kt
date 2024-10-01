@@ -13,7 +13,7 @@ class Feature1Fragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentFeature1Binding.inflate(inflater, container, false)
 
         return binding.root

@@ -16,7 +16,7 @@ class FragmentWithId :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = FragmentWithIdBinding.inflate(inflater, container, false)
+    ): View = FragmentWithIdBinding.inflate(inflater, container, false)
         .also { binding ->
             binding.fragmentWithIdDialogButton.setOnClickListener {
                 AppDialogFragment.Builder(

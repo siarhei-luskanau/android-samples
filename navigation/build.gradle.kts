@@ -1,6 +1,6 @@
 plugins {
-    androidApplicationConvention
-    id("androidx.navigation.safeargs.kotlin")
+    id("androidApplicationConvention")
+    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {

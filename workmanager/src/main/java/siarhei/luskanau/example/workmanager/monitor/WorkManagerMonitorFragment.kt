@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout.VERTICAL
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
+import kotlinx.coroutines.launch
 import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerMonitorBinding
 
 class WorkManagerMonitorFragment : Fragment() {
@@ -16,7 +19,7 @@ class WorkManagerMonitorFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentWorkManagerMonitorBinding.inflate(inflater, container, false)
 
         val adapter = WorkInfoAdapter()
@@ -30,9 +33,14 @@ class WorkManagerMonitorFragment : Fragment() {
         )
 
         val workManagerMonitorViewModel =
-            ViewModelProvider(this).get(WorkManagerMonitorViewModel::class.java)
-        workManagerMonitorViewModel.getWorkStatusListLiveData(requireContext())
-            .observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
+            ViewModelProvider(this)[WorkManagerMonitorViewModel::class.java]
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                workManagerMonitorViewModel.getWorkStatusListFlow(binding.root.context).collect {
+                    adapter.submitList(it)
+                }
+            }
+        }
 
         return binding.root
     }

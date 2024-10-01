@@ -6,12 +6,12 @@ buildscript {
     dependencies {
         classpath(libs.android.gradle.plugin)
         classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.androidx.navigation.safeArgsGradlePlugin)
     }
 }
 
 plugins {
     alias(libs.plugins.detekt)
+    alias(libs.plugins.navigation.safeargs.kotlin).apply(false)
 }
 
 allprojects {

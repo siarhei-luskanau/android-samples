@@ -20,10 +20,8 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding =
-            ActivityAppBinding.inflate(LayoutInflater.from(this)).also { binding ->
-                setContentView(binding.root)
-            }
+        val binding = ActivityAppBinding.inflate(LayoutInflater.from(this))
+            .also { binding -> setContentView(binding.root) }
 
         navController = Navigation.findNavController(this, R.id.navHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)

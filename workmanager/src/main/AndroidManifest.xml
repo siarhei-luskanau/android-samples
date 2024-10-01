@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name="siarhei.luskanau.example.workmanager.AppApplication"
-        android:allowBackup="false"
         android:icon="@drawable/ic_android"
         android:label="WorkManager"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
         <activity
             android:name="siarhei.luskanau.example.workmanager.AppActivity"

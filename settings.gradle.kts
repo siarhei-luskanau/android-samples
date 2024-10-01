@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("convention-plugin-android-library")
     repositories {
         google()
         gradlePluginPortal()
@@ -10,7 +11,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://jitpack.io")
     }
 }
 

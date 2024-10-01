@@ -16,7 +16,7 @@ class FragmentWithTag :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = FragmentWithTagBinding.inflate(inflater, container, false)
+    ): View = FragmentWithTagBinding.inflate(inflater, container, false)
         .also { binding ->
             binding.fragmentWithTagDialogButton.setOnClickListener {
                 AppDialogFragment.Builder(

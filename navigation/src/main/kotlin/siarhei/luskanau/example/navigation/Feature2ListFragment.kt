@@ -14,7 +14,7 @@ class Feature2ListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentFeature2ListBinding.inflate(inflater, container, false)
 
         binding.feature2DetailListItem.setOnClickListener {
