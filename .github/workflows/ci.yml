@@ -21,3 +21,6 @@ jobs:
           java-version: '21'
 
       - run: bash ./gradlew ktlintCheck detekt lint test build connectedAndroidTest --stacktrace
+
+      - name: Update Gradle Wrapper
+        uses: gradle-update/update-gradle-wrapper-action@v2
