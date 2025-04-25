@@ -27,5 +27,6 @@ jobs:
       - run: bash ./gradlew ktlintFormat ktlintCheck detekt lint test build connectedAndroidTest --stacktrace
 
       - run: ./gradlew wrapper --gradle-version latest --stacktrace
+      - run: ./gradlew wrapper --gradle-version latest --stacktrace
 
       - uses: stefanzweifel/git-auto-commit-action@v5
