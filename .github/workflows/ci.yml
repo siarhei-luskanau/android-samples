@@ -24,9 +24,17 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - run: bash ./gradlew ktlintFormat ktlintCheck detekt lint test build connectedAndroidTest --stacktrace
+      - uses: gradle/actions/setup-gradle@v4
 
       - run: ./gradlew wrapper --gradle-version latest --stacktrace
       - run: ./gradlew wrapper --gradle-version latest --stacktrace
-
       - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update Gradle wrapper
+
+      - run: ./gradlew ktlintFormat --stacktrace
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Ktlint format
+
+      - run: bash ./gradlew ktlintCheck detekt lint test build connectedAndroidTest --stacktrace
