@@ -37,4 +37,4 @@ jobs:
         with:
           commit_message: Ktlint format
 
-      - run: bash ./gradlew ktlintCheck detekt lint test build connectedAndroidTest --stacktrace
+      - run: ./gradlew ktlintCheck detekt lint test build connectedAndroidTest --stacktrace

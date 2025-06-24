@@ -2,10 +2,11 @@ package siarhei.luskanau.example.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,13 +21,18 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding =
-            ActivityAppBinding.inflate(LayoutInflater.from(this))
-                .also { binding ->
-                    setContentView(binding.root)
-                }
+        onBackPressedDispatcher.addCallback {
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
 
-        navController = Navigation.findNavController(this, R.id.navHostFragment)
+        val binding = ActivityAppBinding.inflate(LayoutInflater.from(this))
+            .also { binding -> setContentView(binding.root) }
+
+        navController = findNavController(R.id.navHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
 
         // Set up ActionBar
@@ -39,12 +45,4 @@ class AppActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean =
         navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-
-    override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
 }
