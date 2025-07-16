@@ -13,7 +13,7 @@ build-javaVersion = "VERSION_21"
 build-jvmTarget = "21"
 detekt = "1.23.8"
 kotlin = "2.2.0"
-ktlint = "1.6.0"
+ktlint = "1.7.0"
 timber = "5.0.1"
 
 [libraries]
