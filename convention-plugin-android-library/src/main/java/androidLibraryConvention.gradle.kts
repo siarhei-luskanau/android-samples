@@ -29,7 +29,6 @@ android {
     testOptions {
         animationsDisabled = true
         unitTests {
-            isIncludeAndroidResources = true
             all { test ->
                 test.testLogging {
                     events = org.gradle.api.tasks.testing.logging.TestLogEvent.values().toSet()
