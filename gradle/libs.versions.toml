@@ -12,7 +12,7 @@ androidx-work = "2.10.3"
 build-javaVersion = "VERSION_21"
 build-jvmTarget = "21"
 detekt = "1.23.8"
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 ktlint = "1.7.1"
 timber = "5.0.1"
 
