@@ -1,4 +1,7 @@
-val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+val libs = the<LibrariesForLibs>()
 
 plugins {
     id("com.android.application")
@@ -6,25 +9,19 @@ plugins {
 }
 
 android {
-    compileSdk = libs.findVersion("android-build-compileSdk").get().requiredVersion.toInt()
+    compileSdk = libs.versions.build.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = libs.findVersion("android-build-minSdk").get().requiredVersion.toInt()
-        targetSdk = libs.findVersion("android-build-targetSdk").get().requiredVersion.toInt()
+        minSdk = libs.versions.build.android.minSdk.get().toInt()
+        targetSdk = libs.versions.build.android.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures.viewBinding = true
 
     compileOptions {
-        sourceCompatibility =
-            JavaVersion.valueOf(
-                libs.findVersion("build-javaVersion").get().requiredVersion
-            )
-        targetCompatibility =
-            JavaVersion.valueOf(
-                libs.findVersion("build-javaVersion").get().requiredVersion
-            )
+        sourceCompatibility = JavaVersion.valueOf(libs.versions.build.javaVersion.get())
+        targetCompatibility = JavaVersion.valueOf(libs.versions.build.javaVersion.get())
     }
 
     testOptions {
@@ -33,7 +30,7 @@ android {
             isIncludeAndroidResources = true
             all { test ->
                 test.testLogging {
-                    events = org.gradle.api.tasks.testing.logging.TestLogEvent.values().toSet()
+                    events = TestLogEvent.entries.toSet()
                     exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                 }
             }
