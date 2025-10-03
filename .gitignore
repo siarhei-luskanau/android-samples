@@ -12,6 +12,7 @@
 bin/
 gen/
 out/
+/kotlin-js-store/
 
 # Gradle files
 .gradle

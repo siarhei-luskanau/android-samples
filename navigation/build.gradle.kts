@@ -1,6 +1,21 @@
 plugins {
-    id("androidApplicationConvention")
-    alias(libs.plugins.navigation.safeargs.kotlin)
+    id("multiplatformConvention")
+    alias(libs.plugins.kotlinx.serialization)
+}
+
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.jetbrains.lifecycle.viewmodel.compose)
+            implementation(libs.jetbrains.navigation.compose)
+            implementation(libs.koin.compose)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(project.dependencies.platform(libs.koin.bom))
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
+    }
 }
 
 android {
@@ -10,12 +25,4 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-}
-
-dependencies {
-    implementation(libs.android.material)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
 }
