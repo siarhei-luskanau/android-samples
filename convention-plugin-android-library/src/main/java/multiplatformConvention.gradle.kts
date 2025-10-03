@@ -18,27 +18,6 @@ kotlin {
 
     androidTarget()
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
-    js {
-        browser()
-        binaries.executable()
-    }
-
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(compose.animation)
@@ -69,15 +48,6 @@ kotlin {
 
         androidInstrumentedTest.dependencies {
             implementation(kotlin("test"))
-        }
-
-        jvmMain.dependencies {
-        }
-
-        iosMain.dependencies {
-        }
-
-        webMain.dependencies {
         }
     }
 }

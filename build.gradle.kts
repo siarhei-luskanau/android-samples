@@ -10,15 +10,14 @@ buildscript {
 }
 
 plugins {
+    alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.jetbrains.compose).apply(false)
+    alias(libs.plugins.multiplatform).apply(false)
     alias(libs.plugins.navigation.safeargs.kotlin).apply(false)
 }
 
 allprojects {
     apply(from = "$rootDir/ktlint.gradle")
     apply(plugin = "io.gitlab.arturbosch.detekt")
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
 }
