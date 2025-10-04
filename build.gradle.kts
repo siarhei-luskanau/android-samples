@@ -4,7 +4,7 @@ System.getenv().forEach { (key, value) -> println("System.getenv(): $key=$value"
 
 buildscript {
     dependencies {
-        classpath(libs.android.gradle.plugin)
+        classpath(libs.android.tools.gradle)
         classpath(libs.kotlin.gradle.plugin)
     }
 }

@@ -11,20 +11,23 @@ build-android-minSdk = "21"
 build-android-targetSdk = "36"
 build-javaVersion = "VERSION_21"
 build-jvmTarget = "21"
+compose-multiplatform = "1.9.0"
 detekt = "1.23.8"
 kotlin = "2.2.20"
 ktlint = "1.7.1"
 timber = "5.0.1"
 
 [libraries]
-android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+android-tools-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
+jetbrains-compose-compiler-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+jetbrains-compose-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-multiplatform" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
