@@ -1,5 +1,5 @@
 plugins {
-    id("androidApplicationConvention")
+    id("multiplatformConvention")
     alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
@@ -10,14 +10,19 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+    buildFeatures.viewBinding = true
 }
 
-dependencies {
-    implementation(libs.android.material)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.work.runtime.ktx)
-    implementation(libs.timber)
+kotlin {
+    sourceSets {
+        androidMain.dependencies {
+            implementation(libs.android.material)
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.fragment.ktx)
+            implementation(libs.androidx.navigation.fragment.ktx)
+            implementation(libs.androidx.navigation.ui.ktx)
+            implementation(libs.androidx.work.runtime.ktx)
+            implementation(libs.timber)
+        }
+    }
 }
