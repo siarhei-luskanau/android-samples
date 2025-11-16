@@ -101,10 +101,12 @@ class AppDialogFragment : DialogFragment() {
                 requireActivity().supportFragmentManager.findFragmentByTag(fragmentTag)
             findListener(clazz, fragment)
         }
+
         fragmentId != View.NO_ID -> {
             val fragment = requireActivity().supportFragmentManager.findFragmentById(fragmentId)
             findListener(clazz, fragment)
         }
+
         else -> {
             val activityByName =
                 if (activity?.javaClass?.name == activityName) activity else null
