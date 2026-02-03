@@ -10,13 +10,6 @@ android {
         versionName = "1.0"
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
-
     flavorDimensions.add("default")
     productFlavors {
         create("flavor1") {

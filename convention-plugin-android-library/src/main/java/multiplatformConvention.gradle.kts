@@ -5,7 +5,7 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 val libs = the<LibrariesForLibs>()
 
 plugins {
-    id("com.android.application")
+    id("com.android.kotlin.multiplatform.library")
     kotlin("multiplatform")
     kotlin("plugin.compose")
     id("org.jetbrains.compose")
@@ -16,7 +16,18 @@ kotlin {
 
     jvm()
 
-    androidTarget()
+    androidLibrary {
+        compileSdk = libs.versions.build.android.compileSdk.get().toInt()
+        minSdk = libs.versions.build.android.minSdk.get().toInt()
+
+        androidResources.enable = true
+
+        withHostTestBuilder {}.configure {
+            isIncludeAndroidResources = true
+        }
+
+        packaging.resources.excludes.add("META-INF/**")
+    }
 
     sourceSets {
         commonMain.dependencies {
@@ -43,39 +54,8 @@ kotlin {
             implementation(compose.uiTooling)
         }
 
-        androidUnitTest.dependencies {
-        }
-
         androidInstrumentedTest.dependencies {
             implementation(kotlin("test"))
-        }
-    }
-}
-
-android {
-    compileSdk = libs.versions.build.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.build.android.minSdk.get().toInt()
-        targetSdk = libs.versions.build.android.targetSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.valueOf(libs.versions.build.javaVersion.get())
-        targetCompatibility = JavaVersion.valueOf(libs.versions.build.javaVersion.get())
-    }
-
-    testOptions {
-        animationsDisabled = true
-        unitTests {
-            isIncludeAndroidResources = true
-            all { test ->
-                test.testLogging {
-                    events = TestLogEvent.entries.toSet()
-                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-                }
-            }
         }
     }
 }

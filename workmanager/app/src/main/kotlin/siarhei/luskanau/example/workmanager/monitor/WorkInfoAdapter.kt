@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.work.WorkInfo
-import siarhei.luskanau.example.workmanager.databinding.ListItemWorkStatusBinding
+import siarhei.luskanau.example.workmanager.app.databinding.ListItemWorkStatusBinding
 
 class WorkInfoAdapter : ListAdapter<WorkInfo, WorkInfoAdapter.ViewHolder>(WorkInfoDiffCallback()) {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

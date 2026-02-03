@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.coroutines.launch
-import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerMonitorBinding
+import siarhei.luskanau.example.workmanager.app.databinding.FragmentWorkManagerMonitorBinding
 
 class WorkManagerMonitorFragment : Fragment() {
     override fun onCreateView(
