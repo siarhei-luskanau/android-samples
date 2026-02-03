@@ -11,7 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import siarhei.luskanau.example.workmanager.databinding.ActivityAppBinding
+import siarhei.luskanau.example.workmanager.app.R
+import siarhei.luskanau.example.workmanager.app.databinding.ActivityAppBinding
 
 class AppActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAppBinding

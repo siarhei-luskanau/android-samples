@@ -6,24 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.work.WorkManager
-import siarhei.luskanau.example.workmanager.databinding.FragmentWorkManagerActionsBinding
+import siarhei.luskanau.example.workmanager.app.databinding.FragmentBeginCancelWorkBinding
 
-class WorkManagerActionsFragment : Fragment() {
+abstract class BaseBeginCancelWorkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentWorkManagerActionsBinding.inflate(inflater, container, false)
+        val binding = FragmentBeginCancelWorkBinding.inflate(inflater, container, false)
 
-        binding.cancelAllButton.setOnClickListener {
-            WorkManager.getInstance(requireContext()).cancelAllWork()
-        }
+        binding.beginWorkButton.setOnClickListener { onBeginButtonPressed() }
 
-        binding.pruneButton.setOnClickListener {
-            WorkManager.getInstance(requireContext()).pruneWork()
-        }
+        binding.cancelWorkButton.setOnClickListener { onCancelButtonPressed() }
 
         return binding.root
     }
@@ -33,4 +28,8 @@ class WorkManagerActionsFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = javaClass.simpleName
     }
+
+    abstract fun onBeginButtonPressed()
+
+    abstract fun onCancelButtonPressed()
 }

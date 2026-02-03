@@ -1,5 +1,5 @@
 println("gradle.startParameter.taskNames: ${gradle.startParameter.taskNames}")
-System.getProperties().forEach { key, value -> println("System.getProperties(): $key=$value") }
+System.getProperties().forEach { (key, value) -> println("System.getProperties(): $key=$value") }
 System.getenv().forEach { (key, value) -> println("System.getenv(): $key=$value") }
 
 buildscript {
@@ -10,6 +10,7 @@ buildscript {
 }
 
 plugins {
+    alias(libs.plugins.android.kmp.library).apply(false)
     alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.detekt)
     alias(libs.plugins.jetbrains.compose).apply(false)

@@ -19,6 +19,8 @@ include(
     ":fileprovider-camera:app",
     ":fileprovider-camera:camera",
     ":fonts",
-    ":navigation",
-    ":workmanager"
+    ":navigation:app",
+    ":navigation:composeApp",
+    ":workmanager:app",
+    ":workmanager:composeApp"
 )
