@@ -1,6 +1,6 @@
 [versions]
 agp = "9.2.1"
-android-material = "1.13.0"
+android-material = "1.14.0"
 androidx-activity = "1.13.0"
 androidx-core = "1.18.0"
 androidx-fragment = "1.8.9"
