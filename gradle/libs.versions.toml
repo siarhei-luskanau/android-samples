@@ -2,7 +2,7 @@
 agp = "9.2.1"
 android-material = "1.14.0"
 androidx-activity = "1.13.0"
-androidx-core = "1.18.0"
+androidx-core = "1.19.0"
 androidx-fragment = "1.8.9"
 androidx-navigation = "2.9.8"
 androidx-work = "2.11.2"
